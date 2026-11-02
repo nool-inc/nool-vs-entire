@@ -1,0 +1,1288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nool vs Entire CLI: Deep Comparative Analysis</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    :root {
+      --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+    .code-font {
+      font-family: var(--font-mono);
+    }
+    .tab-btn.active {
+      border-bottom-color: var(--primary, #3b82f6);
+      color: var(--primary, #3b82f6);
+      font-weight: 600;
+    }
+    .custom-scroll::-webkit-scrollbar {
+      height: 6px;
+      width: 6px;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: rgba(150, 150, 150, 0.3);
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body class="bg-[var(--background,#0f172a)] text-[var(--foreground,#f8fafc)] antialiased min-h-screen p-4 md:p-8">
+
+  <div class="max-w-6xl mx-auto space-y-8">
+
+    <!-- Header / Hero Section -->
+    <header class="bg-[var(--card,#1e293b)] border border-[var(--border,#334155)] rounded-2xl p-6 md:p-8 shadow-xl relative overflow-hidden">
+      <div class="absolute -top-24 -right-24 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -bottom-24 -left-24 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl pointer-events-none"></div>
+      
+      <div class="relative z-10">
+        <div class="flex flex-wrap items-center gap-2 mb-3">
+          <span class="px-3 py-1 text-xs font-semibold rounded-full bg-blue-500/20 text-blue-400 border border-blue-500/30">Headless Empirical Evaluation</span>
+          <span class="px-3 py-1 text-xs font-semibold rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Google Antigravity CLI</span>
+          <span class="px-3 py-1 text-xs font-semibold rounded-full bg-purple-500/20 text-purple-400 border border-purple-500/30">Gemini 3.8 Flash High</span>
+        </div>
+        
+        <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-3 bg-gradient-to-r from-blue-400 via-indigo-300 to-purple-400 bg-clip-text text-transparent">
+          Nool CLI vs Entire CLI
+        </h1>
+        <p class="text-[var(--muted-foreground,#94a3b8)] text-base md:text-lg max-w-3xl leading-relaxed">
+          A deep architectural & empirical benchmark comparing <strong class="text-blue-400">Semantic Control Plane / Commutative VCS</strong> (Nool) against a <strong class="text-purple-400">Git-Native AI Session Provenance Recorder</strong> (Entire) under conflicting autonomous multi-agent workloads.
+        </p>
+
+        <!-- Quick Stat Pills -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6 pt-6 border-t border-[var(--border,#334155)]">
+          <div class="p-3 bg-[var(--background,#0f172a)]/60 rounded-xl border border-[var(--border,#334155)]">
+            <div class="text-xs text-[var(--muted-foreground,#94a3b8)]">Nool CLI Version</div>
+            <div class="text-lg font-bold text-blue-400">v7.23.0 <span class="text-xs font-normal text-emerald-400">(Enterprise)</span></div>
+          </div>
+          <div class="p-3 bg-[var(--background,#0f172a)]/60 rounded-xl border border-[var(--border,#334155)]">
+            <div class="text-xs text-[var(--muted-foreground,#94a3b8)]">Entire CLI Version</div>
+            <div class="text-lg font-bold text-purple-400">v0.12.2 <span class="text-xs font-normal text-purple-300">(Git-Refs)</span></div>
+          </div>
+          <div class="p-3 bg-[var(--background,#0f172a)]/60 rounded-xl border border-[var(--border,#334155)]">
+            <div class="text-xs text-[var(--muted-foreground,#94a3b8)]">Conflict Test Vector</div>
+            <div class="text-lg font-bold text-amber-400">OAuth2 vs SAML 2.0</div>
+          </div>
+          <div class="p-3 bg-[var(--background,#0f172a)]/60 rounded-xl border border-[var(--border,#334155)]">
+            <div class="text-xs text-[var(--muted-foreground,#94a3b8)]">Resolution Synergy</div>
+            <div class="text-lg font-bold text-emerald-400">Zero Hook Collision</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- BENCH:START -->
+    <section class="bg-[var(--card,#1e293b)] border border-emerald-500/40 rounded-2xl p-6 shadow-md space-y-3" aria-labelledby="bench-title">
+      <div class="flex flex-wrap items-baseline justify-between gap-2">
+        <h2 id="bench-title" class="text-lg font-bold text-[var(--foreground,#f8fafc)]">Measured results · sandboxed re-run</h2>
+        <span class="text-[11px] text-[var(--muted-foreground,#94a3b8)] code-font">2026-11-02T05:03:07Z · nool 7.23.0 · Entire CLI 0.12.2 · 19.8 s</span>
+      </div>
+      <p class="text-xs text-slate-300 leading-relaxed">Generated from <code class="code-font">benchmark/results/latest.json</code> by <code class="code-font">./verify_benchmark.sh</code>. Every scenario ran in a throwaway sandbox built from baseline <code class="code-font">53866f8</code>. Where an older section of this page disagrees with this table, this table is the measured result. Full write-up: <code class="code-font">BENCHMARK_COMPARISON.md</code>.</p>
+      <div class="overflow-x-auto custom-scroll">
+        <table class="w-full min-w-[640px] text-left text-xs border-collapse">
+          <thead>
+            <tr class="border-b border-[var(--border,#334155)] text-[var(--muted-foreground,#94a3b8)]">
+              <th class="p-2.5 font-semibold">Question</th><th class="p-2.5 font-semibold">Plain Git</th>
+              <th class="p-2.5 font-semibold text-purple-300">Git + Entire</th><th class="p-2.5 font-semibold text-blue-300">Nool</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-[var(--border,#334155)]">
+            <tr><td class="p-2.5 font-sans font-medium text-slate-200">Overlap visible before editing</td><td class="p-2.5 text-red-400">no — at merge</td><td class="p-2.5 text-red-400">no — at merge (no merge hook)</td><td class="p-2.5 text-emerald-400">yes — discover names <code class="code-font">agent-oauth</code> in 15 ms</td></tr>
+            <tr><td class="p-2.5 font-sans font-medium text-slate-200">Second agent blocked from same file</td><td class="p-2.5 text-red-400">no</td><td class="p-2.5 text-red-400">no</td><td class="p-2.5 text-emerald-400">announce + propose refused (distinct <code class="code-font">--agent-id</code>s)</td></tr>
+            <tr><td class="p-2.5 font-sans font-medium text-slate-200">Disjoint methods, same spot</td><td class="p-2.5 text-red-400">conflict · 1 marker block</td><td class="p-2.5 text-red-400">conflict · 1 marker block</td><td class="p-2.5 text-emerald-400">auto-union · 0 markers · tests pass</td></tr>
+            <tr><td class="p-2.5 font-sans font-medium text-slate-200">Same method rewritten by both</td><td class="p-2.5 text-red-400">conflict</td><td class="p-2.5 text-red-400">conflict</td><td class="p-2.5 text-amber-400">conflict (safe) · semantic pre-check missed it</td></tr>
+            <tr><td class="p-2.5 font-sans font-medium text-slate-200">Original agent prompt per line</td><td class="p-2.5 text-red-400">no</td><td class="p-2.5 text-emerald-400">yes — 5 sessions</td><td class="p-2.5 text-red-400">intent strings only</td></tr>
+            <tr><td class="p-2.5 font-sans font-medium text-slate-200">Policy gate before landing</td><td class="p-2.5 text-red-400">no</td><td class="p-2.5 text-red-400">no</td><td class="p-2.5 text-emerald-400">yes — editor-contract deny</td></tr>
+            <tr><td class="p-2.5 font-sans font-medium text-slate-200">Require Entire checkpoint on AI changes</td><td class="p-2.5 text-slate-300">—</td><td class="p-2.5 text-slate-300">—</td><td class="p-2.5 text-red-400">not enforced (rule + policy landed)</td></tr>
+            <tr><td class="p-2.5 font-sans font-medium text-slate-200">Handoff · checkpoint · PR summary · PR merge</td><td class="p-2.5 text-slate-300">—</td><td class="p-2.5 text-slate-300">session resume; dispatch needs remote</td><td class="p-2.5 text-emerald-400">all four worked</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <!-- BENCH:END -->
+
+    <!-- Navigation Tabs -->
+    <nav class="flex border-b border-[var(--border,#334155)] space-x-6 text-sm overflow-x-auto custom-scroll">
+      <button onclick="switchTab('overview')" id="tab-btn-overview" class="tab-btn active pb-3 px-1 border-b-2 border-transparent hover:text-blue-400 transition whitespace-nowrap">
+        Executive Comparison
+      </button>
+      <button onclick="switchTab('simulation')" id="tab-btn-simulation" class="tab-btn pb-3 px-1 border-b-2 border-transparent hover:text-blue-400 transition whitespace-nowrap">
+        Conflict Experiment Replay
+      </button>
+      <button onclick="switchTab('architecture')" id="tab-btn-architecture" class="tab-btn pb-3 px-1 border-b-2 border-transparent hover:text-blue-400 transition whitespace-nowrap">
+        Architecture & Lifecycle
+      </button>
+      <button onclick="switchTab('matrix')" id="tab-btn-matrix" class="tab-btn pb-3 px-1 border-b-2 border-transparent hover:text-blue-400 transition whitespace-nowrap">
+        Detailed Feature Matrix
+      </button>
+      <button onclick="switchTab('synergy')" id="tab-btn-synergy" class="tab-btn pb-3 px-1 border-b-2 border-transparent hover:text-blue-400 transition whitespace-nowrap">
+        The "Better Together" Stack
+      </button>
+      <button onclick="switchTab('audit')" id="tab-btn-audit" class="tab-btn pb-3 px-1 border-b-2 border-transparent hover:text-emerald-400 transition whitespace-nowrap text-emerald-400 font-semibold flex items-center gap-1.5">
+        <span>🛡️</span> Audit Receipts & Evidence
+      </button>
+    </nav>
+
+    <!-- TAB 1: EXECUTIVE OVERVIEW -->
+    <section id="tab-overview" class="space-y-6">
+      <!-- High Level Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <!-- Nool Card -->
+        <div class="bg-[var(--card,#1e293b)] border border-blue-500/30 rounded-2xl p-6 shadow-lg flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center font-bold text-xl">N</div>
+                <div>
+                  <h3 class="font-bold text-xl text-blue-400">Nool CLI</h3>
+                  <div class="text-xs text-[var(--muted-foreground,#94a3b8)]">nool.dev · Semantic Control Plane</div>
+                </div>
+              </div>
+              <span class="text-xs px-2.5 py-1 rounded-full bg-blue-500/10 text-blue-300 font-medium border border-blue-500/20">Active Controller</span>
+            </div>
+            
+            <p class="text-sm text-[var(--muted-foreground,#94a3b8)] leading-relaxed mb-4">
+              Operates as an <strong>intent-aware coordination layer</strong> sitting above Git. It exposes overlapping agent work via spatial leases, checks AST invariants, executes speculative ghost-runs in shadow worktrees, and records verified causal change history.
+            </p>
+
+            <div class="space-y-2.5 text-xs text-[var(--foreground,#f8fafc)]">
+              <div class="flex items-center gap-2 text-slate-300">
+                <span class="text-emerald-400 font-bold">✓</span>
+                <span><strong>Proactive Overlap Prevention:</strong> <code class="code-font text-blue-300">discover conflicts</code> names the lease holder, and a second agent's exclusive announce and propose are refused — <em>when agents use distinct <code class="code-font text-blue-300">--agent-id</code>s</em> (measured)</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="text-amber-400 font-bold">⚠</span>
+                <span><strong>Aram Policy Gate:</strong> denies agent edits without an editor contract (measured); the Entire-provenance invariant configured here is <em>not</em> enforced (measured)</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="text-emerald-400 font-bold">✓</span>
+                <span><strong>LanceDB Intent Memory:</strong> Recalls institutional reasoning across sessions</span>
+              </div>
+              <div class="flex items-center gap-2 text-slate-300">
+                <span class="text-blue-400 font-bold">✓</span>
+                <span><strong>Agent-First Command Design:</strong> Agent-facing commands are machine-facing; humans only learn 5 supervisory verbs (<code class="code-font text-blue-300">status</code>, <code class="code-font text-blue-300">thread show</code>, <code class="code-font text-blue-300">debug replay</code>, <code class="code-font text-blue-300">blame</code>, <code class="code-font text-blue-300">doctor</code>)</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-[var(--border,#334155)] flex justify-between items-center text-xs">
+            <span class="text-[var(--muted-foreground,#94a3b8)]">Best For:</span>
+            <span class="font-semibold text-blue-300">Multi-Agent Swarms & Mission-Critical Codebases</span>
+          </div>
+        </div>
+
+        <!-- Entire Card -->
+        <div class="bg-[var(--card,#1e293b)] border border-purple-500/30 rounded-2xl p-6 shadow-lg flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center font-bold text-xl">E</div>
+                <div>
+                  <h3 class="font-bold text-xl text-purple-400">Entire CLI</h3>
+                  <div class="text-xs text-[var(--muted-foreground,#94a3b8)]">entire.com · Session Provenance Layer</div>
+                </div>
+              </div>
+              <span class="text-xs px-2.5 py-1 rounded-full bg-purple-500/10 text-purple-300 font-medium border border-purple-500/20">Passive Flight Recorder</span>
+            </div>
+            
+            <p class="text-sm text-[var(--muted-foreground,#94a3b8)] leading-relaxed mb-4">
+              Operates as a <strong>transparent audit flight recorder</strong>. Hooks directly into coding agents (Antigravity, Claude Code, Cursor) and Git. Automatically binds full conversation transcripts, prompts, tool traces, and line attributions to commits.
+            </p>
+
+            <div class="space-y-2.5 text-xs text-[var(--foreground,#f8fafc)]">
+              <div class="flex items-center gap-2">
+                <span class="text-emerald-400 font-bold">✓</span>
+                <span><strong>Line-by-Line Attribution (<code class="code-font text-purple-300">entire why</code>):</strong> Traces exact prompt per line</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="text-emerald-400 font-bold">✓</span>
+                <span><strong>Zero Git Pollution:</strong> Stores transcripts in hidden <code class="code-font text-purple-300">refs/entire/checkpoints/*</code></span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="text-emerald-400 font-bold">✓</span>
+                <span><strong>Frictionless Adoption:</strong> Installs in 1-click via native <code class="code-font text-purple-300">.agents/hooks.json</code></span>
+              </div>
+              <div class="flex items-center gap-2 text-[var(--muted-foreground,#94a3b8)]">
+                <span class="text-amber-400 font-bold">⚠</span>
+                <span>No pre-commit concurrency fencing (reactive to conflicts, not proactive)</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-[var(--border,#334155)] flex justify-between items-center text-xs">
+            <span class="text-[var(--muted-foreground,#94a3b8)]">Best For:</span>
+            <span class="font-semibold text-purple-300">Human-Agent Collaboration, Auditing & Provenance</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Capability Radar / Scorecard -->
+      <div class="bg-[var(--card,#1e293b)] border border-[var(--border,#334155)] rounded-2xl p-6 shadow-md">
+        <h3 class="text-base font-bold text-[var(--foreground,#f8fafc)] mb-4 flex items-center gap-2">
+          <span>📊</span> Comparative Capability Scorecard
+        </h3>
+
+        <div class="space-y-4 text-xs md:text-sm">
+          <!-- Item 1 -->
+          <div>
+            <div class="flex justify-between mb-1">
+              <span class="font-medium text-[var(--foreground,#f8fafc)]">Proactive Overlap Detection (Intent Leases)</span>
+              <span class="text-[var(--muted-foreground,#94a3b8)]"><strong class="text-blue-400">Nool: Demonstrated</strong> vs <strong class="text-purple-400">Entire: Not demonstrated</strong></span>
+            </div>
+            <div class="text-[11px] text-[var(--muted-foreground,#94a3b8)] mt-1">Nool issues spatial leases (<code class="code-font text-blue-400">nool announce</code>); with distinct agent identities a second exclusive announce on the same file is refused and a lease-violating <code class="code-font">propose</code> is rejected. Agents sharing one identity supersede each other's lease instead. Entire has no pre-flight reservation API.</div>
+          </div>
+
+          <!-- Item 2 -->
+          <div>
+            <div class="flex justify-between mb-1">
+              <span class="font-medium text-[var(--foreground,#f8fafc)]">Prompt & Conversational Provenance (<code class="code-font">why</code> Analysis)</span>
+              <span class="text-[var(--muted-foreground,#94a3b8)]"><strong class="text-blue-400">Nool: Partially demonstrated</strong> vs <strong class="text-purple-400">Entire: Demonstrated</strong></span>
+            </div>
+            <div class="text-[11px] text-[var(--muted-foreground,#94a3b8)] mt-1">Entire links specific lines directly to AI prompt sessions; Nool stores structural DAG & intent metadata.</div>
+          </div>
+
+          <!-- Item 3 -->
+          <div>
+            <div class="flex justify-between mb-1">
+              <span class="font-medium text-[var(--foreground,#f8fafc)]">Automated Semantic Verification (Ghost-Runs / Policy Gates)</span>
+              <span class="text-[var(--muted-foreground,#94a3b8)]"><strong class="text-blue-400">Nool: Demonstrated</strong> vs <strong class="text-purple-400">Entire: Not demonstrated</strong></span>
+            </div>
+            <div class="text-[11px] text-[var(--muted-foreground,#94a3b8)] mt-1">Nool runs shadow worktree reification tests; Entire delegates all code validation to external test suites.</div>
+          </div>
+
+          <!-- Item 4 -->
+          <div>
+            <div class="flex justify-between mb-1">
+              <span class="font-medium text-[var(--foreground,#f8fafc)]">Human Developer Friction</span>
+              <span class="text-[var(--muted-foreground,#94a3b8)]"><strong class="text-blue-400">Nool: 5 Core Verbs</strong> vs <strong class="text-purple-400">Entire: Zero Overhead</strong></span>
+            </div>
+            <div class="text-[11px] text-[var(--muted-foreground,#94a3b8)] mt-1">Entire is invisible behind standard Git. Nool delegates agent-facing commands while humans learn only 5 supervisory commands.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Persona-Driven Command Architecture -->
+      <div class="p-6 rounded-2xl border border-blue-500/30 bg-blue-950/20 space-y-4">
+        <div class="flex items-center justify-between border-b border-blue-500/30 pb-3">
+          <div>
+            <h4 class="text-base font-bold text-blue-300 flex items-center gap-2">
+              <span>🎯</span> Nool's Persona-Driven Command Design: Agent Golden Path vs. Human Supervision
+            </h4>
+            <p class="text-xs text-[var(--muted-foreground,#94a3b8)] mt-0.5">
+              Why counting Nool's 80+ commands is a misconception: Nool is engineered for <strong>machine agents</strong>, leaving human developers with a lean 5-verb workflow.
+            </p>
+          </div>
+          <span class="text-xs px-2.5 py-1 rounded bg-blue-500/20 text-blue-300 font-semibold border border-blue-500/30">
+            Official nool guide
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+          <!-- Human Path -->
+          <div class="p-4 rounded-xl bg-[var(--background,#0f172a)]/80 border border-emerald-500/30 space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-emerald-400 text-sm">Human Supervisory Loop (5 Verbs)</span>
+              <span class="text-[11px] text-emerald-300 bg-emerald-950 px-2 py-0.5 rounded border border-emerald-800">For Developers</span>
+            </div>
+            <p class="text-slate-300">
+              Humans do not craft Knots or manage AST leases manually. A developer only uses:
+            </p>
+            <ol class="space-y-1.5 text-slate-300 list-decimal list-inside code-font text-[11px]">
+              <li><strong class="text-emerald-400">nool status</strong> — Check high-level repository health & active swarms</li>
+              <li><strong class="text-emerald-400">nool thread show &lt;name&gt; --full</strong> — Review agent decisions & intent</li>
+              <li><strong class="text-emerald-400">nool debug replay HEAD</strong> — Reconstruct the causal path that led to changes</li>
+              <li><strong class="text-emerald-400">nool debug blame</strong> — Isolate root causes across agent handoffs</li>
+              <li><strong class="text-emerald-400">nool doctor --strict</strong> — Release readiness gate before deployment</li>
+            </ol>
+          </div>
+
+          <!-- Agent Path -->
+          <div class="p-4 rounded-xl bg-[var(--background,#0f172a)]/80 border border-blue-500/30 space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-blue-400 text-sm">Agent Execution Loop (Machine Golden Path)</span>
+              <span class="text-[11px] text-blue-300 bg-blue-950 px-2 py-0.5 rounded border border-blue-800">For Autonomous Fleets</span>
+            </div>
+            <p class="text-slate-300">
+              AI agents invoke Nool programmatic APIs (<code class="code-font text-blue-300">--compact</code>, <code class="code-font text-blue-300">--json</code>) in an autonomous loop:
+            </p>
+            <div class="code-font text-[11px] text-blue-300 bg-black/40 p-2.5 rounded border border-slate-800 space-y-1 leading-relaxed">
+              <div>status --compact <span class="text-slate-500">→</span> discover features</div>
+              <div><span class="text-slate-500">→</span> context &lt;task&gt; --budget 2000</div>
+              <div><span class="text-slate-500">→</span> announce intent --target-nodes &lt;paths&gt;</div>
+              <div><span class="text-slate-500">→</span> work start <span class="text-slate-500">→</span> task create</div>
+              <div><span class="text-slate-500">→</span> propose --path &lt;files&gt; <span class="text-slate-500">→</span> solidify</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: CONFLICT SIMULATION -->
+    <section id="tab-simulation" class="hidden space-y-6">
+      <div class="bg-[var(--card,#1e293b)] border border-[var(--border,#334155)] rounded-2xl p-6 shadow-md">
+        <h3 class="text-lg font-bold text-[var(--foreground,#f8fafc)] mb-2 flex items-center gap-2">
+          <span>⚡</span> Live Headless Run: The Conflicting Merge Experiment
+        </h3>
+        <p class="text-xs md:text-sm text-[var(--muted-foreground,#94a3b8)] mb-6">
+          We executed two parallel headless Antigravity (<code class="code-font text-blue-400">agy</code>) sessions creating mutually exclusive implementations of <code class="code-font text-amber-300">AuthService</code> in <code class="code-font">src/auth.py</code>. Here is how each tool reacted across the conflict lifecycle:
+        </p>
+
+        <!-- Stage Progression Timeline -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+          <div class="p-4 rounded-xl border border-blue-500/30 bg-blue-500/5">
+            <div class="flex items-center gap-2 text-blue-400 font-bold text-xs uppercase tracking-wider mb-2">
+              <span>Phase 1</span> · Pre-Flight Intent
+            </div>
+            <p class="text-xs text-[var(--muted-foreground,#94a3b8)] mb-3">
+              Agent Alpha requests an exclusive lease on <code class="code-font">src/auth.py</code> for OAuth2. Agent Beta queries conflicts before writing code.
+            </p>
+            <div class="text-xs font-semibold text-blue-300 bg-blue-900/30 p-2 rounded border border-blue-700/50">
+              Nool exited with Code 3 (Conflict). Entire idle until tools invoked.
+            </div>
+          </div>
+
+          <div class="p-4 rounded-xl border border-amber-500/30 bg-amber-500/5">
+            <div class="flex items-center gap-2 text-amber-400 font-bold text-xs uppercase tracking-wider mb-2">
+              <span>Phase 2</span> · Active 3-Way Conflict
+            </div>
+            <p class="text-xs text-[var(--muted-foreground,#94a3b8)] mb-3">
+              Both branches committed divergent function signatures. Git merge fails with content conflict.
+            </p>
+            <div class="text-xs font-semibold text-amber-300 bg-amber-900/30 p-2 rounded border border-amber-700/50">
+              Entire maps conflicting lines to prompts. Nool flags Grade F syntax error.
+            </div>
+          </div>
+
+          <div class="p-4 rounded-xl border border-emerald-500/30 bg-emerald-500/5">
+            <div class="flex items-center gap-2 text-emerald-400 font-bold text-xs uppercase tracking-wider mb-2">
+              <span>Phase 3</span> · Headless Resolution
+            </div>
+            <p class="text-xs text-[var(--muted-foreground,#94a3b8)] mb-3">
+              Headless Antigravity resolves conflict: unifies OAuth & SAML, passes 7/7 unit tests.
+            </p>
+            <div class="text-xs font-semibold text-emerald-300 bg-emerald-900/30 p-2 rounded border border-emerald-700/50">
+              Entire records resolution session. Nool solidifies dual-parent Knot.
+            </div>
+          </div>
+        </div>
+
+        <!-- Terminal Comparison Box -->
+        <div class="border border-[var(--border,#334155)] rounded-xl overflow-hidden bg-[var(--background,#0f172a)] text-xs code-font">
+          <div class="bg-[var(--card,#1e293b)] px-4 py-2.5 border-b border-[var(--border,#334155)] flex justify-between items-center">
+            <span class="font-bold text-[var(--foreground,#f8fafc)]">Inspect Empirical Command Output:</span>
+            <div class="flex space-x-2">
+              <button onclick="showTerminal('entire-why')" id="btn-term-entire-why" class="px-2.5 py-1 rounded bg-purple-600/30 text-purple-300 border border-purple-500/50 hover:bg-purple-600/50">entire why</button>
+              <button onclick="showTerminal('nool-conflicts')" id="btn-term-nool-conflicts" class="px-2.5 py-1 rounded bg-transparent text-[var(--muted-foreground,#94a3b8)] hover:bg-[var(--card,#1e293b)]">nool discover conflicts</button>
+              <button onclick="showTerminal('nool-why')" id="btn-term-nool-why" class="px-2.5 py-1 rounded bg-transparent text-[var(--muted-foreground,#94a3b8)] hover:bg-[var(--card,#1e293b)]">nool why (DAG)</button>
+              <button onclick="showTerminal('code-diff')" id="btn-term-code-diff" class="px-2.5 py-1 rounded bg-transparent text-[var(--muted-foreground,#94a3b8)] hover:bg-[var(--card,#1e293b)]">Resolved Code</button>
+            </div>
+          </div>
+
+          <!-- Screen: Entire Why -->
+          <div id="term-entire-why" class="p-4 custom-scroll overflow-x-auto text-slate-300 space-y-2">
+            <div class="text-emerald-400">$ entire why src/auth.py</div>
+            <div class="text-slate-400">src/auth.py · 27 lines · 45% linked to a checkpoint (12) · 3 uncommitted</div>
+            <div class="text-purple-300 font-semibold">Top checkpoints:</div>
+            <div>- 01M6CS5JHE8VHZXYCKBT54E8DB  8 lines · Antigravity · "In src/auth.py, refactor AuthService to support SAML 2.0 Enterprise SSO..."</div>
+            <div>- 01M6CS3FS2N4A78RSW30YMYK87  4 lines · Antigravity · "In src/auth.py, refactor AuthService to support OAuth2..."</div>
+            <div class="pt-2 text-emerald-400">$ entire why src/auth.py:8</div>
+            <div class="text-slate-300">    Line 8: def authenticate_oauth(self, provider: str, token: str) -&gt; bool:</div>
+            <div class="text-blue-300">    Checkpoint from Antigravity · checkpoint 01M6CS3FS2N4A78RSW30YMYK87 · session 48f1a497</div>
+            <div class="text-slate-400">    Prompt: "In src/auth.py, refactor AuthService to support OAuth2: replace authenticate_user..."</div>
+          </div>
+
+          <!-- Screen: Nool Conflicts -->
+          <div id="term-nool-conflicts" class="hidden p-4 custom-scroll overflow-x-auto text-slate-300 space-y-2">
+            <div class="text-emerald-400">$ nool discover conflicts file:src/auth.py --as-agent agent-beta --json</div>
+            <div class="text-amber-400">{</div>
+            <div class="text-amber-300">&nbsp;&nbsp;"has_conflicts": true,</div>
+            <div class="text-amber-300">&nbsp;&nbsp;"target_nodes": ["file:src/auth.py"],</div>
+            <div class="text-amber-300">&nbsp;&nbsp;"conflicts": [{</div>
+            <div class="text-amber-300">&nbsp;&nbsp;&nbsp;&nbsp;"agent_id": "78d1279c41eb61e420fb97074139d31f37e17e87731c8dc03e99f2623d51c8b7",</div>
+            <div class="text-amber-300">&nbsp;&nbsp;&nbsp;&nbsp;"agent_label": "agent-alpha",</div>
+            <div class="text-amber-300">&nbsp;&nbsp;&nbsp;&nbsp;"intent": "refactor auth for OAuth2",</div>
+            <div class="text-amber-300">&nbsp;&nbsp;&nbsp;&nbsp;"overlapping_nodes": ["file:src/auth.py"],</div>
+            <div class="text-amber-300">&nbsp;&nbsp;&nbsp;&nbsp;"expires_hlc": 1793579560632</div>
+            <div class="text-amber-300">&nbsp;&nbsp;}]</div>
+            <div class="text-amber-400">}</div>
+            <div class="text-red-400">Exit code: 3 (Conflict - another agent holds the spatial lease)</div>
+          </div>
+
+          <!-- Screen: Nool Why -->
+          <div id="term-nool-why" class="hidden p-4 custom-scroll overflow-x-auto text-slate-300 space-y-2">
+            <div class="text-emerald-400">$ nool why 77d3bf0c</div>
+            <div class="text-blue-300 font-bold">Causal Chain for 77d3bf0c55a26dd87b06ba0cac892c842d9d909bb794da30de46ae383ae7f3ee</div>
+            <div>└─ 77d3bf0c [2026-11-02] Synthesis (2 props): unify OAuth2 and SAML authentication</div>
+            <div class="text-emerald-400">&nbsp;&nbsp;&nbsp;&nbsp;✓ compile pass (check) by integrity-driver</div>
+            <div class="text-emerald-400">&nbsp;&nbsp;&nbsp;&nbsp;✓ unit-tests pass (full) by integrity-driver</div>
+            <div class="text-purple-300">&nbsp;&nbsp;└─ 228b7e0d [2026-11-02] feat: implement SAML SSO authentication</div>
+            <div class="text-purple-400">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Entire-Checkpoint: 01M6CS5JHE8VHZXYCKBT54E8DB</div>
+            <div class="text-blue-300">&nbsp;&nbsp;└─ beb8db3a [2026-11-02] add baseline auth service and test</div>
+          </div>
+
+          <!-- Screen: Code Diff -->
+          <div id="term-code-diff" class="hidden p-4 custom-scroll overflow-x-auto text-slate-300 space-y-1">
+            <div class="text-slate-400"># src/auth.py (Resolved by Headless Antigravity)</div>
+            <div class="text-indigo-300">class AuthService:</div>
+            <div class="text-slate-400">&nbsp;&nbsp;&nbsp;&nbsp;def __init__(self): self.session_store = {}</div>
+            <div class="text-emerald-400">&nbsp;&nbsp;&nbsp;&nbsp;def authenticate_oauth(self, provider: str, token: str) -&gt; bool:</div>
+            <div class="text-slate-300">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return provider in ["google", "github"] and token.startswith("oauth-")</div>
+            <div class="text-emerald-400">&nbsp;&nbsp;&nbsp;&nbsp;def authenticate_saml(self, idp_entity_id: str, assertion_xml: str) -&gt; bool:</div>
+            <div class="text-slate-300">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return idp_entity_id.endswith(".idp.example.com") and "&lt;saml:Assertion" in assertion_xml</div>
+            <div class="text-indigo-300">&nbsp;&nbsp;&nbsp;&nbsp;def get_user_role(self, username: str) -&gt; str:</div>
+            <div class="text-slate-300">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return "admin" if username == "admin" else "user"</div>
+            <div class="text-emerald-400 mt-2 font-bold">✓ 7/7 unit tests passing across both auth schemes</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: ARCHITECTURE & LIFECYCLE -->
+    <section id="tab-architecture" class="hidden space-y-6">
+      <div class="bg-[var(--card,#1e293b)] border border-[var(--border,#334155)] rounded-2xl p-6 shadow-md space-y-6">
+        <h3 class="text-lg font-bold text-[var(--foreground,#f8fafc)] flex items-center gap-2">
+          <span>🏗️</span> Architectural Topology & Lifecycle Comparison
+        </h3>
+
+        <!-- Flow comparison cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          
+          <!-- Nool Lifecycle -->
+          <div class="p-5 rounded-xl border border-blue-500/20 bg-blue-500/5 space-y-4">
+            <div class="flex items-center justify-between border-b border-blue-500/20 pb-2">
+              <h4 class="font-bold text-blue-400 text-sm">Nool Lifecycle Flow</h4>
+              <span class="text-xs text-[var(--muted-foreground,#94a3b8)]">Pre-Commit Heavy</span>
+            </div>
+            
+            <ol class="space-y-3 text-xs">
+              <li class="flex items-start gap-2.5">
+                <span class="w-5 h-5 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center font-bold flex-shrink-0">1</span>
+                <div>
+                  <strong class="text-blue-300">Announce Intent & Lease:</strong> Agent calls <code class="code-font">nool announce</code> claiming AST scope with fencing token.
+                </div>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="w-5 h-5 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center font-bold flex-shrink-0">2</span>
+                <div>
+                  <strong class="text-blue-300">Budgeted Context Extraction:</strong> <code class="code-font">nool context</code> pulls only the relevant AST blast radius, pruning token burn.
+                </div>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="w-5 h-5 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center font-bold flex-shrink-0">3</span>
+                <div>
+                  <strong class="text-blue-300">Candidate Knot Generation:</strong> <code class="code-font">nool propose</code> calculates semantic NodeIDs per symbol.
+                </div>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="w-5 h-5 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center font-bold flex-shrink-0">4</span>
+                <div>
+                  <strong class="text-blue-300">Speculative Ghost-Run:</strong> Materializes shadow worktree, validates build & tests.
+                </div>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="w-5 h-5 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center font-bold flex-shrink-0">5</span>
+                <div>
+                  <strong class="text-blue-300">Solidify & Replicate:</strong> Signed Knot sealed into causal DAG and exported to Git Mirror.
+                </div>
+              </li>
+            </ol>
+          </div>
+
+          <!-- Entire Lifecycle -->
+          <div class="p-5 rounded-xl border border-purple-500/20 bg-purple-500/5 space-y-4">
+            <div class="flex items-center justify-between border-b border-purple-500/20 pb-2">
+              <h4 class="font-bold text-purple-400 text-sm">Entire Lifecycle Flow</h4>
+              <span class="text-xs text-[var(--muted-foreground,#94a3b8)]">Post-Commit Transparent</span>
+            </div>
+            
+            <ol class="space-y-3 text-xs">
+              <li class="flex items-start gap-2.5">
+                <span class="w-5 h-5 rounded-full bg-purple-500/20 text-purple-400 flex items-center justify-center font-bold flex-shrink-0">1</span>
+                <div>
+                  <strong class="text-purple-300">Passive Agent Interception:</strong> <code class="code-font">.agents/hooks.json</code> intercepts agent session start, tool use, and stop events.
+                </div>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="w-5 h-5 rounded-full bg-purple-500/20 text-purple-400 flex items-center justify-center font-bold flex-shrink-0">2</span>
+                <div>
+                  <strong class="text-purple-300">Session Transcript Journaling:</strong> Buffers user prompt, model thoughts, tool calls, and tokens in local SQLite/JSON.
+                </div>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="w-5 h-5 rounded-full bg-purple-500/20 text-purple-400 flex items-center justify-center font-bold flex-shrink-0">3</span>
+                <div>
+                  <strong class="text-purple-300">Commit Trailer Injection:</strong> Git <code class="code-font">prepare-commit-msg</code> hook appends <code class="code-font">Entire-Checkpoint: &lt;id&gt;</code>.
+                </div>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="w-5 h-5 rounded-full bg-purple-500/20 text-purple-400 flex items-center justify-center font-bold flex-shrink-0">4</span>
+                <div>
+                  <strong class="text-purple-300">Shadow Ref Condensation:</strong> <code class="code-font">post-commit</code> hook links session snapshot to <code class="code-font">refs/entire/checkpoints/*</code>.
+                </div>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="w-5 h-5 rounded-full bg-purple-500/20 text-purple-400 flex items-center justify-center font-bold flex-shrink-0">5</span>
+                <div>
+                  <strong class="text-purple-300">Interactive Forensic Query:</strong> Developers query <code class="code-font">entire why</code> or <code class="code-font">entire checkpoint explain</code>.
+                </div>
+              </li>
+            </ol>
+          </div>
+
+        </div>
+
+        <!-- Storage & Git Refs Architecture Breakdown -->
+        <div class="border border-[var(--border,#334155)] rounded-xl overflow-hidden bg-[var(--background,#0f172a)]/40 p-5 space-y-4">
+          <div class="flex items-center justify-between border-b border-[var(--border,#334155)] pb-3">
+            <div>
+              <h4 class="font-bold text-[var(--foreground,#f8fafc)] text-sm flex items-center gap-2">
+                <span>🔗</span> Git Refs Transport Architecture & Namespace Coexistence
+              </h4>
+              <p class="text-xs text-[var(--muted-foreground,#94a3b8)] mt-0.5">
+                Both tools leverage custom Git references (<code class="code-font text-blue-300">refs/</code>) to isolate heavy metadata without cluttering human commit logs.
+              </p>
+            </div>
+            <span class="text-xs px-2.5 py-1 rounded bg-emerald-500/10 text-emerald-300 font-semibold border border-emerald-500/20">Zero Namespace Collision</span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+            <!-- Nool Git Refs -->
+            <div class="p-3.5 rounded-lg border border-blue-500/30 bg-blue-500/5 space-y-2">
+              <div class="font-bold text-blue-400 flex items-center gap-1.5">
+                <span>Nool Git Transport Refs</span>
+              </div>
+              <ul class="space-y-1.5 text-slate-300">
+                <li><code class="code-font text-blue-300 font-semibold">refs/nool/detached/&lt;agent-id&gt;</code>: Detached writer chains storing candidate knots (<code class="code-font text-slate-400">.nool/knot.bin</code>) & attestation records.</li>
+                <li><code class="code-font text-blue-300 font-semibold">refs/nool/mirror/&lt;branch&gt;</code>: Direct pointers linking Nool intent threads to Git mirror heads.</li>
+                <li><code class="code-font text-blue-300 font-semibold">refs/nool/git-mirror</code>: Tracks the canonical replay DAG head position.</li>
+                <li><code class="code-font text-blue-300 font-semibold">refs/knots/*</code>: Replicated verification attestations, DSSE/in-toto bundles, and signed human approvals.</li>
+                <li><code class="code-font text-blue-300 font-semibold">refs/nool/private/&lt;writer&gt;</code>: Isolated unsolidified agent workspaces.</li>
+              </ul>
+            </div>
+
+            <!-- Entire Git Refs -->
+            <div class="p-3.5 rounded-lg border border-purple-500/30 bg-purple-500/5 space-y-2">
+              <div class="font-bold text-purple-400 flex items-center gap-1.5">
+                <span>Entire Git Transport Refs</span>
+              </div>
+              <ul class="space-y-1.5 text-slate-300">
+                <li><code class="code-font text-purple-300 font-semibold">refs/entire/checkpoints/&lt;prefix&gt;/&lt;id&gt;</code>: Individual checkpoint commits containing full LLM transcripts, tool invocations, prompts, and token counts.</li>
+                <li><code class="code-font text-purple-300 font-semibold">Entire-Checkpoint: &lt;id&gt;</code>: Git commit trailer injected by <code class="code-font text-slate-400">prepare-commit-msg</code> hook to map code to checkpoint refs.</li>
+                <li><code class="code-font text-purple-300 font-semibold">refs/entire/metadata/*</code>: Remote sync and cluster state tracking.</li>
+                <li><code class="code-font text-purple-300 font-semibold">entire/checkpoints/v1</code>: Legacy fallback branch mode (now superseded by the standard <code class="code-font text-slate-400">git-refs</code> backend).</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Storage & Data Placement Table -->
+        <div class="border border-[var(--border,#334155)] rounded-xl overflow-hidden">
+          <table class="w-full text-left text-xs border-collapse">
+            <thead>
+              <tr class="bg-[var(--background,#0f172a)] border-b border-[var(--border,#334155)] text-[var(--muted-foreground,#94a3b8)]">
+                <th class="p-3 font-semibold">Aspect</th>
+                <th class="p-3 font-semibold text-blue-400">Nool Architecture</th>
+                <th class="p-3 font-semibold text-purple-400">Entire Architecture</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-[var(--border,#334155)] text-[var(--foreground,#f8fafc)]">
+              <tr>
+                <td class="p-3 font-medium">Local State Directory</td>
+                <td class="p-3"><code class="code-font">.nool/</code> (Redb, SQLite, LanceDB vector store, git_mirror)</td>
+                <td class="p-3"><code class="code-font">.entire/</code> (Local metadata, logs, settings.json)</td>
+              </tr>
+              <tr>
+                <td class="p-3 font-medium">Git Transport &amp; Refs</td>
+                <td class="p-3"><code class="code-font">refs/nool/mirror/*</code>, <code class="code-font">refs/nool/detached/*</code>, <code class="code-font">refs/knots/*</code></td>
+                <td class="p-3"><code class="code-font">refs/entire/checkpoints/*</code> (one ref per checkpoint)</td>
+              </tr>
+              <tr>
+                <td class="p-3 font-medium">Commit Traceability</td>
+                <td class="p-3">Appends <em>Nool Intelligence Block</em> &amp; trailers (<code class="code-font">Nool-Knot-ID</code>, <code class="code-font">Nool-Agent</code>)</td>
+                <td class="p-3">Appends standard git trailer (<code class="code-font">Entire-Checkpoint: &lt;id&gt;</code>)</td>
+              </tr>
+              <tr>
+                <td class="p-3 font-medium">Agent Hook Mechanism</td>
+                <td class="p-3">Custom shell wrappers (<code class="code-font">.nool/hooks/agent/*_hook.sh</code>)</td>
+                <td class="p-3">Multi-agent standard (<code class="code-font">.agents/hooks.json</code>) &amp; Git hooks</td>
+              </tr>
+              <tr>
+                <td class="p-3 font-medium">Remote Synchronization</td>
+                <td class="p-3">Pushes via <code class="code-font">nool push</code>; replicates knot refs &amp; attestation DAG</td>
+                <td class="p-3">Auto-pushes checkpoint refs during normal <code class="code-font">git push</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4: DETAILED MATRIX -->
+    <section id="tab-matrix" class="hidden space-y-6">
+      <div class="bg-[var(--card,#1e293b)] border border-[var(--border,#334155)] rounded-2xl p-6 shadow-md overflow-x-auto custom-scroll">
+        <h3 class="text-lg font-bold text-[var(--foreground,#f8fafc)] mb-4 flex items-center gap-2">
+          <span>📋</span> Comprehensive Deep-Dive Comparison Matrix
+        </h3>
+
+        <table class="w-full text-left text-xs border-collapse min-w-[700px]">
+          <thead>
+            <tr class="bg-[var(--background,#0f172a)] border-b border-[var(--border,#334155)] text-[var(--muted-foreground,#94a3b8)]">
+              <th class="p-3.5 font-bold">Capability / Feature</th>
+              <th class="p-3.5 font-bold text-blue-400">Nool CLI (v7.23)</th>
+              <th class="p-3.5 font-bold text-purple-400">Entire CLI (v0.12)</th>
+              <th class="p-3.5 font-bold text-emerald-400">Evaluation Verdict</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-[var(--border,#334155)]">
+            <tr>
+              <td class="p-3.5 font-medium"><strong>Primary Target User</strong></td>
+              <td class="p-3.5 text-slate-300">Autonomous multi-agent fleets & platform engineers</td>
+              <td class="p-3.5 text-slate-300">Software engineers, team leads, auditors</td>
+              <td class="p-3.5 text-emerald-400 font-medium">Complementary focus</td>
+            </tr>
+            <tr>
+              <td class="p-3.5 font-medium"><strong>Concurrency Conflict Handling</strong></td>
+              <td class="p-3.5 text-slate-300"><span class="text-emerald-400 font-bold">Proactive</span>: Spatial AST leases & conflict discovery</td>
+              <td class="p-3.5 text-slate-300"><span class="text-amber-400 font-bold">Reactive</span>: Post-conflict prompt attribution</td>
+              <td class="p-3.5 text-emerald-400 font-medium">Nool leads in concurrency</td>
+            </tr>
+            <tr>
+              <td class="p-3.5 font-medium"><strong>Line-Level Attribution</strong></td>
+              <td class="p-3.5 text-slate-300">Knot-level semantic attribution (file & symbol)</td>
+              <td class="p-3.5 text-slate-300"><span class="text-emerald-400 font-bold">Line-by-line</span> linked to raw user prompt</td>
+              <td class="p-3.5 text-emerald-400 font-medium">Entire leads in forensics</td>
+            </tr>
+            <tr>
+              <td class="p-3.5 font-medium"><strong>Session Transcript Storage</strong></td>
+              <td class="p-3.5 text-slate-300">Aggregated reasoning, intent notes, causal graph</td>
+              <td class="p-3.5 text-slate-300">Full conversation, tool requests, assistant replies</td>
+              <td class="p-3.5 text-emerald-400 font-medium">Entire preserves full chats</td>
+            </tr>
+            <tr>
+              <td class="p-3.5 font-medium"><strong>Repository Health & Gates</strong></td>
+              <td class="p-3.5 text-slate-300"><code class="code-font">nool doctor</code> (System grade, Aram WASM gates)</td>
+              <td class="p-3.5 text-slate-300"><code class="code-font">entire doctor</code> (Session health, git hook integrity)</td>
+              <td class="p-3.5 text-emerald-400 font-medium">Nool enforces code quality</td>
+            </tr>
+            <tr>
+              <td class="p-3.5 font-medium"><strong>Token Cost Analytics</strong></td>
+              <td class="p-3.5 text-slate-300"><code class="code-font">nool insights</code> (Token savings via AST pruning, ROI $)</td>
+              <td class="p-3.5 text-slate-300"><code class="code-font">entire checkpoint tokens</code> (Token breakdown per session)</td>
+              <td class="p-3.5 text-emerald-400 font-medium">Both provide rich metrics</td>
+            </tr>
+            <tr>
+              <td class="p-3.5 font-medium"><strong>Git Refs Transport Strategy</strong></td>
+              <td class="p-3.5 text-slate-300"><code class="code-font text-blue-300">refs/nool/detached/*</code>, <code class="code-font text-blue-300">refs/nool/mirror/*</code>, <code class="code-font text-blue-300">refs/knots/*</code></td>
+              <td class="p-3.5 text-slate-300"><code class="code-font text-purple-300">refs/entire/checkpoints/*</code>, <code class="code-font text-purple-300">refs/entire/metadata/*</code></td>
+              <td class="p-3.5 text-emerald-400 font-medium">Both use isolated Git ref namespaces</td>
+            </tr>
+            <tr>
+              <td class="p-3.5 font-medium"><strong>Standard Git Coexistence</strong></td>
+              <td class="p-3.5 text-slate-300">Mirrors canonical Knots to ordinary commits + Intelligence blocks</td>
+              <td class="p-3.5 text-slate-300">Invisibly appends <code class="code-font">Entire-Checkpoint:</code> trailer</td>
+              <td class="p-3.5 text-emerald-400 font-medium">100% compatible on same repo</td>
+            </tr>
+            <tr>
+              <td class="p-3.5 font-medium"><strong>Human Learning Curve &amp; Friction</strong></td>
+                <td class="p-3.5 text-slate-300"><span class="text-blue-300 font-semibold">5 supervisory commands</span> for humans (<code class="code-font text-blue-300">status</code>, <code class="code-font text-blue-300">thread show</code>, <code class="code-font text-blue-300">replay</code>, <code class="code-font text-blue-300">blame</code>, <code class="code-font text-blue-300">doctor</code>); agent-facing commands are autonomous agent tools.</td>
+              <td class="p-3.5 text-slate-300"><span class="text-emerald-300 font-semibold">Zero Git disruption</span>: transparent hooks, simple CLI (<code class="code-font text-purple-300">entire why</code>, <code class="code-font text-purple-300">explain</code>).</td>
+              <td class="p-3.5 text-emerald-400 font-medium">Both feature low human cognitive load</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- TAB 5: SYNERGY & BLUEPRINT -->
+    <section id="tab-synergy" class="hidden space-y-6">
+      <div class="bg-[var(--card,#1e293b)] border border-emerald-500/30 rounded-2xl p-6 shadow-md space-y-6">
+        <div>
+          <div class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 mb-2">
+            Production Recommended Pattern
+          </div>
+          <h3 class="text-2xl font-bold text-[var(--foreground,#f8fafc)]">
+            The Optimal Dual-Engine Architecture
+          </h3>
+          <p class="text-sm text-[var(--muted-foreground,#94a3b8)] mt-1">
+            Why choosing between Nool and Entire is a false dichotomy: pairing them creates an end-to-end <strong>Semantic Traffic Controller + Flight Black Box</strong>.
+          </p>
+        </div>
+
+        <!-- Visual Topology Card -->
+        <div class="p-5 rounded-xl bg-[var(--background,#0f172a)] border border-[var(--border,#334155)] space-y-4">
+          <div class="font-bold text-xs uppercase tracking-wider text-slate-400">Coexistence Workflow</div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-3 text-xs">
+            <div class="p-3 rounded-lg bg-blue-950/40 border border-blue-800/40">
+              <div class="font-bold text-blue-400 mb-1">1. Pre-Flight (Nool)</div>
+              <p class="text-slate-300">Agents query <code class="code-font">nool discover conflicts</code> and acquire spatial leases on AST nodes to avoid race conditions.</p>
+            </div>
+            
+            <div class="p-3 rounded-lg bg-purple-950/40 border border-purple-800/40">
+              <div class="font-bold text-purple-400 mb-2">2. Execution (Entire)</div>
+              <p class="text-slate-300">Antigravity generates code; Entire silently records prompts, tool invocations, and attribution checkpoints.</p>
+            </div>
+
+            <div class="p-3 rounded-lg bg-indigo-950/40 border border-indigo-800/40">
+              <div class="font-bold text-indigo-400 mb-2">3. Landing (Nool)</div>
+              <p class="text-slate-300"><code class="code-font">nool propose --solidify</code> runs shadow ghost-tests, validates invariants, and commits the candidate Knot.</p>
+            </div>
+
+            <div class="p-3 rounded-lg bg-emerald-950/40 border border-emerald-800/40">
+              <div class="font-bold text-emerald-400 mb-2">4. Audit & Forensics</div>
+              <p class="text-slate-300"><code class="code-font">entire why</code> answers prompt origins; <code class="code-font">nool why</code> proves architectural policy compliance.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Can Nool Absorb Entire via ARAM (DSL / WASM)? Deep Technical Assessment -->
+        <div class="p-6 rounded-2xl border border-indigo-500/40 bg-indigo-950/20 space-y-5">
+          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-indigo-500/30 pb-3">
+            <div>
+              <h4 class="text-base font-bold text-indigo-300 flex items-center gap-2">
+                <span>⚡</span> Feasibility Check: Can Nool Add Entire's Command Surface via ARAM (DSL / WASM)?
+              </h4>
+              <p class="text-xs text-[var(--muted-foreground,#94a3b8)] mt-0.5">
+                Empirical evaluation of Nool's WebAssembly sandbox (<code class="code-font text-blue-300">nool-aram-policy-sdk</code>), Invariants DSL, and runtime boundaries.
+              </p>
+            </div>
+            <span class="text-xs px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 font-semibold border border-amber-500/30">
+              Verdict: Gate works · Provenance rule not enforced yet · CLI surface No
+            </span>
+          </div>
+
+          <!-- Technical Explanation -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+            <div class="p-4 rounded-xl bg-[var(--background,#0f172a)]/60 border border-[var(--border,#334155)] space-y-2">
+              <div class="font-bold text-blue-400">What ARAM (WASM & DSL) Actually Is</div>
+              <p class="text-slate-300 leading-relaxed">
+                ARAM is a <strong>sandboxed verification predicate</strong> defined in <code class="code-font text-blue-300">wit/aram.wit</code>:
+              </p>
+              <pre class="code-font text-[11px] bg-black/40 p-2.5 rounded border border-slate-800 text-blue-300">export validate: func(knot-bytes: list&lt;u8&gt;, k: knot, stage: lifecycle-stage) -&gt; result&lt;_, denial&gt;;</pre>
+              <p class="text-slate-400 leading-relaxed">
+                It operates inside Wasmtime with strict fuel limits and a 16MB memory ceiling at specific pipeline stages (<code class="code-font">pre-propose</code>, <code class="code-font">pre-solidify</code>, <code class="code-font">pre-push</code>). It evaluates proposed changes and returns <code class="code-font text-emerald-400">Allow</code> or <code class="code-font text-red-400">Deny</code>.
+              </p>
+            </div>
+
+            <div class="p-4 rounded-xl bg-[var(--background,#0f172a)]/60 border border-[var(--border,#334155)] space-y-2">
+              <div class="font-bold text-purple-400">Why ARAM Cannot Directly Replicate Entire's CLI</div>
+              <ul class="space-y-1.5 text-slate-300">
+                <li><strong class="text-red-400">No CLI Subcommand Routing:</strong> ARAM policies cannot inject new top-level commands like <code class="code-font">nool checkpoint list</code> or <code class="code-font">nool session resume</code> into the compiled binary.</li>
+                <li><strong class="text-red-400">No Live Agent Hooks:</strong> ARAM only executes when code lands. It has no hook into active agent turn loops (<code class="code-font">SessionStart</code>, <code class="code-font">PreToolUse</code>) to capture streaming tokens or bash calls.</li>
+                <li><strong class="text-red-400">Strict Sandbox Isolation:</strong> WASM modules have no network access, file system I/O, or child process spawning capabilities.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Command-by-Command Feasibility Matrix -->
+          <div class="border border-[var(--border,#334155)] rounded-xl overflow-hidden">
+            <div class="bg-[var(--background,#0f172a)] px-4 py-2 font-bold text-xs text-slate-300 border-b border-[var(--border,#334155)]">
+              Entire Command Surface vs. Nool ARAM Implementation Feasibility
+            </div>
+            <table class="w-full text-left text-xs border-collapse">
+              <thead>
+                <tr class="bg-[var(--background,#0f172a)]/50 border-b border-[var(--border,#334155)] text-[var(--muted-foreground,#94a3b8)]">
+                  <th class="p-2.5 font-semibold">Entire Command</th>
+                  <th class="p-2.5 font-semibold">Purpose</th>
+                  <th class="p-2.5 font-semibold">Feasible via ARAM?</th>
+                  <th class="p-2.5 font-semibold">How Nool Actually Solves It</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-[var(--border,#334155)] text-slate-300">
+                <tr>
+                  <td class="p-2.5 font-medium"><code class="code-font text-purple-300">entire enable / agent add</code></td>
+                  <td class="p-2.5">Installs hooks in agent config and git</td>
+                  <td class="p-2.5 text-red-400 font-bold">❌ Infeasible</td>
+                  <td class="p-2.5 text-slate-400">Must be handled by host installer or shell scripts (<code class="code-font">.nool/hooks/agent/</code>).</td>
+                </tr>
+                <tr>
+                  <td class="p-2.5 font-medium"><code class="code-font text-purple-300">entire session [resume/stop]</code></td>
+                  <td class="p-2.5">Live session daemon & PTY process management</td>
+                  <td class="p-2.5 text-red-400 font-bold">❌ Infeasible</td>
+                  <td class="p-2.5 text-slate-400">Belongs to Nool's Metaharness daemon (<code class="code-font">nool session</code>), not the ARAM gate.</td>
+                </tr>
+                <tr>
+                  <td class="p-2.5 font-medium"><code class="code-font text-purple-300">entire why &lt;file&gt;:&lt;line&gt;</code></td>
+                  <td class="p-2.5">Interactive line-level prompt attribution</td>
+                  <td class="p-2.5 text-amber-400 font-bold">⚠️ Query Only</td>
+                  <td class="p-2.5 text-slate-400">ARAM cannot serve queries; best implemented natively in <code class="code-font">nool why</code> or <code class="code-font">nool debug blame</code>.</td>
+                </tr>
+                <tr>
+                  <td class="p-2.5 font-medium"><code class="code-font text-purple-300">entire checkpoint tokens / recap</code></td>
+                  <td class="p-2.5">Token usage breakdowns and recent summaries</td>
+                  <td class="p-2.5 text-amber-400 font-bold">⚠️ Query Only</td>
+                  <td class="p-2.5 text-slate-400">Nool handles this via its built-in engine: <code class="code-font">nool insights</code> and <code class="code-font">nool usage</code>.</td>
+                </tr>
+                <tr>
+                  <td class="p-2.5 font-medium"><strong class="text-emerald-400">Entire Checkpoint Enforcement</strong></td>
+                  <td class="p-2.5">Require Entire-Checkpoint trailers on all Knots</td>
+                  <td class="p-2.5 text-amber-400 font-bold">⚠️ Feasible in design · not working here</td>
+                  <td class="p-2.5 text-amber-200">Measured: an <code class="code-font">is_ai_agent</code>-tagged change with no Entire link <strong>landed</strong> with the rule and policy landed. The shipped WASM never mentions Entire or checkpoints (scaffold) and is built for an older knot model. Needs a real policy built with <code class="code-font">nool-aram-policy-sdk</code>.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Code Snippet: Tested ARAM Invariant Rule -->
+          <div class="p-4 rounded-xl bg-[var(--background,#0f172a)] border border-[var(--border,#334155)] space-y-2 text-xs">
+            <div class="font-bold text-slate-300 flex items-center justify-between">
+              <span>ARAM rule configured in nool.toml:</span>
+              <span class="text-amber-400 font-semibold">Configured · not enforced (measured)</span>
+            </div>
+            <pre class="code-font text-[11px] bg-black/50 p-3 rounded border border-slate-800 text-slate-300 overflow-x-auto">
+# Enforcing Entire Provenance via Nool's ARAM Invariant Engine
+[invariants.rule_definitions.require_entire_provenance]
+description = "All AI-generated changes must carry verified Entire Checkpoint trailers"
+when_pattern = "has_metadata('is_ai_agent')"
+then_requirement = "has_link('entire_checkpoint')"
+severity = "error"   # intended to block; did not block in the benchmark
+            </pre>
+            <p class="text-[11px] text-[var(--muted-foreground,#94a3b8)]">
+              The intended architecture still stands — rather than rewriting Entire's interactive CLI in WASM, Nool's Aram gate would act as the compliance gatekeeper that requires an Entire session trail before a change lands. <strong class="text-amber-300">It is not working yet:</strong> in a sandbox with this rule and policy landed and an editor contract granted, an AI-tagged change without an Entire link was sealed and <code class="code-font">nool verify --all</code> reported 0 violations. In the live repo the stale policy module also fails closed on newer knot kinds (a task-creation knot is denied with "could not decode this knot").
+            </p>
+          </div>
+        </div>
+
+        <!-- Empirical Verification Proof -->
+        <div class="p-4 rounded-xl border border-emerald-500/20 bg-emerald-500/5 text-xs text-slate-300 space-y-2">
+          <div class="font-bold text-emerald-400 flex items-center gap-1.5">
+            <span>✓</span> Measured (sandboxed re-run · <code class="code-font">benchmark/results/latest.json</code>)
+          </div>
+          <table class="w-full text-left text-xs border-collapse mt-2">
+            <thead>
+              <tr class="bg-[var(--background,#0f172a)]/50 border-b border-[var(--border,#334155)] text-[var(--muted-foreground,#94a3b8)]">
+                <th class="p-2.5 font-semibold">Experiment</th>
+                <th class="p-2.5 font-semibold">Result</th>
+                <th class="p-2.5 font-semibold text-emerald-400">Evidence</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-[var(--border,#334155)] code-font text-slate-300 text-[11px]">
+              <tr>
+                <td class="p-2.5 font-sans font-medium text-slate-200">ARAM gate blocks agent edits without an editor contract</td>
+                <td class="p-2.5 text-blue-300">`nool propose` denied at <code class="code-font">pre-propose</code> with `POLICY_DENY` (reason code 403) when no editor contract exists</td>
+                <td class="p-2.5 text-emerald-400 font-semibold">✓ Verified</td>
+              </tr>
+              <tr>
+                <td class="p-2.5 font-sans font-medium text-slate-200">Entire-provenance rule blocks AI change with no checkpoint link</td>
+                <td class="p-2.5 text-blue-300">`--tag is_ai_agent` change with no Entire link solidified (rule + policy landed, contract granted); untagged control also landed; `nool verify --all` → 0 violations. Earlier "rules satisfied" output was vacuous.</td>
+                <td class="p-2.5 text-red-400 font-semibold">✗ Not enforced</td>
+              </tr>
+              <tr>
+                <td class="p-2.5 font-sans font-medium text-slate-200">WASM policy loaded from policies_path</td>
+                <td class="p-2.5 text-blue-300">`nool doctor` detects `policies/entire_policy_test.wasm`; `nool admin plugin list` warns it was built for an older knot model and should be rebuilt</td>
+                <td class="p-2.5 text-amber-400 font-semibold">⚠ Loaded, outdated</td>
+              </tr>
+              <tr>
+                <td class="p-2.5 font-sans font-medium text-slate-200">Entire + Nool hook coexistence</td>
+                <td class="p-2.5 text-blue-300">Entire's `prepare-commit-msg`/`post-commit` hooks and Nool's integrity-driver/git mirror operate without collision</td>
+                <td class="p-2.5 text-emerald-400 font-semibold">✓ Verified</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="text-[11px] text-[var(--muted-foreground,#94a3b8)] mt-2">
+            Configuration: <code class="code-font">[invariants] rules = ["require_entire_provenance"]</code> with rule body in
+            <code class="code-font">[invariants.rule_definitions.require_entire_provenance]</code>. WASM policy at
+            <code class="code-font">policies/entire_policy_test.wasm</code>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 6: AUDIT RECEIPTS & REPRODUCIBILITY -->
+    <section id="tab-audit" class="hidden space-y-6">
+      <div class="bg-[var(--card,#1e293b)] border border-emerald-500/40 rounded-2xl p-6 shadow-md space-y-6">
+        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-[var(--border,#334155)] pb-4">
+          <div>
+            <div class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 mb-2">
+              Cryptographic &amp; Empirical Receipts
+            </div>
+            <h3 class="text-2xl font-bold text-[var(--foreground,#f8fafc)]">
+              Proof Ledger &amp; Reproducibility Runbook
+            </h3>
+            <p class="text-xs md:text-sm text-[var(--muted-foreground,#94a3b8)] mt-1">
+              Zero marketing claims. Every data point, commit SHA, Knot ID, and test output below was recorded directly from the local filesystem during this benchmark session.
+            </p>
+          </div>
+          <a href="#runbook" class="px-3 py-1.5 rounded-lg bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs font-semibold hover:bg-emerald-500/30 transition">
+            Run Verification Script
+          </a>
+        </div>
+
+        <!-- 30-Second Verification Runbook Card -->
+        <div id="runbook" class="p-4 rounded-xl bg-[var(--background,#0f172a)] border border-emerald-500/30 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="font-bold text-emerald-400 text-xs uppercase tracking-wider">Independent 30-Second Verification Runbook</span>
+            <span class="text-[11px] text-slate-400">Run in this workspace</span>
+          </div>
+          <p class="text-xs text-slate-300">
+            You do not have to take this report's word for it. Run the included automated verification script in your terminal to inspect all hashes, refs, and tests directly:
+          </p>
+          <div class="bg-black/60 p-3 rounded-lg border border-slate-800 flex items-center justify-between code-font text-xs text-emerald-300">
+            <span>chmod +x verify_benchmark.sh &amp;&amp; ./verify_benchmark.sh</span>
+            <span class="text-slate-500 text-[11px]">6 steps · sandboxed · regenerates the report</span>
+          </div>
+        </div>
+
+        <!-- Cryptographic State Table -->
+        <div class="border border-[var(--border,#334155)] rounded-xl overflow-hidden">
+          <div class="bg-[var(--background,#0f172a)] px-4 py-2.5 font-bold text-xs text-slate-300 border-b border-[var(--border,#334155)]">
+            Verified Artifact &amp; Commit Receipts
+          </div>
+          <table class="w-full text-left text-xs border-collapse">
+            <thead>
+              <tr class="bg-[var(--background,#0f172a)]/50 border-b border-[var(--border,#334155)] text-[var(--muted-foreground,#94a3b8)]">
+                <th class="p-2.5 font-semibold">Stage / Event</th>
+                <th class="p-2.5 font-semibold">Git Commit SHA</th>
+                <th class="p-2.5 font-semibold text-purple-400">Entire Checkpoint ULID</th>
+                <th class="p-2.5 font-semibold text-blue-400">Nool Knot ID</th>
+                <th class="p-2.5 font-semibold">Verified Status</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-[var(--border,#334155)] code-font text-slate-300 text-[11px]">
+              <tr>
+                <td class="p-2.5 font-sans font-medium text-slate-200">Baseline Service</td>
+                <td class="p-2.5 text-blue-300">53866f8</td>
+                <td class="p-2.5 text-slate-500">None (Pre-feature)</td>
+                <td class="p-2.5 text-blue-400">beb8db3a</td>
+                <td class="p-2.5 font-sans text-emerald-400 font-semibold">✓ 1/1 tests pass</td>
+              </tr>
+              <tr>
+                <td class="p-2.5 font-sans font-medium text-slate-200">OAuth2 Branch</td>
+                <td class="p-2.5 text-blue-300">e6d8cb6</td>
+                <td class="p-2.5 text-purple-400">01M6CS3FS2N4A78RSW30YMYK87</td>
+                <td class="p-2.5 text-slate-500">Unsolidified</td>
+                <td class="p-2.5 font-sans text-emerald-400 font-semibold">✓ agy Session Captured</td>
+              </tr>
+              <tr>
+                <td class="p-2.5 font-sans font-medium text-slate-200">SAML SSO Branch</td>
+                <td class="p-2.5 text-blue-300">25b0f01</td>
+                <td class="p-2.5 text-purple-400">01M6CS5JHE8VHZXYCKBT54E8DB</td>
+                <td class="p-2.5 text-blue-400">228b7e0d</td>
+                <td class="p-2.5 font-sans text-emerald-400 font-semibold">✓ agy Session Captured</td>
+              </tr>
+              <tr>
+                <td class="p-2.5 font-sans font-medium text-slate-200">Merge Resolution</td>
+                <td class="p-2.5 text-blue-300">1f40733</td>
+                <td class="p-2.5 text-purple-400">01M6CSAQ6G2ENC06M81Y9Z9YG5</td>
+                <td class="p-2.5 text-slate-500">Merge Commit</td>
+                <td class="p-2.5 font-sans text-emerald-400 font-semibold">✓ Prompt Stored in Trailer</td>
+              </tr>
+              <tr>
+                <td class="p-2.5 font-sans font-medium text-slate-200">Solidified Knot</td>
+                <td class="p-2.5 text-blue-300">436f401</td>
+                <td class="p-2.5 text-purple-400">Inherited 01M6CSAQ...</td>
+                <td class="p-2.5 text-blue-400">77d3bf0c</td>
+                <td class="p-2.5 font-sans text-emerald-400 font-semibold">✓ Dual-Parent DAG Sealed</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Transparent Disclosure of Real Failures & Edge Cases -->
+        <div class="space-y-3">
+          <h4 class="font-bold text-sm text-slate-200 flex items-center gap-2">
+            <span>⚠️</span> Transparent Failure &amp; Edge Case Disclosure (What Failed During the Benchmark)
+          </h4>
+          <p class="text-xs text-[var(--muted-foreground,#94a3b8)]">
+            A trustworthy benchmark must disclose where tools failed or hit limitations. Here are the 4 actual failures encountered during execution:
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+            <!-- Nool Failures -->
+            <div class="p-4 rounded-xl border border-red-500/20 bg-red-950/10 space-y-2">
+              <div class="font-bold text-red-400 flex items-center gap-1.5">
+                <span>Nool Limitations Disclosed</span>
+              </div>
+              <ul class="space-y-2 text-slate-300">
+                <li>
+                  <strong class="text-slate-200">1. Same-symbol conflicts still need a human:</strong>
+                  In the sandboxed re-run, <code class="code-font">nool merge</code> unioned two branches that each added a <em>different</em> method (<code class="code-font text-blue-300">authenticate_oauth</code> / <code class="code-font text-blue-300">authenticate_saml</code>) at the same spot — 0 markers, tests pass — where plain git conflicted. When both branches rewrote the <em>same</em> method body, it stopped with standard git markers (correct), but its semantic pre-check had printed "no same-symbol collisions" — a false negative.
+                </li>
+                <li>
+                  <strong class="text-slate-200">1b. Lease protection depends on agent identity:</strong>
+                  Agents that announce without distinct <code class="code-font">--agent-id</code>s share the session identity, so a second exclusive announce supersedes the first rather than conflicting.
+                </li>
+                <li>
+                  <strong class="text-slate-200">2. Strict Configuration Governance Locks:</strong>
+                  Attempting to install a WASM policy while modifying <code class="code-font">nool.toml</code> resulted in an explicit failure (<code class="code-font text-red-400">CONFIG_CHANGE refused</code>). Nool mandates changes to governance files be solidified separately.
+                </li>
+              </ul>
+            </div>
+
+            <!-- Entire Failures -->
+            <div class="p-4 rounded-xl border border-amber-500/20 bg-amber-950/10 space-y-2">
+              <div class="font-bold text-amber-400 flex items-center gap-1.5">
+                <span>Entire Limitations Disclosed</span>
+              </div>
+              <ul class="space-y-2 text-slate-300">
+                <li>
+                  <strong class="text-slate-200">1. Offline / Local Search Failure:</strong>
+                  Running <code class="code-font">entire search "OAuth2"</code> failed immediately with <code class="code-font text-amber-300">could not determine current repository for search: remote "origin" not found</code>. Semantic search currently requires a configured remote repository.
+                </li>
+                <li>
+                  <strong class="text-slate-200">2. Cloud Auth Requirement for Summaries:</strong>
+                  <code class="code-font">entire recap</code> failed with <code class="code-font text-amber-300">Not logged in. Run 'entire login' to authenticate</code>. High-level summaries require Entire cloud backend connectivity.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- BENCH-TESTS:START -->
+        <div class="p-4 rounded-xl border border-[var(--border,#334155)] bg-[var(--background,#0f172a)] text-xs text-slate-300 space-y-2">
+          <div class="font-bold text-emerald-400">Benchmark test suite — 80 tests in <code class="code-font">tests/test_benchmark.py</code> (+1 in <code class="code-font">tests/test_auth.py</code>)</div>
+          <p class="text-[11px] text-slate-300">The suite no longer mutates this repository: the previous plain-git tests ran real <code class="code-font">checkout/commit/merge</code> here (and left it mid-merge), lease tests leaked leases, and a live <code class="code-font">propose</code> queued candidates. Behavioural claims are now asserted against the sandboxed harness (<code class="code-font">BenchmarkEvidenceTests</code>); remaining classes are CLI smoke checks, many of them <code class="code-font">--help</code> calls that show a command exists, not that it works. The old "72 checks · 69 pass" total was a hard-coded string.</p>
+          <div class="overflow-x-auto custom-scroll">
+            <table class="w-full min-w-[560px] text-left text-xs border-collapse">
+              <thead><tr class="border-b border-[var(--border,#334155)] text-[var(--muted-foreground,#94a3b8)]"><th class="p-2.5 font-semibold">Class</th><th class="p-2.5 font-semibold">Covers</th><th class="p-2.5 font-semibold">Tests</th><th class="p-2.5 font-semibold">Expected failures</th></tr></thead>
+              <tbody class="divide-y divide-[var(--border,#334155)] code-font text-[11px]">
+              <tr><td class="p-2.5 font-sans font-medium text-slate-200">NoolCliTests</td><td class="p-2.5">Nool CLI availability and core commands.</td><td class="p-2.5">4</td><td class="p-2.5 text-slate-400">—</td></tr>
+              <tr><td class="p-2.5 font-sans font-medium text-slate-200">EntireCliTests</td><td class="p-2.5">Entire CLI availability and core commands.</td><td class="p-2.5">4</td><td class="p-2.5 text-slate-400">—</td></tr>
+              <tr><td class="p-2.5 font-sans font-medium text-slate-200">GitRefsCoexistenceTests</td><td class="p-2.5">Both tools must coexist without polluting each other's git ref namespace.</td><td class="p-2.5">3</td><td class="p-2.5 text-slate-400">—</td></tr>
+              <tr><td class="p-2.5 font-sans font-medium text-slate-200">ConflictDetectionTests</td><td class="p-2.5">Nool proactive conflict detection vs Entire reactive attribution.</td><td class="p-2.5">3</td><td class="p-2.5 text-slate-400">—</td></tr>
+              <tr><td class="p-2.5 font-sans font-medium text-slate-200">NoolAramEnforcementTests</td><td class="p-2.5">Nool ARAM/WASM enforcement of Entire checkpoint provenance.</td><td class="p-2.5">2</td><td class="p-2.5 text-slate-400">—</td></tr>
+              <tr><td class="p-2.5 font-sans font-medium text-slate-200">NoolTryBranchTests</td><td class="p-2.5">Nool try branch lifecycle: new, list, show, worktree (with cleanup).</td><td class="p-2.5">5</td><td class="p-2.5 text-slate-400">—</td></tr>
+              <tr><td class="p-2.5 font-sans font-medium text-slate-200">NoolFleetTests</td><td class="p-2.5">Nool fleet planning: wave partition, capacity, architecture advice.</td><td class="p-2.5">3</td><td class="p-2.5 text-slate-400">—</td></tr>
+              <tr><td class="p-2.5 font-sans font-medium text-slate-200">UnitTestExecutionTests</td><td class="p-2.5">The existing Python unit test suite must keep passing.</td><td class="p-2.5">1</td><td class="p-2.5 text-slate-400">—</td></tr>
+              <tr><td class="p-2.5 font-sans font-medium text-slate-200">CoexistenceE2ETests</td><td class="p-2.5">End-to-end: both tools operate on the same repo without interference.</td><td class="p-2.5">3</td><td class="p-2.5 text-slate-400">—</td></tr>
+              <tr><td class="p-2.5 font-sans font-medium text-slate-200">NoolReadOnlyCommandTests</td><td class="p-2.5">Nool read-only CLI commands that don't require network or auth.</td><td class="p-2.5">23</td><td class="p-2.5 text-slate-400">—</td></tr>
+              <tr><td class="p-2.5 font-sans font-medium text-slate-200">NoolCandidateQueueTests</td><td class="p-2.5">Nool candidate queue is inspectable (the propose/solidify write path is exercised in the sandboxed harness).</td><td class="p-2.5">1</td><td class="p-2.5 text-slate-400">—</td></tr>
+              <tr><td class="p-2.5 font-sans font-medium text-slate-200">EntireLocalCommandTests</td><td class="p-2.5">Entire CLI commands that work locally without network/auth.</td><td class="p-2.5">11</td><td class="p-2.5 text-slate-400">—</td></tr>
+              <tr><td class="p-2.5 font-sans font-medium text-slate-200">BenchmarkEvidenceTests</td><td class="p-2.5">Assertions over the sandboxed harness (benchmark/run_benchmark.py).</td><td class="p-2.5">17</td><td class="p-2.5 text-amber-400">2</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-[11px] text-slate-300">Expected failures are known Nool gaps kept visible on purpose — they turn into "unexpected success" when fixed:</p>
+          <ul class="list-disc pl-5 text-[11px] text-amber-300"><li><code class="code-font">test_nool_semantic_engine_flags_same_symbol_collision</code></li><li><code class="code-font">test_aram_blocks_ai_change_without_entire_link</code></li></ul>
+        </div>
+    <!-- BENCH-TESTS:END -->
+
+        <!-- CLI Command Surface Gap Analysis -->
+        <div class="p-4 rounded-xl border border-amber-500/30 bg-amber-950/20 text-xs text-slate-300 space-y-2">
+          <div class="font-bold text-amber-400 flex items-center gap-1.5">
+            <span>📊</span> CLI Command Surface Coverage Analysis
+          </div>
+          <p class="text-[11px] text-[var(--muted-foreground,#94a3b8)]">
+            Benchmark covers agent-facing and supervisory Nool commands and Entire commands that can
+            run offline without cloud authentication. Coverage percentages use different counting
+            conventions across the document (agent-facing commands vs. all commands including
+            subcommands) and are not directly comparable. Untested commands require network/auth
+            (cloud-backed), interactive TUI, or model execution and cannot run in this offline
+            benchmark environment.
+          </p>
+          <table class="w-full text-left text-xs border-collapse mt-2">
+            <thead>
+              <tr class="bg-[var(--background,#0f172a)]/50 border-b border-[var(--border,#334155)] text-[var(--muted-foreground,#94a3b8)]">
+                <th class="p-2.5 font-semibold">Tool</th>
+                <th class="p-2.5 font-semibold">Command Surface</th>
+                <th class="p-2.5 font-semibold">Tested</th>
+                <th class="p-2.5 font-semibold">Untested (Requires Network/Auth/Model)</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-[var(--border,#334155)] code-font text-slate-300 text-[11px]">
+              <tr>
+                <td class="p-2.5 font-sans font-medium text-slate-200">Nool CLI</td>
+                <td class="p-2.5">~50 commands + subcommands</td>
+                <td class="p-2.5 text-emerald-400">~30 commands</td>
+                <td class="p-2.5 text-slate-400">Now exercised functionally in the sandboxed harness: merge, discover, announce, propose/solidify, checkpoint, context, thread handoff, pr summary, pr merge, verify, admin contract/plugin. Still untested: push/pull/sync/land/council/agent/harness/playbook/steer/workspace/audit/commit-template/eval/persona/order/explore/msg/review/upgrade/uninstall/test/ui/daemon/hooks/branch/promote/bug/untrack/learn/findings/knowledge/session/telemetry/feedback/lease/reify/plan/apply/explain/evidence/policy/visualize</td>
+              </tr>
+              <tr>
+                <td class="p-2.5 font-sans font-medium text-slate-200">Entire CLI</td>
+                <td class="p-2.5">26 commands</td>
+                <td class="p-2.5 text-emerald-400">11 commands</td>
+                <td class="p-2.5 text-slate-400">activity/checkpoint/dispatch/recap/search/session/trail/auth/login/logout/api/cluster/org/project/repo/labs (most require cloud backend or remote repo)</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="text-[11px] text-[var(--muted-foreground,#94a3b8)] mt-2">
+            Commands marked as network/auth-dependent require: Entire cloud login (<code class="code-font">entire login</code>),
+            configured remote repository (<code class="code-font">git remote add origin</code>), or model provider credentials.
+            These cannot be validated in an offline, headless benchmark.
+          </p>
+        </div>
+
+        <!-- Headless Multi-Agent Conflict Experiment (opencode) -->
+        <div class="p-4 rounded-xl border border-blue-500/30 bg-blue-950/20 text-xs text-slate-300 space-y-2">
+          <div class="font-bold text-blue-400 flex items-center gap-1.5">
+            <span>🤖</span> Headless Multi-Agent Conflict Experiment (opencode run)
+          </div>
+          <p class="text-[11px] text-[var(--muted-foreground,#94a3b8)]">
+            Two opencode agents ran concurrently via <code class="code-font">opencode run --pure</code> against the same
+            <code class="code-font">src/auth.py</code> — Agent Alpha adding OAuth2, Agent Beta adding SAML — to observe
+            real Nool and Entire behavior under concurrent modification.
+          </p>
+          <table class="w-full text-left text-xs border-collapse mt-2">
+            <thead>
+              <tr class="bg-[var(--background,#0f172a)]/50 border-b border-[var(--border,#334155)] text-[var(--muted-foreground,#94a3b8)]">
+                <th class="p-2.5 font-semibold">Observation</th>
+                <th class="p-2.5 font-semibold">Nool (v7.23.0)</th>
+                <th class="p-2.5 font-semibold">Entire (v0.12.2)</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-[var(--border,#334155)] code-font text-slate-300 text-[11px]">
+              <tr>
+                <td class="p-2.5 font-sans font-medium text-slate-200">Coordination method used</td>
+                <td class="p-2.5 text-slate-300">nool announce intent (exclusive lease)</td>
+                <td class="p-2.5 text-slate-300">none (no entire agent add)</td>
+              </tr>
+              <tr>
+                <td class="p-2.5 font-sans font-medium text-slate-200">Concurrent lease grants</td>
+                <td class="p-2.5 text-blue-300">Both agents granted exclusive leases on file:src/auth.py (announce IDs ba68cf74, 70871e7e). <span class="text-amber-300 font-sans">Re-run explains this: the agents did not pass distinct <code class="code-font">--agent-id</code>s, so they shared one identity and the second announce superseded the first. With distinct IDs the second announce is refused.</span></td>
+                <td class="p-2.5 text-purple-300">N/A — no session tracking installed</td>
+              </tr>
+              <tr>
+                <td class="p-2.5 font-sans font-medium text-slate-200">Conflict detection timing</td>
+                <td class="p-2.5 text-blue-300">Detected via nool discover conflicts (has_conflicts=true, exit code 3). In the controlled re-run with distinct identities: announce and propose refused before any edit lands.</td>
+                <td class="p-2.5 text-purple-300">N/A</td>
+              </tr>
+              <tr>
+                <td class="p-2.5 font-sans font-medium text-slate-200">Line attribution captured</td>
+                <td class="p-2.5 text-slate-300">N/A</td>
+                <td class="p-2.5 text-purple-300">entire why src/auth.py → 33% (11/33 lines) linked to checkpoints from both OAuth2 and SAML Antigravity sessions</td>
+              </tr>
+              <tr>
+                <td class="p-2.5 font-sans font-medium text-slate-200">Both methods verified</td>
+                <td class="p-2.5 text-slate-300">authenticate_oauth + authenticate_saml pass all edge cases (providers, token prefixes, empty/None, suffix-collision)</td>
+                <td class="p-2.5 text-slate-300">N/A</td>
+              </tr>
+              <tr>
+                <td class="p-2.5 font-sans font-medium text-slate-200">Tests pass after concurrent edits</td>
+                <td class="p-2.5 text-emerald-400 font-semibold">✓ unittest OK</td>
+                <td class="p-2.5 text-emerald-400 font-semibold">✓ unittest OK</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="text-[11px] text-[var(--muted-foreground,#94a3b8)] mt-2">
+            Key takeaway (corrected after the sandboxed re-run): Nool refuses overlapping exclusive leases and lease-violating proposals between agents with
+            distinct identities; agents that share an identity are one agent to Nool. Wire a distinct <code class="code-font">--agent-id</code>/<code class="code-font">--as-agent</code> per agent.
+            Entire passively records sessions for later attribution but does not prevent concurrent edits.
+          </p>
+        </div>
+
+        <!-- Plain Git vs Nool vs Entire Comparison -->
+        <div class="p-4 rounded-xl border border-amber-500/30 bg-amber-950/20 text-xs text-slate-300 space-y-2">
+          <div class="font-bold text-amber-400 flex items-center gap-1.5">
+            <span>📊</span> Plain Git Baseline Comparison
+          </div>
+          <p class="text-[11px] text-[var(--muted-foreground,#94a3b8)]">
+            Same OAuth2 vs SAML conflict scenario executed with plain git only — no Nool, no Entire,
+            no agent coordination. Full results in <code class="code-font">BENCHMARK_COMPARISON.md</code>.
+          </p>
+          <table class="w-full text-left text-xs border-collapse mt-2">
+            <thead>
+              <tr class="bg-[var(--background,#0f172a)]/50 border-b border-[var(--border,#334155)] text-[var(--muted-foreground,#94a3b8)]">
+                <th class="p-2.5 font-semibold">Capability</th>
+                <th class="p-2.5 font-semibold">Plain Git</th>
+                <th class="p-2.5 font-semibold text-purple-300">Entire CLI</th>
+                <th class="p-2.5 font-semibold text-blue-300">Nool CLI</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-[var(--border,#334155)] code-font text-slate-300 text-[11px]">
+              <tr>
+                <td class="p-2.5 font-sans font-medium text-slate-200">Overlap detection</td>
+                <td class="p-2.5 text-red-400">❌ None</td>
+                <td class="p-2.5 text-red-400">❌ None</td>
+                <td class="p-2.5 text-emerald-400">✅ Leases: discover names holder; 2nd exclusive announce + propose refused (distinct identities)</td>
+              </tr>
+              <tr>
+                <td class="p-2.5 font-sans font-medium text-slate-200">Conflict detection timing</td>
+                <td class="p-2.5 text-slate-400">At merge (reactive)</td>
+                <td class="p-2.5 text-slate-400">At merge — no merge hook (reactive)</td>
+                <td class="p-2.5 text-emerald-400">Before editing (proactive)</td>
+              </tr>
+              <tr>
+                <td class="p-2.5 font-sans font-medium text-slate-200">Conflict markers on merge</td>
+                <td class="p-2.5 text-red-400">✅ Yes (manual edit)</td>
+                <td class="p-2.5 text-red-400">✅ Yes — same as git</td>
+                <td class="p-2.5 text-emerald-400">Disjoint edits: 0 markers, auto-union, tests pass · Same-symbol: git markers</td>
+              </tr>
+              <tr>
+                <td class="p-2.5 font-sans font-medium text-slate-200">Line-level attribution</td>
+                <td class="p-2.5 text-red-400">❌ No</td>
+                <td class="p-2.5 text-emerald-400">✅ Yes (checkpoints)</td>
+                <td class="p-2.5 text-emerald-400">✅ Yes (causal DAG)</td>
+              </tr>
+              <tr>
+                <td class="p-2.5 font-sans font-medium text-slate-200">Session/prompt capture</td>
+                <td class="p-2.5 text-red-400">❌ No</td>
+                <td class="p-2.5 text-emerald-400">✅ Yes</td>
+                <td class="p-2.5 text-emerald-400">✅ Intent + graph</td>
+              </tr>
+              <tr>
+                <td class="p-2.5 font-sans font-medium text-slate-200">Provenance enforcement</td>
+                <td class="p-2.5 text-red-400">❌ No</td>
+                <td class="p-2.5 text-slate-400">❌ No</td>
+                <td class="p-2.5 text-red-400">❌ Rule configured, measured not enforced</td>
+              </tr>
+              <tr>
+                <td class="p-2.5 font-sans font-medium text-slate-200">Tests pass after resolution</td>
+                <td class="p-2.5 text-emerald-400">✅ Yes</td>
+                <td class="p-2.5 text-emerald-400">✅ Yes</td>
+                <td class="p-2.5 text-emerald-400">✅ Yes</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="text-[11px] text-[var(--muted-foreground,#94a3b8)] mt-2">
+            Plain git detects conflicts only reactively at merge time, requires manual resolution of
+            <code class="code-font">&lt;&lt;&lt;&lt;&lt;&lt;</code>/<code class="code-font">=======</code>/<code class="code-font">&gt;&gt;&gt;&gt;&gt;</code> markers, and provides no attribution or session capture.
+            Entire adds line-level attribution and session checkpointing but merges exactly like git. Nool adds
+            lease-based overlap prevention, automatic union of structurally disjoint edits, causal DAG attribution
+            and a policy gate; its Entire-provenance rule is not enforced yet. Same-symbol business-logic conflicts
+            still need an agent or human — in the original run Antigravity unified them under direct instruction.
+          </p>
+        </div>
+
+        <!-- Verification Proof Summary -->
+        <div class="p-4 rounded-xl border border-emerald-500/30 bg-emerald-950/20 text-xs text-slate-300 space-y-1">
+          <div class="font-bold text-emerald-400">Conclusion on Trustworthiness</div>
+          <p>
+            Neither tool is a silver bullet. Entire does not prevent collisions; Nool does not magically rewrite conflicting business logic without agent or human intervention. The conflict resolution in this test was accomplished by Antigravity under direct instructions to unify both protocols, verified by Python unit tests, and audited by both Nool and Entire.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="pt-6 border-t border-[var(--border,#334155)] flex flex-wrap justify-between items-center text-xs text-[var(--muted-foreground,#94a3b8)]">
+      <div>Generated for Headless Multi-Agent Evaluation · Nool vs Entire</div>
+      <div>Tested on macOS · Antigravity CLI · Go 1.27 / Rust 1.95</div>
+    </footer>
+
+  </div>
+
+  <script>
+    function switchTab(tabId) {
+      const tabs = ['overview', 'simulation', 'architecture', 'matrix', 'synergy', 'audit'];
+      tabs.forEach(t => {
+        const el = document.getElementById('tab-' + t);
+        const btn = document.getElementById('tab-btn-' + t);
+        if (t === tabId) {
+          el.classList.remove('hidden');
+          btn.classList.add('active');
+        } else {
+          el.classList.add('hidden');
+          btn.classList.remove('active');
+        }
+      });
+    }
+
+    function showTerminal(screenId) {
+      const screens = ['entire-why', 'nool-conflicts', 'nool-why', 'code-diff'];
+      screens.forEach(s => {
+        const el = document.getElementById('term-' + s);
+        const btn = document.getElementById('btn-term-' + s);
+        if (s === screenId) {
+          el.classList.remove('hidden');
+          btn.className = 'px-2.5 py-1 rounded bg-purple-600/30 text-purple-300 border border-purple-500/50';
+        } else {
+          el.classList.add('hidden');
+          btn.className = 'px-2.5 py-1 rounded bg-transparent text-[var(--muted-foreground,#94a3b8)] hover:bg-[var(--card,#1e293b)]';
+        }
+      });
+    }
+  </script>
+</body>
+</html>
