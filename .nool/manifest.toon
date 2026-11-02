@@ -1,7 +1,8 @@
+aram_policy_set: 089c9e11a4d3d891a9ae2c08f747800fc978f535f4fb3bc1a01bd163c4c186b8
 commit_policy_hash: 2d549b912abe9e908b9f49273abbb7b9d28ea9db47e8f16e22c5ee1e70143b57
 commit_policy_version: 1
 commit_template_hash: a9192855a17bbe09ae8aa3abd46cd7eab666809fb6c6dfa73aaeb580c4250428
-intent: chore: enforce maintainer authority and test obligations
-knot_id: 789b7d15aa1dfb17c36cc694898ff7377226adb83e9edc0fe9b90165446cf88c
-solidified_at: 1793598629334
+intent: chore: pin the compatible provenance policy
+knot_id: dad761f3c0d16b743266349d087a1e7c3d1edf1fedcab683d2351f31d932383e
+solidified_at: 1793598810108
 thread: main

@@ -78,6 +78,10 @@ strict_floats = true
 require_full_paths = []
 hooks = []
 
+[[aram.policies]]
+name = "entire_provenance.wasm"
+hash = "790185775d413e314d13f7737a9e0d707ce44c3db0f47829a78009fcd4eb2d4c"
+
 [bridge]
 git_mirror_path = ".nool/git_mirror/"
 sync_on_solidify = true
