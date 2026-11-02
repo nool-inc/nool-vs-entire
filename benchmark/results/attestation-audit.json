@@ -1,0 +1,74 @@
+{
+  "generated_at": "2026-11-02T05:43:51.242949+00:00",
+  "subject": "6349acab3892ca6b61f056cf52d9d4d2214564d74042540d1b966dc5335a216a",
+  "attestations": {
+    "exit_code": 0,
+    "stderr": "",
+    "result": [
+      {
+        "knot_id": "4730b3ef89033c2747ba68e144b083cccd2443a0e95c09f65862624064891af6",
+        "checker": "integrity-driver",
+        "checker_version": "Python 3.11.2",
+        "assertion": "compile",
+        "scope": "check",
+        "scope_detail": "integrity driver",
+        "verdict": "pass",
+        "trusted": false,
+        "git_commit_oid": "8ed6f778b5dc00e4b1568702b63074d4d9309b85",
+        "environment_class": "local",
+        "evidence_hash": "b9038d9641d9e72a3607ac9094fc66cc735099198827211ba0f4cc92f9f5baa4",
+        "observed_at_hlc": 1793597689153,
+        "signer": "39aa3ee8852f14d9edd9c286ce0a6ea6d507ae1b5c8f56bb9ff31b560544af4d"
+      },
+      {
+        "knot_id": "b8b9cb6271450988beb251ca3c914bcdeac68a43f592ba7a2197d9b056e269c7",
+        "checker": "integrity-driver",
+        "checker_version": "Python 3.11.2",
+        "assertion": "unit-tests",
+        "scope": "full",
+        "scope_detail": "full: benchmark/check_fresh_clone.py has no footprint in the semantic index (run `nool discover`)",
+        "verdict": "pass",
+        "trusted": false,
+        "git_commit_oid": "8ed6f778b5dc00e4b1568702b63074d4d9309b85",
+        "environment_class": "local",
+        "evidence_hash": "b9038d9641d9e72a3607ac9094fc66cc735099198827211ba0f4cc92f9f5baa4",
+        "observed_at_hlc": 1793597689153,
+        "signer": "39aa3ee8852f14d9edd9c286ce0a6ea6d507ae1b5c8f56bb9ff31b560544af4d"
+      },
+      {
+        "knot_id": "7d26debeed56382e65d70fc57a888bb8b2115eff56a555e14b9b7d9754bb2ff6",
+        "checker": "local-clone-verifier",
+        "checker_version": "nool 7.23.0",
+        "assertion": "fresh-clone-verification",
+        "scope": "full",
+        "scope_detail": "Independent local clone of committed HEAD: 90 tests; 5 skips; 2 documented expected failures. Does not verify hosted services or provenance enforcement.",
+        "verdict": "pass",
+        "trusted": false,
+        "git_commit_oid": "8ed6f778b5dc00e4b1568702b63074d4d9309b85",
+        "environment_class": "local",
+        "evidence_hash": "b783997e66103e14f9ae6882c7fe85b66aa8327f6cb2ad4e97b79ac663aaa613",
+        "observed_at_hlc": 1793598217584,
+        "signer": "39aa3ee8852f14d9edd9c286ce0a6ea6d507ae1b5c8f56bb9ff31b560544af4d"
+      }
+    ]
+  },
+  "obligations": {
+    "exit_code": 0,
+    "stderr": "",
+    "result": {
+      "knot": "6349acab3892ca6b61f056cf52d9d4d2214564d74042540d1b966dc5335a216a",
+      "touched_paths": [
+        "benchmark/check_fresh_clone.py",
+        "tests/test_benchmark.py"
+      ],
+      "verification": "unverified-pass",
+      "satisfied": true,
+      "rows": []
+    }
+  },
+  "compliance_audit": {
+    "exit_code": 1,
+    "stderr": "Error: audit inconclusive: no framework was named and the landed nool.toml sets no [audit] frameworks; pass --framework (see `nool audit packs`)\n",
+    "output": ""
+  }
+}

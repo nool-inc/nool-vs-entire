@@ -79,6 +79,45 @@ Raw output for all three command playbooks is in
 [playbook-audit.json](../benchmark/results/playbook-audit.json). The snapshot
 records its source revision and does not claim to audit later commits.
 
+## Signed attestations and audit trails
+
+Nool's trail is more than the Markdown summaries: signed Knots record
+changes and causality, gate attestations record validation, and detached
+verification attestations can bind an external result to an exact Knot and
+Git revision without adding an application commit.
+
+The clone-verifier change already had automatically minted `compile` and
+`unit-tests` attestations from its landing checks. A separate local
+`fresh-clone-verification` pass was recorded for subject Knot
+`6349acab3892ca6b61f056cf52d9d4d2214564d74042540d1b966dc5335a216a`,
+at tested Git revision `8ed6f778b5dc00e4b1568702b63074d4d9309b85`.
+Its attestation ID is
+`7d26debeed56382e65d70fc57a888bb8b2115eff56a555e14b9b7d9754bb2ff6`.
+It binds the [fresh-clone evidence](../benchmark/results/fresh-clone.json)
+by hash and explicitly records 90 tests, five skips, and two expected failures.
+It does not attest the correctness of later commits or provenance enforcement.
+
+Inspect it with:
+
+```sh
+nool attest show 6349acab --json
+nool attest obligations 6349acab --json
+nool why 6349acab
+```
+
+The [inspection snapshot](../benchmark/results/attestation-audit.json)
+also records the trust limits. This repository has no configured
+`[attestation] checker_keys` or assertion obligations, so signatures are
+present but the attestations report `trusted: false`. The empty obligation
+matrix reports `unverified-pass`; it is not an independent approval.
+Trust anchors were not changed to make these results appear trusted.
+
+`nool audit verify --source git --json` returned an inconclusive result:
+no audit framework is configured. Structural checks, a signed local test
+result, trusted verification, and framework compliance are distinct claims.
+The evidence JSON is committed separately because the attestation's evidence
+store is local and its replicated record refers to the evidence by hash.
+
 ## Reuse
 
 ```sh
