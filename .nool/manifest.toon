@@ -1,7 +1,7 @@
 commit_policy_hash: 2d549b912abe9e908b9f49273abbb7b9d28ea9db47e8f16e22c5ee1e70143b57
 commit_policy_version: 1
 commit_template_hash: a9192855a17bbe09ae8aa3abd46cd7eab666809fb6c6dfa73aaeb580c4250428
-intent: chore: enforce commit-message template
-knot_id: 6cd2640a4d0d853d59f9c3b23150b3adc81433ef4dbadac89ca93e7ff42e1d3d
-solidified_at: 1793597243156
+intent: docs: explain enforced commit-message policy
+knot_id: ce95913d8dd4d518d7ff2d106f624a1bb78a91dcc07e11f5de95e357a0eba546
+solidified_at: 1793597245904
 thread: main

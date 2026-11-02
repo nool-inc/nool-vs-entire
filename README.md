@@ -73,6 +73,33 @@ that missed a conflict later caught by the textual merge layer.
 | [policies/](policies/) | Original policy scaffold measured by the benchmark |
 | [policies-src/entire_provenance/](policies-src/entire_provenance/) | Development provenance policy and compatibility evidence |
 
+## Commit-message policy
+
+The repository's `[commit]` section in [nool.toml](nool.toml) uses Nool's
+Enterprise commit-template enforcement. Nool renders subjects as
+`<type>: <subject>`, limits them to 72 characters, and requires its identity
+and policy trailers. Invalid messages block solidification.
+
+Allowed types are `feat`, `fix`, `docs`, `test`, `refactor`, `perf`, `build`,
+`ci`, `chore`, and `revert`. Supply a typed intent when landing work:
+
+```sh
+nool propose --path README.md --intent "docs: clarify benchmark setup" --solidify
+nool commit-template check
+nool commit-template render --dry-run --type docs --subject "clarify benchmark setup"
+nool commit-template validate --commit HEAD
+```
+
+An intent without a recognized type is rendered with Nool's default `chore`
+type. The full intent remains in the Nool trailers. The rule applies to new
+commits; existing history has not been rewritten.
+
+Entire's existing `commit-msg` hook is preserved. Do not force-install Nool's
+optional hook over it. Nool enforces this policy on its own commit path;
+external Git commits need a separate CI/server check using
+`nool commit-template validate --range <base>..<head>` with an Enterprise
+installation. No GitHub branch-protection rule is configured by this change.
+
 ## Limits and integration status
 
 The benchmark uses a synthetic two-branch workload on a small file and
