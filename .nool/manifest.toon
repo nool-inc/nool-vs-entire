@@ -1,7 +1,7 @@
 commit_policy_hash: 2d549b912abe9e908b9f49273abbb7b9d28ea9db47e8f16e22c5ee1e70143b57
 commit_policy_version: 1
 commit_template_hash: a9192855a17bbe09ae8aa3abd46cd7eab666809fb6c6dfa73aaeb580c4250428
-intent: docs: explain signed attestations and audit trust limits
-knot_id: 46cde46f7503e31f519dcc8c3dbe366befae10096c276722fb51f2510c1348bd
-solidified_at: 1793598236929
-thread: main
+intent: Grant admin to 39aa3ee8 over everywhere, valid 365 day(s)
+knot_id: 0428129d5c6cb445cc7ed86e986f7383601a49eafbcee8375f4e1e88add51abe
+solidified_at: 1793598599229
+thread: 
