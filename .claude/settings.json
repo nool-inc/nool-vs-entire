@@ -1,0 +1,48 @@
+{
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "test ! -x \"$CLAUDE_PROJECT_DIR\"/.nool/hooks/agent/claude_hook.sh || \"$CLAUDE_PROJECT_DIR\"/.nool/hooks/agent/claude_hook.sh"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "test ! -x \"$CLAUDE_PROJECT_DIR\"/.nool/hooks/agent/claude_hook.sh || \"$CLAUDE_PROJECT_DIR\"/.nool/hooks/agent/claude_hook.sh"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "test ! -x \"$CLAUDE_PROJECT_DIR\"/.nool/hooks/agent/claude_hook.sh || \"$CLAUDE_PROJECT_DIR\"/.nool/hooks/agent/claude_hook.sh"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "test ! -x \"$CLAUDE_PROJECT_DIR\"/.nool/hooks/agent/claude_hook.sh || \"$CLAUDE_PROJECT_DIR\"/.nool/hooks/agent/claude_hook.sh"
+          }
+        ]
+      }
+    ]
+  }
+}
