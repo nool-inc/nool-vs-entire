@@ -101,6 +101,49 @@ external Git commits need a separate CI/server check using
 `nool commit-template validate --range <base>..<head>` with an Enterprise
 installation. No GitHub branch-protection rule is configured by this change.
 
+## Playbooks
+
+Use the `verified-change` code playbook to start a guided implementation:
+
+```sh
+nool code --playbook verified-change "Describe the change to implement"
+```
+
+Its plan covers scope, implementation, regression tests, benchmark evidence,
+documentation, and commit validation. Its required completion checks run
+`./verify_benchmark.sh`, validate the commit policy and current `HEAD`, and
+check diff whitespace. These checks require the benchmark's licensed tools.
+The benchmark check regenerates reports and evidence in the session checkout.
+The playbook does not automatically push changes.
+
+For deterministic commit checks without starting a model session:
+
+```sh
+nool playbook plan commit-preflight
+nool playbook run commit-preflight
+```
+
+This two-step command playbook checks the effective template, then validates
+`HEAD`, stopping on the first failure. It does not run tests, land changes,
+or validate an uncommitted draft message. Use the full verification runbook
+for tests and `commit-template validate --message-file <path>` for drafts.
+
+Commit-writing guidance follows [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
+and [Chris Beams' guide](https://cbea.ms/git-commit/): use a specific action
+in the subject and explain the reason in a body separated by a blank line.
+For example:
+
+```text
+fix: reject checkpoint IDs outside the ULID range
+
+The previous check accepted values too large to represent a ULID.
+Validate the leading character before accepting a checkpoint reference.
+```
+
+The repository uses a 72-character subject cap. Its typed template is a
+subset of Conventional Commits; it does not implement every scope or
+breaking-change notation in that specification.
+
 ## Limits and integration status
 
 The benchmark uses a synthetic two-branch workload on a small file and

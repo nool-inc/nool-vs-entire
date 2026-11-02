@@ -1,7 +1,7 @@
 commit_policy_hash: 2d549b912abe9e908b9f49273abbb7b9d28ea9db47e8f16e22c5ee1e70143b57
 commit_policy_version: 1
 commit_template_hash: a9192855a17bbe09ae8aa3abd46cd7eab666809fb6c6dfa73aaeb580c4250428
-intent: chore: add verified change playbooks
-knot_id: 3c86dbe04662cd81b81f7d23850988d3dd763dab379a35cc7f4624e9bd58c3a9
-solidified_at: 1793597462941
+intent: docs: explain verified playbooks and refresh evidence
+knot_id: fce7706acb63eb4213acc480fb6ae7584a721c27b24810da03c6b73d3a933ac4
+solidified_at: 1793597466156
 thread: main
