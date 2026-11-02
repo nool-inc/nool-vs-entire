@@ -1,7 +1,7 @@
 commit_policy_hash: 2d549b912abe9e908b9f49273abbb7b9d28ea9db47e8f16e22c5ee1e70143b57
 commit_policy_version: 1
 commit_template_hash: a9192855a17bbe09ae8aa3abd46cd7eab666809fb6c6dfa73aaeb580c4250428
-intent: test: verify benchmark reproducibility in fresh clones
-knot_id: 6349acab3892ca6b61f056cf52d9d4d2214564d74042540d1b966dc5335a216a
-solidified_at: 1793597689155
+intent: docs: record playbook audits and clone verification
+knot_id: 520ea969986b9e6c80db755a3ddd85aac9551edbc847a68a7a09f55fa556b61d
+solidified_at: 1793597740003
 thread: main

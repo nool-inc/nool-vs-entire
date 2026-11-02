@@ -103,6 +103,9 @@ installation. No GitHub branch-protection rule is configured by this change.
 
 ## Playbooks
 
+For worked examples and measured outcomes, see the
+[playbook case studies](docs/PLAYBOOK_CASE_STUDIES.md).
+
 Use the `verified-change` code playbook to start a guided implementation:
 
 ```sh
@@ -127,6 +130,31 @@ This two-step command playbook checks the effective template, then validates
 `HEAD`, stopping on the first failure. It does not run tests, land changes,
 or validate an uncommitted draft message. Use the full verification runbook
 for tests and `commit-template validate --message-file <path>` for drafts.
+
+Two additional command playbooks make investigations repeatable:
+
+```sh
+nool playbook run policy-audit
+nool playbook run study-review
+```
+
+`policy-audit` checks the commit policy, runs structural invariants, and lists
+policy compatibility warnings. A successful run does not mean those warnings
+are resolved or that Entire provenance is enforced. `study-review` validates
+`HEAD` and renders Nool review context since the original benchmark-study
+knot `7d6dccc0`. Both inspect state without editing application files.
+
+To verify that committed `HEAD` reproduces in an independent local clone:
+
+```sh
+python3 benchmark/check_fresh_clone.py
+```
+
+This runs the complete runbook with fresh evidence inside a temporary clone
+and writes [fresh-clone.json](benchmark/results/fresh-clone.json). Uncommitted
+edits and the original checkout's benchmark results are not used by the clone.
+It uses local Git transport; it does not test GitHub permissions or hosted
+Entire features. Clone-specific unavailable checks may be reported as skips.
 
 Commit-writing guidance follows [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
 and [Chris Beams' guide](https://cbea.ms/git-commit/): use a specific action
