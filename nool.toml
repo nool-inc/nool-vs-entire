@@ -88,6 +88,7 @@ max_push_blob_bytes = 104857600
 foreign_commits = "report"
 
 [governance]
+issuer_keys = ["39aa3ee8852f14d9edd9c286ce0a6ea6d507ae1b5c8f56bb9ff31b560544af4d"]
 
 [commit]
 template = "{{type}}: {{subject}}\n\n{{body}}\n\n{{nool_block}}\n"
@@ -288,14 +289,21 @@ auto_proceed_threshold = 0.800000011920929
 auto_proceed_max_blast = 10
 
 [attestation]
-checker_keys = []
+checker_keys = ["39aa3ee8852f14d9edd9c286ce0a6ea6d507ae1b5c8f56bb9ff31b560544af4d"]
 reviewer_keys = []
 mint_on_solidify = true
 dependents_wait_for = "done"
-enforce = "warn"
+enforce = "block"
 accept_selected = []
 
 [attestation.obligations]
+"src/**" = ["unit-tests"]
+"tests/**" = ["unit-tests"]
+"benchmark/run_benchmark.py" = ["unit-tests"]
+"benchmark/render_report.py" = ["unit-tests"]
+"benchmark/check_fresh_clone.py" = ["unit-tests"]
+"benchmark/check_provenance_policy.py" = ["unit-tests"]
+"policies-src/entire_provenance/src/**" = ["unit-tests"]
 
 [audit]
 frameworks = []
