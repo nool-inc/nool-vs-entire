@@ -39,7 +39,7 @@ python3 benchmark/render_report.py
 echo ""
 
 echo "[6/6] Test suite (evidence assertions reuse the run from step 4)"
-BENCH_REUSE_RESULTS=1 python3 -m unittest tests.test_auth tests.test_benchmark
+BENCH_REUSE_RESULTS=1 python3 -m unittest tests.test_auth tests.test_benchmark tests.test_commit_template
 echo ""
 
 echo "================================================================="

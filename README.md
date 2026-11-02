@@ -53,10 +53,10 @@ To run the pieces separately:
 ```sh
 python3 benchmark/run_benchmark.py
 python3 benchmark/render_report.py
-BENCH_REUSE_RESULTS=1 python3 -m unittest tests.test_auth tests.test_benchmark
+BENCH_REUSE_RESULTS=1 python3 -m unittest tests.test_auth tests.test_benchmark tests.test_commit_template
 ```
 
-The last verified run completed **81 tests with two expected failures**:
+The last verified run completed **90 tests with two expected failures**:
 the unenforced provenance rule and a semantic same-symbol collision check
 that missed a conflict later caught by the textual merge layer.
 
@@ -88,6 +88,7 @@ nool propose --path README.md --intent "docs: clarify benchmark setup" --solidif
 nool commit-template check
 nool commit-template render --dry-run --type docs --subject "clarify benchmark setup"
 nool commit-template validate --commit HEAD
+python3 -m unittest tests.test_commit_template -v
 ```
 
 An intent without a recognized type is rendered with Nool's default `chore`

@@ -1,6 +1,6 @@
 # Nool vs Entire vs Plain Git: Benchmark Study
 
-**Run:** 2026-11-02T05:21:06Z · 22.8 s total · nool 7.23.0 · Entire CLI 0.12.2 · git version 2.50.1 (Apple Git-155) · Python 3.11.2 · Darwin 25.6.0 arm64
+**Run:** 2026-11-02T05:28:09Z · 21.6 s total · nool 7.23.0 · Entire CLI 0.12.2 · git version 2.50.1 (Apple Git-155) · Python 3.11.2 · Darwin 25.6.0 arm64
 
 **Reproduce:** `./verify_benchmark.sh` (or `python3 benchmark/run_benchmark.py && python3 benchmark/render_report.py`). Raw evidence — every command, exit code, timing and output excerpt — is in `benchmark/results/latest.json`.
 
@@ -10,7 +10,7 @@
 
 | Question | Plain Git | Git + Entire | Nool |
 |---|---|---|---|
-| Two agents edit `src/auth.py` — when is the overlap first visible? | at `git merge` | at `git merge` (Entire installs no merge hook) | **before editing** — `discover conflicts` names `agent-oauth` (17 ms) |
+| Two agents edit `src/auth.py` — when is the overlap first visible? | at `git merge` | at `git merge` (Entire installs no merge hook) | **before editing** — `discover conflicts` names `agent-oauth` (15 ms) |
 | Can the second agent take the same file anyway? | yes | yes | **no** — exclusive announce refused; propose refused |
 | Different methods added at the same spot | conflict, 1 marker block, manual fix | conflict, 1 marker block, manual fix | **merged automatically** — 0 markers, tests pass |
 | Same method rewritten by both | conflict, manual fix | conflict, manual fix | conflict, manual fix (no silent union) |
@@ -26,11 +26,11 @@ Two branches cut from the same baseline each add a new method immediately before
 
 | Tool / variant | Merge exit | Markers | Result parses | Methods after merge | Tests pass w/o manual edit | Merge time |
 |---|---|---|---|---|---|---|
-| Plain Git · disjoint | 1 | 1 | no | — | no | 27 ms |
-| Plain Git · same-symbol | 1 | 1 | no | — | no | 26 ms |
-| Git + Entire · disjoint | 1 | 1 | no | — | no | 55 ms |
-| Nool · disjoint | [0, 0] | 0 | yes | authenticate_user, authenticate_oauth, authenticate_saml | yes | 223 ms |
-| Nool · same-symbol | [0, 1] | 1 | no | — | no | 260 ms |
+| Plain Git · disjoint | 1 | 1 | no | — | no | 25 ms |
+| Plain Git · same-symbol | 1 | 1 | no | — | no | 25 ms |
+| Git + Entire · disjoint | 1 | 1 | no | — | no | 26 ms |
+| Nool · disjoint | [0, 0] | 0 | yes | authenticate_user, authenticate_oauth, authenticate_saml | yes | 193 ms |
+| Nool · same-symbol | [0, 1] | 1 | no | — | no | 172 ms |
 
 What the evidence shows:
 
@@ -42,10 +42,10 @@ What the evidence shows:
 
 | Step | Outcome | Time |
 |---|---|---|
-| `agent-oauth` announces an exclusive lease on `file:src/auth.py` | granted | 20 ms |
-| `agent-saml` runs `nool discover conflicts` | conflict reported (exit 3), holder: agent-oauth | 17 ms |
+| `agent-oauth` announces an exclusive lease on `file:src/auth.py` | granted | 18 ms |
+| `agent-saml` runs `nool discover conflicts` | conflict reported (exit 3), holder: agent-oauth | 15 ms |
 | `agent-saml` announces an exclusive lease on the same file | refused | — |
-| `agent-saml` ignores that and runs `nool propose --as-agent agent-saml` | refused (Coordination conflict) | 53 ms |
+| `agent-saml` ignores that and runs `nool propose --as-agent agent-saml` | refused (Coordination conflict) | 49 ms |
 | `agent-oauth` releases; `agent-saml` re-checks | clear | — |
 
 **Identity caveat (measured):** when two agents announce *without* distinct `--agent-id`s they share the session identity, so the second exclusive announce is granted (observed) and supersedes the first — 1 lease remains active. This explains an earlier headless opencode run in this repo that reported "both agents granted exclusive leases". `nool propose --help` says the same for proposals: without `--as-agent` a proposal inherits whichever lease covers its scope. The protection is real but only as good as each agent's identity wiring.
@@ -75,12 +75,12 @@ Same-named commands mean different things. `nool checkpoint` seals a **state lab
 
 | Need | Nool (measured in sandbox) | Entire (measured on live repo) |
 |---|---|---|
-| Context before editing | `nool context` — symbol-name query: entities + blast radius (22 ms); natural-language query on a fresh repo: no entity match; live repo NL query: returned prior findings | `entire search` — needs a GitHub/Entire remote (not runnable locally) |
-| Mark a point in history | `nool checkpoint <label>` → Release knot: ✅ yes (132 ms) | automatic per agent turn: `entire checkpoint list` ✅ yes |
+| Context before editing | `nool context` — symbol-name query: entities + blast radius (18 ms); natural-language query on a fresh repo: no entity match; live repo NL query: returned prior findings | `entire search` — needs a GitHub/Entire remote (not runnable locally) |
+| Mark a point in history | `nool checkpoint <label>` → Release knot: ✅ yes (131 ms) | automatic per agent turn: `entire checkpoint list` ✅ yes |
 | Explain a past change | `nool why <knot>` causal chain ✅ yes | `entire checkpoint explain` shows the **original prompt**: ✅ yes |
-| Hand work to another agent | `nool thread handoff --summary --decision --next` → Handoff knot: ✅ yes (80 ms) | `entire session resume` / `adopt` (resume a session; no structured decisions/next-steps record) |
-| PR review context | `nool pr summary --base` → markdown with blast radius per knot: ✅ yes (20 ms) | `entire dispatch` — needs a GitHub/Entire remote |
-| Merge a PR | `nool pr merge <branch> --into main` via a local bare remote: ✅ yes (535 ms) | plain git / forge |
+| Hand work to another agent | `nool thread handoff --summary --decision --next` → Handoff knot: ✅ yes (75 ms) | `entire session resume` / `adopt` (resume a session; no structured decisions/next-steps record) |
+| PR review context | `nool pr summary --base` → markdown with blast radius per knot: ✅ yes (21 ms) | `entire dispatch` — needs a GitHub/Entire remote |
+| Merge a PR | `nool pr merge <branch> --into main` via a local bare remote: ✅ yes (476 ms) | plain git / forge |
 | Activity summary | `nool insights`, `nool usage` | `entire recap` — needs login |
 
 Entire commands that could not run in this local-only setup (recorded, not counted as failures of the tool):
