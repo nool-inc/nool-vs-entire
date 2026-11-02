@@ -180,9 +180,13 @@ mcp_progressive_tools = false
 
 [invariants]
 disabled = false
-rules = []
+rules = ["require_entire_provenance"]
 
-[invariants.rule_definitions]
+[invariants.rule_definitions.require_entire_provenance]
+description = "All AI-generated changes must carry verified Entire Checkpoint trailers"
+when_pattern = "has_metadata('is_ai_agent')"
+then_requirement = "has_link('entire_checkpoint')"
+severity = "error"
 
 [blast_radius.trust_levels]
 
