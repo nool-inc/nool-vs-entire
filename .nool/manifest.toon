@@ -1,7 +1,7 @@
 commit_policy_hash: 2d549b912abe9e908b9f49273abbb7b9d28ea9db47e8f16e22c5ee1e70143b57
 commit_policy_version: 1
 commit_template_hash: a9192855a17bbe09ae8aa3abd46cd7eab666809fb6c6dfa73aaeb580c4250428
-intent: chore: add policy audit and study review playbooks
-knot_id: 34cbe86e4ac10e349020e3aa836e9e1a11f1c2e0ef73d4fe525e69cedd128de5
-solidified_at: 1793597642729
+intent: test: verify benchmark reproducibility in fresh clones
+knot_id: 6349acab3892ca6b61f056cf52d9d4d2214564d74042540d1b966dc5335a216a
+solidified_at: 1793597689155
 thread: main

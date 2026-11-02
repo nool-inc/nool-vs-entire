@@ -131,8 +131,10 @@ class GitRefsCoexistenceTests(unittest.TestCase):
         rc, out, err = run(["git", "show-ref"])
         self.assertEqual(rc, 0, f"`git show-ref` failed: {err}")
         self.assertIn("refs/nool", out, "expected refs/nool namespace")
-        self.assertIn("refs/nool/mirror", out)
-        self.assertIn("refs/nool/git-mirror", out)
+        self.assertTrue(any(line.split()[-1].startswith("refs/nool/mirror/")
+                            for line in out.splitlines()),
+                        "expected a per-branch Nool mirror pointer")
+        # refs/nool/git-mirror is a legacy alias, not required in a fresh clone.
 
     def test_entire_refs_present(self):
         rc, out, err = run(["git", "show-ref"])
