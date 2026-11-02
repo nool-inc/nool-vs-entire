@@ -1,0 +1,22 @@
+[package]
+name = "entire_provenance"
+version = "0.1.0"
+edition = "2024"
+publish = false
+description = "Aram policy: an AI-authored change must link the Entire checkpoint (agent session) that produced it"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[profile.release]
+opt-level = "s"
+lto = true
+strip = true
+
+[dependencies]
+# Needs the `get-proposal-context` host import (Nool try branch
+# `aram-proposal-context`). Point this at the staged SDK once that lands.
+nool-aram-policy-sdk = { path = "/Users/arunbalakrishnan/Development/NoolWorkspace/Nool/.nool/try/aram-proposal-context/crates/nool-aram-policy-sdk" }
+nool-policy-abi = { path = "/Users/arunbalakrishnan/Development/NoolWorkspace/Nool/.nool/try/aram-proposal-context/crates/nool-policy-abi" }
+
+[workspace]

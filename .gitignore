@@ -22,3 +22,5 @@
 .nool/SIE_JUSTIFICATION
 .nool/enhancement-context.yaml
 nool_proposal.tmp
+__pycache__/
+policies-src/**/target/

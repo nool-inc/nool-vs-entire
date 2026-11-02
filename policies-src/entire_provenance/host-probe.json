@@ -1,0 +1,134 @@
+{
+  "host_compatible": false,
+  "enforcement_verified": false,
+  "outcomes": [
+    {
+      "case": "missing-link",
+      "rc": 1,
+      "should_land": false,
+      "host_incompatible": true,
+      "expectation_met": false
+    },
+    {
+      "case": "malformed-link",
+      "rc": 1,
+      "should_land": false,
+      "host_incompatible": true,
+      "expectation_met": false
+    },
+    {
+      "case": "valid-link",
+      "rc": 1,
+      "should_land": true,
+      "host_incompatible": true,
+      "expectation_met": false
+    },
+    {
+      "case": "untagged",
+      "rc": 1,
+      "should_land": true,
+      "host_incompatible": true,
+      "expectation_met": false
+    }
+  ],
+  "steps": [
+    {
+      "name": "nool init",
+      "cmd": "nool init --skip-discovery",
+      "rc": 0,
+      "seconds": 0.148,
+      "output": "Initialized empty Nool repository in /private<sandbox>/repo\n  ledger only (no import, no discovery)\n  configuration not recorded yet: .gitignore, .gitattributes, .noolignore, nool.toml\n  agent hooks: claude, gemini, codex, pi, opencode\n\nNext steps:\n  1. Tailor nool.toml and .noolignore to your needs, then record them: nool propose --path nool.toml --kind config --intent \"nool init: record Nool's configuration files\" --justification \"<why>\" --solidify, then nool propose --path .gitignore --path .gitattributes --path .noolignore --kind config --intent \"nool init: record Nool's configuration files\" --solidify\n  2. Start work: nool propose --path <file> --intent \"...\" --solidify, or nool code \"<goal>\"\n  More: nool quick-start (a tour), nool guide (every command), nool init --verbose (each step)\n"
+    },
+    {
+      "name": "record nool.toml",
+      "cmd": "nool propose --path nool.toml --kind config --intent record config --justification benchmark sandbox --solidify",
+      "rc": 0,
+      "seconds": 0.257,
+      "output": "\n1. PREPARING  [\u25cf\u25cf\u25cb]  Collecting changes...\n  [IO] Reading from working directory: \"nool.toml\"\n  [AST] Calculated NodeID using adapter 'toml': 9e4b1cd398542283d6718139ff7c05c052bd32dea9c8ad6e8227e97d2e10737e\n  [Reify] Materialized shadow-root at \"/private<sandbox>/repo/.nool/tmp/reify-9523-0\"\n  [Reify] Running Integrity Driver for '.toml'...\n  [Reify] \u26a0\ufe0f  Unchecked: no tests ran (.toml). Hash: structural-ok\n\n4. SIMULATING [\u25cf\u25cf\u25cf]  Merge simulation...\n\n\ud83d\udd2d Semantic signal\n   Blast radius: 1 node(s) affected (declared 1) \u2014 LOW [indicative]\n   \u26a0 Envelope precision: unknown \u2014 symbol-level resolution did not fully succeed; treat this as a reason to look closer, not as low risk.\n     \u00b7 nool.toml\n   Affected contracts: none\n   Evidence plan: PackageTests\n   Intent/diff overlap: 100% [advisory]\n   Relevant prior findings: none\n\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nPROPOSAL SUMMARY\n  ID      : 48401b2b\n  Intent  : record config\n  Thread  : main\n  Mode    : Full (Semantic)\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n\n[Auto] Solidifying proposal...\n  [Reify] Full validation already recorded at propose; not re-running the integrity driver.\n"
+    },
+    {
+      "name": "record ignore files",
+      "cmd": "nool propose --path .gitignore --path .gitattributes --path .noolignore --kind config --intent record config --solidify",
+      "rc": 0,
+      "seconds": 0.244,
+      "output": "\u2026ng adapter 'generic': d7193c96ddf149b2bfb9c7bf42fa6a4b9411ac5b90d4266ab50bfa2eb6974dcc\n  [Reify] \ud83d\udce6 Detected compiled language '.gitignore'. Enabling project-level reification...\n  [Reify] Materialized shadow-root at \"/private<sandbox>/repo/.nool/tmp/reify-9821-0\"\n  [Reify] \ud83d\udce6 Running bundled reification with 3 file(s)...\n  [Reify] \ud83c\udfaf Test selection: full: no test files known\n  [Reify] \u2705 Hydrated 3 bundle file(s) to scratchpad\n  [Reify] \u26a0\ufe0f  Unchecked: no tests ran (.gitignore). Hash: none\n  \ud83d\udce6 Synthesis created with 3 sub-proposals.\n\n4. SIMULATING [\u25cf\u25cf\u25cf]  Merge simulation...\n\n\ud83d\udd2d Semantic signal\n   Blast radius: 3 node(s) affected (declared 3) \u2014 LOW [indicative]\n   \u26a0 Envelope precision: unknown \u2014 symbol-level resolution did not fully succeed; treat this as a reason to look closer, not as low risk.\n     \u00b7 .gitattributes\n     \u00b7 .gitignore\n     \u00b7 .noolignore\n   Affected contracts: none\n   Evidence plan: PackageTests\n   Intent/diff overlap: 0% [advisory]\n   Relevant prior findings (1):\n     [solidify] record config \u2014 Mutation  config  @ nool.toml\n\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nPROPOSAL SUMMARY\n  ID      : 03bac909\n  Intent  : record config\n  Thread  : main\n  Mode    : Full (Semantic)\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n\n[Auto] Solidifying proposal...\n  [Reify] Full validation already recorded at propose; not re-running the integrity driver.\n  \u26a0 .gitignore: no symbol-level scope (no language adapter); sealing against the whole file\n"
+    },
+    {
+      "name": "record baseline",
+      "cmd": "nool propose --path src/auth.py --path tests/test_auth.py --path src/__init__.py --path tests/__init__.py --intent baseline auth service --solidify",
+      "rc": 0,
+      "seconds": 1.265,
+      "output": "\u2026\u2705 Verified Runnable (Primary: .py). Hash: 334d47a9600846a7428a6f78705f31eb0c358509fa5d720558e99c3c71677ba8\n  \ud83d\udce6 Synthesis created with 4 sub-proposals.\n\n4. SIMULATING [\u25cf\u25cf\u25cf]  Merge simulation...\n\n\ud83d\udd2d Semantic signal\n   Blast radius: 0 node(s) affected (declared 4) \u2014 LOW [indicative]\n   Affected contracts: none\n   Evidence plan: PackageTests\n   Intent/diff overlap: 33% [advisory]\n   Relevant prior findings (2):\n     [solidify] record config \u2014 Mutation  config  @ nool.toml\n     [solidify] record config \u2014 Synthesis (3 props):\n\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nPROPOSAL SUMMARY\n  ID      : df852dd7\n  Intent  : baseline auth service\n  Thread  : main\n  Mode    : Full (Semantic)\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n\n[Auto] Solidifying proposal...\n  [Reify] Full validation already recorded at propose; not re-running the integrity driver.\n  \u26a0 src/auth.py: no symbol-level scope (the changed symbols could not be told apart); sealing against the whole file\n  \u26a0 tests/test_auth.py: no symbol-level scope (the changed symbols could not be told apart); sealing against the whole file\n  \u26a0 src/__init__.py: no symbol-level scope (no symbols resolved); sealing against the whole file\n  \u26a0 tests/__init__.py: no symbol-level scope (no symbols resolved); sealing against the whole file\n  [Reify] \u23f1  check timeout 120s (default; override with NOOL_INTEGRITY_TIMEOUT_SECS)\n  [Reify] \u23f1  ghost-run timeout 600s (default; override with NOOL_GHOST_RUN_TIMEOUT_SECS)\n"
+    },
+    {
+      "name": "grant editor",
+      "cmd": "nool admin contract grant --role editor",
+      "rc": 0,
+      "seconds": 0.074,
+      "output": "Grant editor to 39aa3ee8 over everywhere, valid 365 day(s)\n  [Reify] Full validation not required for this Knot payload.\n"
+    },
+    {
+      "name": "install development policy",
+      "cmd": "nool admin plugin install /Users/arunbalakrishnan/Research/nool-vs-entire/policies-src/entire_provenance/entire_provenance.wasm --policy --no-land",
+      "rc": 0,
+      "seconds": 0.041,
+      "output": "\u2713 Installed 'entire_provenance' v0.0.0 into policies/ \u2014 hash 790185775d41, signed by this operator's identity key\n"
+    },
+    {
+      "name": "missing-link",
+      "cmd": "nool propose --path src/auth.py --intent missing-link --tag is_ai_agent --solidify",
+      "rc": 1,
+      "seconds": 1.512,
+      "output": "\n1. PREPARING  [\u25cf\u25cf\u25cb]  Collecting changes...\n  [Blast] Not scored (documentation or comment/whitespace-only): src/auth.py\n  [IO] Reading from working directory: \"src/auth.py\"\n  [AST] Calculated NodeID using adapter 'python': 2ede2f8286c9c628687e0d744f653317c2596824a2174b8ae9281be2f5d70e5d\n  [Reify] Materialized shadow-root at \"/private<sandbox>/repo/.nool/tmp/reify-10671-0\"\n  [Reify] Running Integrity Driver for '.py'...\n  [Reify] \ud83c\udfaf Test selection: full: selection would cover 100% of the suite (> 40%)\n  [Reify] \ud83d\udc7b Ghost-Run: Executing project-level tests...\n  [Reify] \u2705 Verified Runnable (Primary: .py). Hash: 334d47a9600846a7428a6f78705f31eb0c358509fa5d720558e99c3c71677ba8\n\n4. SIMULATING [\u25cf\u25cf\u25cf]  Merge simulation...\n  \u26a0 src/auth.py: no symbol-level scope (the change reaches outside any symbol); sealing against the whole file\n  [Reify] \u23f1  check timeout 120s (default; override with NOOL_INTEGRITY_TIMEOUT_SECS)\n  [Reify] \u23f1  ghost-run timeout 600s (default; override with NOOL_GHOST_RUN_TIMEOUT_SECS)\n  \u2713 Released the lease this propose filed: no candidate was queued.\nError: component imports instance `nool:aram/host@0.1.0`, but a matching implementation was not found in the linker\n"
+    },
+    {
+      "name": "clear sandbox candidates",
+      "cmd": "nool candidate clear",
+      "rc": 0,
+      "seconds": 0.014,
+      "output": "No pending candidate to abort.\n"
+    },
+    {
+      "name": "malformed-link",
+      "cmd": "nool propose --path src/auth.py --intent malformed-link --tag is_ai_agent --issue entire_checkpoint:bad --solidify",
+      "rc": 1,
+      "seconds": 1.534,
+      "output": "\n1. PREPARING  [\u25cf\u25cf\u25cb]  Collecting changes...\n  [Blast] Not scored (documentation or comment/whitespace-only): src/auth.py\n  [IO] Reading from working directory: \"src/auth.py\"\n  [AST] Calculated NodeID using adapter 'python': 2ede2f8286c9c628687e0d744f653317c2596824a2174b8ae9281be2f5d70e5d\n  [Reify] Materialized shadow-root at \"/private<sandbox>/repo/.nool/tmp/reify-11206-0\"\n  [Reify] Running Integrity Driver for '.py'...\n  [Reify] \ud83c\udfaf Test selection: full: selection would cover 100% of the suite (> 40%)\n  [Reify] \ud83d\udc7b Ghost-Run: Executing project-level tests...\n  [Reify] \u2705 Verified Runnable (Primary: .py). Hash: c490f6eb4fe15b5a5128eb181d5e5f17fadff7a3bdabdaf4a12d299c0dcebf04\n\n4. SIMULATING [\u25cf\u25cf\u25cf]  Merge simulation...\n  \u26a0 src/auth.py: no symbol-level scope (the change reaches outside any symbol); sealing against the whole file\n  [Reify] \u23f1  check timeout 120s (default; override with NOOL_INTEGRITY_TIMEOUT_SECS)\n  [Reify] \u23f1  ghost-run timeout 600s (default; override with NOOL_GHOST_RUN_TIMEOUT_SECS)\n  \u2713 Released the lease this propose filed: no candidate was queued.\nError: component imports instance `nool:aram/host@0.1.0`, but a matching implementation was not found in the linker\n"
+    },
+    {
+      "name": "clear sandbox candidates",
+      "cmd": "nool candidate clear",
+      "rc": 0,
+      "seconds": 0.013,
+      "output": "No pending candidate to abort.\n"
+    },
+    {
+      "name": "valid-link",
+      "cmd": "nool propose --path src/auth.py --intent valid-link --tag is_ai_agent --issue entire_checkpoint:01M6CRZR6WVBD2GAEE84042PZA --solidify",
+      "rc": 1,
+      "seconds": 1.516,
+      "output": "\n1. PREPARING  [\u25cf\u25cf\u25cb]  Collecting changes...\n  [Blast] Not scored (documentation or comment/whitespace-only): src/auth.py\n  [IO] Reading from working directory: \"src/auth.py\"\n  [AST] Calculated NodeID using adapter 'python': 2ede2f8286c9c628687e0d744f653317c2596824a2174b8ae9281be2f5d70e5d\n  [Reify] Materialized shadow-root at \"/private<sandbox>/repo/.nool/tmp/reify-11797-0\"\n  [Reify] Running Integrity Driver for '.py'...\n  [Reify] \ud83c\udfaf Test selection: full: selection would cover 100% of the suite (> 40%)\n  [Reify] \ud83d\udc7b Ghost-Run: Executing project-level tests...\n  [Reify] \u2705 Verified Runnable (Primary: .py). Hash: 334d47a9600846a7428a6f78705f31eb0c358509fa5d720558e99c3c71677ba8\n\n4. SIMULATING [\u25cf\u25cf\u25cf]  Merge simulation...\n  \u26a0 src/auth.py: no symbol-level scope (the change reaches outside any symbol); sealing against the whole file\n  [Reify] \u23f1  check timeout 120s (default; override with NOOL_INTEGRITY_TIMEOUT_SECS)\n  [Reify] \u23f1  ghost-run timeout 600s (default; override with NOOL_GHOST_RUN_TIMEOUT_SECS)\n  \u2713 Released the lease this propose filed: no candidate was queued.\nError: component imports instance `nool:aram/host@0.1.0`, but a matching implementation was not found in the linker\n"
+    },
+    {
+      "name": "clear sandbox candidates",
+      "cmd": "nool candidate clear",
+      "rc": 0,
+      "seconds": 0.014,
+      "output": "No pending candidate to abort.\n"
+    },
+    {
+      "name": "untagged",
+      "cmd": "nool propose --path src/auth.py --intent untagged --solidify",
+      "rc": 1,
+      "seconds": 1.592,
+      "output": "\n1. PREPARING  [\u25cf\u25cf\u25cb]  Collecting changes...\n  [Blast] Not scored (documentation or comment/whitespace-only): src/auth.py\n  [IO] Reading from working directory: \"src/auth.py\"\n  [AST] Calculated NodeID using adapter 'python': 2ede2f8286c9c628687e0d744f653317c2596824a2174b8ae9281be2f5d70e5d\n  [Reify] Materialized shadow-root at \"/private<sandbox>/repo/.nool/tmp/reify-12233-0\"\n  [Reify] Running Integrity Driver for '.py'...\n  [Reify] \ud83c\udfaf Test selection: full: selection would cover 100% of the suite (> 40%)\n  [Reify] \ud83d\udc7b Ghost-Run: Executing project-level tests...\n  [Reify] \u2705 Verified Runnable (Primary: .py). Hash: 334d47a9600846a7428a6f78705f31eb0c358509fa5d720558e99c3c71677ba8\n\n4. SIMULATING [\u25cf\u25cf\u25cf]  Merge simulation...\n  \u26a0 src/auth.py: no symbol-level scope (the change reaches outside any symbol); sealing against the whole file\n  [Reify] \u23f1  check timeout 120s (default; override with NOOL_INTEGRITY_TIMEOUT_SECS)\n  [Reify] \u23f1  ghost-run timeout 600s (default; override with NOOL_GHOST_RUN_TIMEOUT_SECS)\n  \u2713 Released the lease this propose filed: no candidate was queued.\nError: component imports instance `nool:aram/host@0.1.0`, but a matching implementation was not found in the linker\n"
+    },
+    {
+      "name": "clear sandbox candidates",
+      "cmd": "nool candidate clear",
+      "rc": 0,
+      "seconds": 0.014,
+      "output": "No pending candidate to abort.\n"
+    }
+  ]
+}
