@@ -354,6 +354,15 @@ push_back_comments = false
 
 [playbook]
 
+[[playbook.commit-preflight.steps]]
+verb = "commit-template"
+action = "check"
+
+[[playbook.commit-preflight.steps]]
+verb = "commit-template"
+action = "validate"
+args = "--commit HEAD"
+
 [tools.mcp]
 
 [tools.fs]
@@ -394,5 +403,22 @@ mcp_defer_tokens = 10000
 cache_ttl = "5m"
 browser = false
 browser_no_sandbox = false
+
+[code.playbooks.verified-change]
+description = "Implement a focused change, prove behavior, and document the result"
+steps = [
+    "Read the affected code, benchmark evidence, and repository policies; declare the paths to change.",
+    "Describe the expected behavior and implement the smallest complete change with regression tests.",
+    "Run the benchmark verification runbook and investigate unexpected failures; preserve documented expected failures.",
+    "Update the README and report generator when needed; regenerate reports from measured evidence.",
+    "Use a concise typed imperative commit intent; explain the reason and validation, preserve Nool trailers, and land only the intended paths.",
+    "Validate the landed commit and report its checks and limitations; push only when the user has authorized publication.",
+]
+checks = [
+    "./verify_benchmark.sh",
+    "nool commit-template check",
+    "nool commit-template validate --commit HEAD",
+    "git diff --check",
+]
 
 [code.models]
