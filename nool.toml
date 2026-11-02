@@ -354,6 +354,29 @@ push_back_comments = false
 
 [playbook]
 
+[[playbook.policy-audit.steps]]
+verb = "commit-template"
+action = "check"
+
+[[playbook.policy-audit.steps]]
+verb = "verify"
+args = "--all"
+
+[[playbook.policy-audit.steps]]
+verb = "admin"
+action = "plugin"
+args = "list"
+
+[[playbook.study-review.steps]]
+verb = "commit-template"
+action = "validate"
+args = "--commit HEAD"
+
+[[playbook.study-review.steps]]
+verb = "pr"
+action = "summary"
+args = "--base 7d6dccc0"
+
 [[playbook.commit-preflight.steps]]
 verb = "commit-template"
 action = "check"
