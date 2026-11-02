@@ -1,0 +1,9 @@
+name = "entire_provenance"
+version = "0.0.0"
+plugin_type = "Policy"
+wasm_path = "entire_provenance.wasm"
+wasm_hash = "790185775d413e314d13f7737a9e0d707ce44c3db0f47829a78009fcd4eb2d4c"
+capabilities = []
+requires = []
+signature = "7a355f0d934092a3fe297f55ba7538d02a703ef22bedfb92d72419545196977cbee0959e10ef26159958c72169c3873dfc6dded4f6d17209b1e5c753126dd803"
+public_key = "39aa3ee8852f14d9edd9c286ce0a6ea6d507ae1b5c8f56bb9ff31b560544af4d"

@@ -1,9 +1,0 @@
-name = "entire_policy_test"
-version = "0.1.0"
-plugin_type = "Policy"
-wasm_path = "entire_policy_test.wasm"
-wasm_hash = "e8d5da3849c2ba2b4b846ad0e1875af59c28f17d932c10dbd5d2b6bcf8b60c67"
-capabilities = []
-requires = []
-signature = "661c80caf482ea65b7d3e89768f1c6e420e8e1c36a3e215d848acabb01fccb9b762a8c15bc42039ab09d3bc84cdaa56e3c67606204c4609d9ae376db3bfa6a04"
-public_key = "39aa3ee8852f14d9edd9c286ce0a6ea6d507ae1b5c8f56bb9ff31b560544af4d"
