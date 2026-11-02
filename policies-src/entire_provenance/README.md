@@ -31,6 +31,13 @@ proposal-context engine wiring) is required before installation can be
 validated. Repoint the two dependencies in Cargo.toml to the matching SDK
 and ABI when that change lands upstream, then rerun the commands above.
 
+A separate local build from that branch finished during this validation.
+Its probe stopped at `admin contract grant`: the binary was built without
+the Enterprise feature, although the installed license covers Enterprise.
+It therefore did not reach the four policy cases. A compatible Enterprise
+host build is still needed; the recorded four-case evidence is for the
+installed CLI.
+
 ## Rule and limits
 
 A proposal tagged `is_ai_agent` needs an issue reference of the form

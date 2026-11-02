@@ -1,7 +1,7 @@
 commit_policy_hash: 2e8b563ff1a0f6d478257fc6a82b13ac853a3787b40d0cc00df2893e7522a5c1
 commit_policy_version: 1
 commit_template_hash: 686bd6f6d3f60a9716f8ca85195b61c4852e2e6d8a91cf7a01fc867d6252a9af
-intent: Finish development provenance policy and record host compatibility evidence
-knot_id: 72bc930110375e2388bf285b366b706598d361d7a5b62f1d11c2a96a1717adb6
-solidified_at: 1793596941468
+intent: Refresh benchmark evidence and document provenance integration blockers
+knot_id: f27b64d15c9b2ab06c3e5820118697ceb65567f7bf011e89489a8edebdd90b68
+solidified_at: 1793596965342
 thread: main
