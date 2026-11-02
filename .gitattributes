@@ -1,0 +1,2 @@
+.nool/knot.bin merge=nool-knot -filter -diff linguist-generated=true
+.nool/manifest.toon merge=union linguist-generated=true
