@@ -310,7 +310,7 @@ reviewer_keys = []
 mint_on_solidify = true
 dependents_wait_for = "done"
 enforce = "block"
-accept_selected = []
+accept_selected = ["unit-tests"]
 
 [attestation.obligations]
 "src/**" = ["unit-tests"]
