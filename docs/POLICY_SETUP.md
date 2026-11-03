@@ -75,9 +75,9 @@ or attach after the commit is pushed, when Entire records the link in a new
 checkpoint.
 
 **History before the rule.** Knots landed before `ENTIRE-1` was adopted at
-`cb936a4` have no checkpoint. They pass only with an audited exemption,
-which the checker records only for ancestors of that commit that name no
-checkpoint:
+`cb936a4` have no checkpoint. They pass only with an audited exemption. The
+checker records it only for commits that name no checkpoint and are either
+ancestors of that commit or side-branch commits made before it:
 
 ```sh
 python3 scripts/attest_entire_checkpoint.py --commit <sha> --baseline-before cb936a4

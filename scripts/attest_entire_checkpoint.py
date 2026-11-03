@@ -17,8 +17,9 @@ The verdict is recorded as a signed Nool attestation (assertion
 requires before `nool push` publishes source, test or benchmark changes.
 
 `--baseline-before <rev>` is the audited exemption for history that predates
-the rule: it records `provenance-baseline` (pass) only for a commit that is an
-ancestor of `<rev>` (the commit that adopted ENTIRE-1) and links no checkpoint.
+the rule: it records `provenance-baseline` (pass) only for a commit that links
+no checkpoint and is either an ancestor of `<rev>` (the commit that adopted
+ENTIRE-1) or a side-branch commit made before it.
 It refuses any later commit, so new work always needs a real checkpoint.
 """
 import argparse
@@ -121,11 +122,17 @@ def baseline(repo, commit, adopted):
     """Evidence for the pre-ENTIRE-1 exemption; `verdict` is `pass` or `fail`."""
     sha = git(repo, "rev-parse", commit).stdout.strip()
     adopted_sha = git(repo, "rev-parse", adopted).stdout.strip()
-    before = sha != adopted_sha and git(
-        repo, "merge-base", "--is-ancestor", sha, adopted_sha, check=False).returncode == 0
+    ancestor = git(repo, "merge-base", "--is-ancestor", sha, adopted_sha,
+                   check=False).returncode == 0
+    descendant = git(repo, "merge-base", "--is-ancestor", adopted_sha, sha,
+                     check=False).returncode == 0
+    committed = lambda rev: int(git(repo, "log", "-1", "--format=%ct", rev).stdout.strip())
+    # An ancestor of the adoption commit, or a side-branch commit made before it.
+    before = sha != adopted_sha and (ancestor or (
+        not descendant and committed(sha) < committed(adopted_sha)))
     linked = trailer_ids(repo, sha)
     if not before:
-        verdict, reason = "fail", f"commit is not an ancestor of the ENTIRE-1 adoption commit {adopted_sha[:12]}"
+        verdict, reason = "fail", f"commit does not predate the ENTIRE-1 adoption commit {adopted_sha[:12]}"
     elif linked:
         verdict, reason = "fail", "commit names an Entire checkpoint; attest it without --baseline-before"
     else:

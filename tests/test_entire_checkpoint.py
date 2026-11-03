@@ -97,6 +97,20 @@ class CheckpointCheckerTests(unittest.TestCase):
         self.assertEqual(checker.baseline(self.repo, old, adopted)["assertion"],
                          "provenance-baseline")
 
+    def test_baseline_covers_side_branch_commits_made_before_adoption(self):
+        base = self.commit("src/a.py", "feat: base")
+        git(self.repo, "checkout", "-q", "-b", "side")
+        side = self.commit("src/c.py", "feat: side branch work")
+        git(self.repo, "checkout", "-q", "main")
+        env = {**os.environ, "GIT_COMMITTER_DATE": "2099-01-01T00:00:00Z"}
+        Path(self.repo, "src/b.py").write_text("y = 2\n")
+        git(self.repo, "add", "src/b.py")
+        subprocess.run(["git", *GIT_ID, "commit", "-qm", "chore: adopt"], cwd=self.repo,
+                       env=env, check=True)
+        adopted = git(self.repo, "rev-parse", "HEAD")
+        self.assertEqual(checker.baseline(self.repo, side, adopted)["verdict"], "pass")
+        self.assertEqual(checker.baseline(self.repo, base, adopted)["verdict"], "pass")
+
 
 class PolicyTypeProbeEvidenceTests(unittest.TestCase):
     """Assertions over benchmark/results/policy-types.json (the last recorded probe)."""
