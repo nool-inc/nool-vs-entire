@@ -79,13 +79,20 @@ require_full_paths = []
 hooks = []
 
 [[aram.policies]]
-name = "entire_provenance.wasm"
-hash = "790185775d413e314d13f7737a9e0d707ce44c3db0f47829a78009fcd4eb2d4c"
+name = "provenance.yaml"
+hash = "ed7d4e2ad4e0cea0c64ddfebce99d3c5bf375ebf41c0f06be46acf4b5d27bb76"
+
+[[aram.policies]]
+name = "secrets.yaml"
+hash = "ae2d7062d3291cce44cb47979ff8eaac2362405c797b330934d2728c4371d7fa"
 
 [bridge]
 git_mirror_path = ".nool/git_mirror/"
 sync_on_solidify = true
-auto_push_remotes = []
+auto_push_remotes = [
+    "nool",
+    "origin",
+]
 use_host_repo = true
 transport = "git"
 max_push_blob_bytes = 104857600
@@ -233,7 +240,12 @@ max_knot_bytes = 67108864
 [gating.fail_fast_per_stage]
 
 [rules]
-forbidden_paths = []
+forbidden_paths = [
+    ".entire/metadata",
+    ".entire/logs",
+    ".entire/tmp",
+    ".env",
+]
 
 [tasks]
 tests_evidence = "note"
@@ -307,6 +319,8 @@ accept_selected = []
 "benchmark/render_report.py" = ["unit-tests"]
 "benchmark/check_fresh_clone.py" = ["unit-tests"]
 "benchmark/check_provenance_policy.py" = ["unit-tests"]
+"benchmark/check_policy_types.py" = ["unit-tests"]
+"scripts/**" = ["unit-tests"]
 "policies-src/entire_provenance/src/**" = ["unit-tests"]
 
 [audit]
