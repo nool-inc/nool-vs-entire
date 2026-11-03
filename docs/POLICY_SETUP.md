@@ -118,7 +118,7 @@ same results.
 | Remote | URL | Carries |
 |---|---|---|
 | `nool` | `https://github.com/nool-inc/nool-vs-entire.git` | Branch, `refs/knots/*`, `refs/nool/*`, attestations (`nool push nool`) |
-| `origin` | `entire://aws-eu-central-1.entire.io/et/nool-vs-entire/nool-vs-entire` | Entire checkpoints (`git push origin`), and Nool refs (`nool push origin`) |
+| `origin` | `entire://aws-eu-central-1.entire.io/et/nool-vs-entire/nool-vs-entire` | Branch and Entire checkpoints (`git push origin`). `nool push origin` delivers the branch only: Entire's remote helper refuses Nool's knot chains ("receiving end does not support --atomic push"). |
 
 `[bridge] auto_push_remotes` lists both remotes. `ENTIRE-1` and the
 `unit-tests` obligations are checked on every `nool push`.
@@ -132,6 +132,18 @@ it. The two knots that swapped the policy set (`04e7bc0`, `cb936a4`) were
 therefore sealed with a one-off host. That host was built in a scratch
 directory from the `aram-proposal-context` patch applied to Nool 7.24.0 and was
 never installed. Every later knot was sealed with the released binary.
+
+## One-push waiver (3 November 2026)
+
+Eight knots from 2 November predate both the `unit-tests` obligation and any
+trusted checker key. `nool push` judges each knot by the checker keys landed
+before it, but applies today's obligations, so these eight can never be
+discharged; a later `checker:unit-tests` grant does not reach verdicts
+recorded before it. To publish the Nool history to GitHub, `enforce` was set
+to `warn` for one push (`d5db648`) and then restored to `block` (`609fb9b`).
+A proposed Nool fix judges an obligation that a knot did not owe when it landed
+by the trust landed at `HEAD`. A regression test for it exists in the Nool
+repository, but the fix itself has not been made.
 
 ## Measured gaps
 

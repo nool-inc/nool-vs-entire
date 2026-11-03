@@ -2,7 +2,7 @@ aram_policy_set: ab005f48958ef3c296507fd4343154a2c1e15c0e1c5b7b928ac435806af9288
 commit_policy_hash: 2d549b912abe9e908b9f49273abbb7b9d28ea9db47e8f16e22c5ee1e70143b57
 commit_policy_version: 1
 commit_template_hash: a9192855a17bbe09ae8aa3abd46cd7eab666809fb6c6dfa73aaeb580c4250428
-intent: chore: restore blocking proof obligations
-knot_id: e1e3ff538da1a61e5fa5c323f06f7a80cfe83ba21580e726a731673ddeaf7afa
-solidified_at: 1793679028789
+intent: docs: record the push waiver and Entire remote limits
+knot_id: 4b12848e8a798fc03bcbf979d213843fbdf663bda909c1492e7a53c3db331c66
+solidified_at: 1793679044150
 thread: main
