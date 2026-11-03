@@ -2,7 +2,7 @@ aram_policy_set: 3f3bc460bcdeeec0ccda662d6369c84f6917e83be8c50bcfe4c910d04ab676a
 commit_policy_hash: 2d549b912abe9e908b9f49273abbb7b9d28ea9db47e8f16e22c5ee1e70143b57
 commit_policy_version: 1
 commit_template_hash: a9192855a17bbe09ae8aa3abd46cd7eab666809fb6c6dfa73aaeb580c4250428
-intent: chore: pin released DSL policies and forbid Entire runtime paths
-knot_id: 628b94d355b73b166dbf37d0c401b89b650b974e7a693da49535a154ea634ec7
-solidified_at: 1793677568456
+intent: Policy set: land the policy set
+knot_id: ecca033d4b1f26bbc9030f5f00fdf8811b08654dfd506b926829c67b1d7574b8
+solidified_at: 1793677578236
 thread: main
