@@ -80,7 +80,7 @@ hooks = []
 
 [[aram.policies]]
 name = "provenance.yaml"
-hash = "ed7d4e2ad4e0cea0c64ddfebce99d3c5bf375ebf41c0f06be46acf4b5d27bb76"
+hash = "58580bc1825e6c21926e7694abbcd28bd31d56f145ba3b05843a5c9ee3207e0e"
 
 [[aram.policies]]
 name = "secrets.yaml"

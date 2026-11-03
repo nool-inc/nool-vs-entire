@@ -1,8 +1,8 @@
-aram_policy_set: 3f3bc460bcdeeec0ccda662d6369c84f6917e83be8c50bcfe4c910d04ab676ab
+aram_policy_set: ab005f48958ef3c296507fd4343154a2c1e15c0e1c5b7b928ac435806af92882
 commit_policy_hash: 2d549b912abe9e908b9f49273abbb7b9d28ea9db47e8f16e22c5ee1e70143b57
 commit_policy_version: 1
 commit_template_hash: a9192855a17bbe09ae8aa3abd46cd7eab666809fb6c6dfa73aaeb580c4250428
-intent: Policy set: land the policy set
-knot_id: ecca033d4b1f26bbc9030f5f00fdf8811b08654dfd506b926829c67b1d7574b8
-solidified_at: 1793677578236
+intent: chore: pin ENTIRE-1 with audited pre-rule baseline
+knot_id: e9e59e52f581402cc3787ccc43b187daf34eb958a5be8f97e4ea42869bff036e
+solidified_at: 1793677697251
 thread: main
