@@ -24,3 +24,6 @@
 nool_proposal.tmp
 __pycache__/
 policies-src/**/target/
+.gemini/
+benchmark/results/run-*.json
+policies-src/**/*.wasm
