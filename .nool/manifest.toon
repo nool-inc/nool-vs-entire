@@ -2,7 +2,7 @@ aram_policy_set: ab005f48958ef3c296507fd4343154a2c1e15c0e1c5b7b928ac435806af9288
 commit_policy_hash: 2d549b912abe9e908b9f49273abbb7b9d28ea9db47e8f16e22c5ee1e70143b57
 commit_policy_version: 1
 commit_template_hash: a9192855a17bbe09ae8aa3abd46cd7eab666809fb6c6dfa73aaeb580c4250428
-intent: chore: pin ENTIRE-1 with audited pre-rule baseline
-knot_id: e9e59e52f581402cc3787ccc43b187daf34eb958a5be8f97e4ea42869bff036e
-solidified_at: 1793677697251
+intent: Policy set: land the policy set
+knot_id: 5214963b7177a76ff75f2eec9ab37637b714b183666275c4e038ab05abcdeaa0
+solidified_at: 1793677697600
 thread: main

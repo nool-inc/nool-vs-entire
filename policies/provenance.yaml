@@ -1,9 +1,12 @@
-# Entire provenance gate (Aram DSL, evidence-based). Source, test and
-# benchmark changes may be published only once a trusted checker has attested
+# Entire provenance gate (Aram DSL, evidence-based). Source, test, benchmark
+# and script changes may be published only once a trusted checker has attested
 # that the landed commit links an existing Entire checkpoint whose recorded
 # files overlap the change. Record it with scripts/attest_entire_checkpoint.py.
-# A missing attestation holds the push (exit 3, EVIDENCE_PENDING); a failed
-# one blocks it.
+# A missing attestation holds the push (exit 3, EVIDENCE_PENDING).
+#
+# History that predates this rule has no checkpoint. It passes only with an
+# audited `provenance-baseline` attestation, which the checker records solely
+# for ancestors of the commit that adopted the rule (cb936a4).
 - inv_id: ENTIRE-1
   title: published code links a verified Entire checkpoint
   scope: { type: global }
@@ -14,7 +17,12 @@
   when:
     semantic_path_matches: "^(src|tests|benchmark|scripts)/"
   requires:
-    - evidence_has_attestation:
-        assertion: entire-checkpoint
-        verdict: pass
-        trusted: true
+    - any_of:
+        - evidence_has_attestation:
+            assertion: entire-checkpoint
+            verdict: pass
+            trusted: true
+        - evidence_has_attestation:
+            assertion: provenance-baseline
+            verdict: pass
+            trusted: true
