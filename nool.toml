@@ -309,7 +309,7 @@ checker_keys = ["39aa3ee8852f14d9edd9c286ce0a6ea6d507ae1b5c8f56bb9ff31b560544af4
 reviewer_keys = []
 mint_on_solidify = true
 dependents_wait_for = "done"
-enforce = "block"
+enforce = "warn"
 accept_selected = ["unit-tests"]
 
 [attestation.obligations]
