@@ -76,7 +76,7 @@
     <section class="bg-[var(--card,#1e293b)] border border-emerald-500/40 rounded-2xl p-6 shadow-md space-y-3" aria-labelledby="bench-title">
       <div class="flex flex-wrap items-baseline justify-between gap-2">
         <h2 id="bench-title" class="text-lg font-bold text-[var(--foreground,#f8fafc)]">Measured results · sandboxed re-run</h2>
-        <span class="text-[11px] text-[var(--muted-foreground,#94a3b8)] code-font">2026-11-02T05:30:20Z · nool 7.23.0 · Entire CLI 0.12.2 · 22.0 s</span>
+        <span class="text-[11px] text-[var(--muted-foreground,#94a3b8)] code-font">2026-11-03T03:46:27Z · nool 7.24.0 · Entire CLI 0.12.2 · 25.3 s</span>
       </div>
       <p class="text-xs text-slate-300 leading-relaxed">Generated from <code class="code-font">benchmark/results/latest.json</code> by <code class="code-font">./verify_benchmark.sh</code>. Every scenario ran in a throwaway sandbox built from baseline <code class="code-font">53866f8</code>. Where an older section of this page disagrees with this table, this table is the measured result. Full write-up: <code class="code-font">BENCHMARK_COMPARISON.md</code>.</p>
       <div class="overflow-x-auto custom-scroll">
@@ -88,11 +88,11 @@
             </tr>
           </thead>
           <tbody class="divide-y divide-[var(--border,#334155)]">
-            <tr><td class="p-2.5 font-sans font-medium text-slate-200">Overlap visible before editing</td><td class="p-2.5 text-red-400">no — at merge</td><td class="p-2.5 text-red-400">no — at merge (no merge hook)</td><td class="p-2.5 text-emerald-400">yes — discover names <code class="code-font">agent-oauth</code> in 14 ms</td></tr>
+            <tr><td class="p-2.5 font-sans font-medium text-slate-200">Overlap visible before editing</td><td class="p-2.5 text-red-400">no — at merge</td><td class="p-2.5 text-red-400">no — at merge (no merge hook)</td><td class="p-2.5 text-emerald-400">yes — discover names <code class="code-font">agent-oauth</code> in 17 ms</td></tr>
             <tr><td class="p-2.5 font-sans font-medium text-slate-200">Second agent blocked from same file</td><td class="p-2.5 text-red-400">no</td><td class="p-2.5 text-red-400">no</td><td class="p-2.5 text-emerald-400">announce + propose refused (distinct <code class="code-font">--agent-id</code>s)</td></tr>
             <tr><td class="p-2.5 font-sans font-medium text-slate-200">Disjoint methods, same spot</td><td class="p-2.5 text-red-400">conflict · 1 marker block</td><td class="p-2.5 text-red-400">conflict · 1 marker block</td><td class="p-2.5 text-emerald-400">auto-union · 0 markers · tests pass</td></tr>
             <tr><td class="p-2.5 font-sans font-medium text-slate-200">Same method rewritten by both</td><td class="p-2.5 text-red-400">conflict</td><td class="p-2.5 text-red-400">conflict</td><td class="p-2.5 text-amber-400">conflict (safe) · semantic pre-check missed it</td></tr>
-            <tr><td class="p-2.5 font-sans font-medium text-slate-200">Original agent prompt per line</td><td class="p-2.5 text-red-400">no</td><td class="p-2.5 text-emerald-400">yes — 5 sessions</td><td class="p-2.5 text-red-400">intent strings only</td></tr>
+            <tr><td class="p-2.5 font-sans font-medium text-slate-200">Original agent prompt per line</td><td class="p-2.5 text-red-400">no</td><td class="p-2.5 text-emerald-400">yes — 6 sessions</td><td class="p-2.5 text-red-400">intent strings only</td></tr>
             <tr><td class="p-2.5 font-sans font-medium text-slate-200">Policy gate before landing</td><td class="p-2.5 text-red-400">no</td><td class="p-2.5 text-red-400">no</td><td class="p-2.5 text-emerald-400">yes — editor-contract deny</td></tr>
             <tr><td class="p-2.5 font-sans font-medium text-slate-200">Require Entire checkpoint on AI changes</td><td class="p-2.5 text-slate-300">—</td><td class="p-2.5 text-slate-300">—</td><td class="p-2.5 text-red-400">not enforced (rule + policy landed)</td></tr>
             <tr><td class="p-2.5 font-sans font-medium text-slate-200">Handoff · checkpoint · PR summary · PR merge</td><td class="p-2.5 text-slate-300">—</td><td class="p-2.5 text-slate-300">session resume; dispatch needs remote</td><td class="p-2.5 text-emerald-400">all four worked</td></tr>

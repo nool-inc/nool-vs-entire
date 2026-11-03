@@ -1,0 +1,260 @@
+{
+  "nool_version": "nool 7.24.0",
+  "all_expectations_met": true,
+  "known_gaps": [
+    "AI-tagged change without link",
+    "invariant audit after AI-tagged change"
+  ],
+  "outcomes": [
+    {
+      "case": "known-format secret",
+      "policy": "DSL SEC-1 (blocking)",
+      "expected": "refused",
+      "rc": 2,
+      "expectation_met": true,
+      "known_gap": false
+    },
+    {
+      "case": "high-entropy token",
+      "policy": "DSL SEC-2 (warning)",
+      "expected": "lands; receipt records a warning",
+      "rc": 0,
+      "expectation_met": true,
+      "known_gap": false
+    },
+    {
+      "case": "forbidden path",
+      "policy": "[rules] forbidden_paths",
+      "expected": "refused",
+      "rc": 2,
+      "expectation_met": true,
+      "known_gap": false
+    },
+    {
+      "case": "AI-tagged change without link",
+      "policy": "[invariants] require_entire_provenance",
+      "expected": "refused at propose",
+      "rc": 0,
+      "expectation_met": false,
+      "known_gap": true
+    },
+    {
+      "case": "invariant audit after AI-tagged change",
+      "policy": "[invariants] require_entire_provenance",
+      "expected": "nool verify reports the violation",
+      "rc": 0,
+      "expectation_met": false,
+      "known_gap": true
+    },
+    {
+      "case": "push without checkpoint attestation",
+      "policy": "DSL ENTIRE-1 (evidence)",
+      "expected": "held (pending evidence)",
+      "rc": 3,
+      "expectation_met": true,
+      "known_gap": false
+    },
+    {
+      "case": "checker without a checkpoint",
+      "policy": "entire-checkpoint checker",
+      "expected": "fail verdict",
+      "rc": 1,
+      "expectation_met": true,
+      "known_gap": false
+    },
+    {
+      "case": "push after failed attestation",
+      "policy": "DSL ENTIRE-1 (evidence)",
+      "expected": "refused",
+      "rc": 3,
+      "expectation_met": true,
+      "known_gap": false
+    },
+    {
+      "case": "checker with an overlapping checkpoint",
+      "policy": "entire-checkpoint checker",
+      "expected": "pass verdict",
+      "rc": 0,
+      "expectation_met": true,
+      "known_gap": false
+    },
+    {
+      "case": "push after checkpoint attestation",
+      "policy": "DSL ENTIRE-1 (evidence)",
+      "expected": "pushes",
+      "rc": 0,
+      "expectation_met": true,
+      "known_gap": false
+    }
+  ],
+  "steps": [
+    {
+      "name": "nool init",
+      "cmd": "nool init --skip-discovery",
+      "rc": 0,
+      "seconds": 0.144,
+      "output": "Initialized empty Nool repository in /private<sandbox>/repo\n  ledger only (no import, no discovery)\n  configuration not recorded yet: .gitignore, .gitattributes, .noolignore, nool.toml\n  agent hooks: claude, gemini, codex, pi, opencode\n\nNext steps:\n  1. Tailor nool.toml and .noolignore to your needs, then record them: nool propose --path nool.toml --kind config --intent \"nool init: record Nool's configuration files\" --justification \"<why>\" --solidify, then nool propose --path .gitignore --path .gitattributes --path .noolignore --kind config --intent \"nool init: record Nool's configuration files\" --solidify\n  2. Start work: nool propose --path <file> --intent \"...\" --solidify, or nool code \"<goal>\"\n  More: nool quick-start (a tour), nool guide (every command), nool init --verbose (each step)\n"
+    },
+    {
+      "name": "record nool.toml",
+      "cmd": "nool propose --path nool.toml --kind config --intent record config --justification benchmark sandbox --solidify",
+      "rc": 0,
+      "seconds": 0.249,
+      "output": "\n1. PREPARING  [\u25cf\u25cf\u25cb]  Collecting changes...\n  [IO] Reading from working directory: \"nool.toml\"\n  [AST] Calculated NodeID using adapter 'toml': 6b9e5ce4097ba58f203d7e01de02fc1adbce89d96d9bd102de05ba1a5199b2a1\n  [Reify] Materialized shadow-root at \"/private<sandbox>/repo/.nool/tmp/reify-33910-0\"\n  [Reify] Running Integrity Driver for '.toml'...\n  [Reify] \u26a0\ufe0f  Unchecked: no tests ran (.toml). Hash: structural-ok\n\n4. SIMULATING [\u25cf\u25cf\u25cf]  Merge simulation...\n\n\ud83d\udd2d Semantic signal\n   Blast radius: 1 node(s) affected (declared 1) \u2014 LOW [indicative]\n   \u26a0 Envelope precision: unknown \u2014 symbol-level resolution did not fully succeed; treat this as a reason to look closer, not as low risk.\n     \u00b7 nool.toml\n   Affected contracts: none\n   Evidence plan: PackageTests\n   Intent/diff overlap: 100% [advisory]\n   Relevant prior findings: none\n\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nPROPOSAL SUMMARY\n  ID      : 46092868\n  Intent  : record config\n  Thread  : main\n  Mode    : Full (Semantic)\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n\n[Auto] Solidifying proposal...\n  [Reify] Full validation already recorded at propose; not re-running the integrity driver.\n"
+    },
+    {
+      "name": "record ignore files",
+      "cmd": "nool propose --path .gitignore --path .gitattributes --path .noolignore --kind config --intent record config --solidify",
+      "rc": 0,
+      "seconds": 0.246,
+      "output": "\u2026g adapter 'generic': d7193c96ddf149b2bfb9c7bf42fa6a4b9411ac5b90d4266ab50bfa2eb6974dcc\n  [Reify] \ud83d\udce6 Detected compiled language '.gitignore'. Enabling project-level reification...\n  [Reify] Materialized shadow-root at \"/private<sandbox>/repo/.nool/tmp/reify-34052-0\"\n  [Reify] \ud83d\udce6 Running bundled reification with 3 file(s)...\n  [Reify] \ud83c\udfaf Test selection: full: no test files known\n  [Reify] \u2705 Hydrated 3 bundle file(s) to scratchpad\n  [Reify] \u26a0\ufe0f  Unchecked: no tests ran (.gitignore). Hash: none\n  \ud83d\udce6 Synthesis created with 3 sub-proposals.\n\n4. SIMULATING [\u25cf\u25cf\u25cf]  Merge simulation...\n\n\ud83d\udd2d Semantic signal\n   Blast radius: 3 node(s) affected (declared 3) \u2014 LOW [indicative]\n   \u26a0 Envelope precision: unknown \u2014 symbol-level resolution did not fully succeed; treat this as a reason to look closer, not as low risk.\n     \u00b7 .gitignore\n     \u00b7 .gitattributes\n     \u00b7 .noolignore\n   Affected contracts: none\n   Evidence plan: PackageTests\n   Intent/diff overlap: 0% [advisory]\n   Relevant prior findings (1):\n     [solidify] record config \u2014 Mutation  config  @ nool.toml\n\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nPROPOSAL SUMMARY\n  ID      : e46cc1f3\n  Intent  : record config\n  Thread  : main\n  Mode    : Full (Semantic)\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n\n[Auto] Solidifying proposal...\n  [Reify] Full validation already recorded at propose; not re-running the integrity driver.\n  \u26a0 .gitignore: no symbol-level scope (no language adapter); sealing against the whole file\n"
+    },
+    {
+      "name": "record baseline",
+      "cmd": "nool propose --path src/auth.py --path tests/test_auth.py --path src/__init__.py --path tests/__init__.py --intent baseline auth service --solidify",
+      "rc": 0,
+      "seconds": 1.415,
+      "output": "\u2026nthesis created with 4 sub-proposals.\n\n4. SIMULATING [\u25cf\u25cf\u25cf]  Merge simulation...\n\n\ud83d\udd2d Semantic signal\n   Blast radius: 0 node(s) affected (declared 4) \u2014 LOW [indicative]\n   Affected contracts: none\n   Evidence plan: PackageTests\n   Intent/diff overlap: 33% [advisory]\n   Relevant prior findings (2):\n     [solidify] record config \u2014 Mutation  config  @ nool.toml\n     [solidify] record config \u2014 Synthesis (3 props):\n\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nPROPOSAL SUMMARY\n  ID      : 1b1fd574\n  Intent  : baseline auth service\n  Thread  : main\n  Mode    : Full (Semantic)\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n\n[Auto] Solidifying proposal...\n  [Reify] Full validation already recorded at propose; not re-running the integrity driver.\n  [Attest] tests_constrain_change: error (nothing to mutate: no changed source line holds an operator to change)\n  \u26a0 src/auth.py: no symbol-level scope (the changed symbols could not be told apart); sealing against the whole file\n  \u26a0 tests/test_auth.py: no symbol-level scope (the changed symbols could not be told apart); sealing against the whole file\n  \u26a0 src/__init__.py: no symbol-level scope (no symbols resolved); sealing against the whole file\n  \u26a0 tests/__init__.py: no symbol-level scope (no symbols resolved); sealing against the whole file\n  [Reify] \u23f1  check timeout 120s (default; override with NOOL_INTEGRITY_TIMEOUT_SECS)\n  [Reify] \u23f1  ghost-run timeout 600s (default; override with NOOL_GHOST_RUN_TIMEOUT_SECS)\n"
+    },
+    {
+      "name": "identity key",
+      "cmd": "nool admin team key",
+      "rc": 0,
+      "seconds": 0.015,
+      "output": "39aa3ee8852f14d9edd9c286ce0a6ea6d507ae1b5c8f56bb9ff31b560544af4d\n"
+    },
+    {
+      "name": "grant editor",
+      "cmd": "nool admin contract grant --role editor",
+      "rc": 0,
+      "seconds": 0.071,
+      "output": "Grant editor to 39aa3ee8 over everywhere, valid 365 day(s)\n  [Reify] Full validation not required for this Knot payload.\n"
+    },
+    {
+      "name": "land policy config",
+      "cmd": "nool propose --path nool.toml --kind config --intent chore: configure policy probe --justification policy probe sandbox --solidify",
+      "rc": 0,
+      "seconds": 0.26,
+      "output": "\u202613d\n  [Reify] Materialized shadow-root at \"/private<sandbox>/repo/.nool/tmp/reify-34585-0\"\n  [Reify] Running Integrity Driver for '.toml'...\n  [Reify] \u26a0\ufe0f  Unchecked: no tests ran (.toml). Hash: structural-ok\n\n4. SIMULATING [\u25cf\u25cf\u25cf]  Merge simulation...\n\n\ud83d\udd2d Semantic signal\n   Blast radius: 1 node(s) affected (declared 1) \u2014 LOW [indicative]\n   \u26a0 Envelope precision: partial \u2014 symbol-level resolution did not fully succeed; treat this as a reason to look closer, not as low risk.\n     \u00b7 nool.toml\n   Affected contracts: none\n   Evidence plan: PackageTests\n   \u26a0 Intent/diff overlap: 0% \u2014 the stated intent shares little vocabulary with the diff; verify it actually describes this change [advisory]\n   Relevant prior findings (4):\n     [solidify] record config \u2014 Mutation  config  @ nool.toml\n     [solidify] record config \u2014 Synthesis (3 props):\n     [solidify] Grant editor to 39aa3ee8 over everywhere, valid 365 day(s) \u2014 Grant     editor to 39aa3ee8\n     [solidify] baseline auth service \u2014 Synthesis (4 props):\n\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nPROPOSAL SUMMARY\n  ID      : 9057f9f6\n  Intent  : chore: configure policy probe\n  Thread  : main\n  Mode    : Full (Semantic)\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n\n[Auto] Solidifying proposal...\n  [Reify] Full validation already recorded at propose; not re-running the integrity driver.\n  \u26a0 nool.toml: no symbol-level scope (symbol bodies cannot be compared for this language); sealing against the whole file\n"
+    },
+    {
+      "name": "land DSL policies",
+      "cmd": "nool admin plugin land",
+      "rc": 0,
+      "seconds": 0.284,
+      "output": "\u2026\n     \u00b7 policies/secrets.yaml\n     \u00b7 policies/provenance.yaml\n   Affected contracts: none\n   Evidence plan: PackageTests\n   Intent/diff overlap: 0% [advisory]\n   Relevant prior findings (5):\n     [solidify] record config \u2014 Synthesis (3 props):\n     [solidify] chore: configure policy probe \u2014 Mutation  config  @ nool.toml\n     [solidify] baseline auth service \u2014 Synthesis (4 props):\n     [solidify] record config \u2014 Mutation  config  @ nool.toml\n     [solidify] Grant editor to 39aa3ee8 over everywhere, valid 365 day(s) \u2014 Grant     editor to 39aa3ee8\n\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nPROPOSAL SUMMARY\n  ID      : f4d884c9\n  Intent  : Policy set: land the policy set\n  Thread  : main\n  Mode    : Full (Semantic)\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n\n[Auto] Solidifying proposal...\n  [Reify] Full validation already recorded at propose; not re-running the integrity driver.\n\u2713 Policy set landed: every replica gets it with this knot.\n  [Aram] the working policy set differs from the landed one (provenance.yaml, secrets.yaml). The landed set is enforced as well; land the change so other replicas have it: nool propose --path nool.toml policies/ --binary raw --intent \"policy set\" --solidify\n  [Aram] the working policy set differs from the landed one (provenance.yaml, secrets.yaml). The landed set is enforced as well; land the change so other replicas have it: nool propose --path nool.toml policies/ --binary raw --intent \"policy set\" --solidify\n"
+    },
+    {
+      "name": "known-format secret",
+      "cmd": "nool propose --path src/auth.py --intent test: known-format secret --solidify",
+      "rc": 2,
+      "seconds": 1.191,
+      "output": "\n1. PREPARING  [\u25cf\u25cf\u25cb]  Collecting changes...\n  [IO] Reading from working directory: \"src/auth.py\"\n  [AST] Calculated NodeID using adapter 'python': 23f7c9f4d879f3657d943f46eba454b7ecfd4600387e7d06de8b1288039a02ff\n  [Reify] Materialized shadow-root at \"/private<sandbox>/repo/.nool/tmp/reify-34910-0\"\n  [Reify] Running Integrity Driver for '.py'...\n  [Reify] \ud83c\udfaf Test selection: full: selection would cover 100% of the suite (> 40%)\n  [Reify] \ud83d\udc7b Ghost-Run: Executing project-level tests...\n  [Reify] \u2705 Verified Runnable (Primary: .py). Hash: 334d47a9600846a7428a6f78705f31eb0c358509fa5d720558e99c3c71677ba8\n  [Mutation] tests_constrain_change: error (nothing to mutate: no changed source line holds an operator to change)\n\n4. SIMULATING [\u25cf\u25cf\u25cf]  Merge simulation...\n  [Aram DSL] SEC-1 failed: diff_matches(\\bAKIA[0-9A-Z]{16}\\b)\n  \u26a0 src/auth.py: no symbol-level scope (the change reaches outside any symbol); sealing against the whole file\n  [Reify] \u23f1  check timeout 120s (default; override with NOOL_INTEGRITY_TIMEOUT_SECS)\n  [Reify] \u23f1  ghost-run timeout 600s (default; override with NOOL_GHOST_RUN_TIMEOUT_SECS)\n  \u2713 Released the lease this propose filed: no candidate was queued.\nError: Gate stack denied [POLICY_DENY] at stage pre-propose: reason code 406\n"
+    },
+    {
+      "name": "clear candidates",
+      "cmd": "nool candidate clear",
+      "rc": 0,
+      "seconds": 0.015,
+      "output": "No pending candidate to abort.\n"
+    },
+    {
+      "name": "high-entropy token",
+      "cmd": "nool propose --path src/auth.py --intent test: high-entropy token --solidify",
+      "rc": 0,
+      "seconds": 1.324,
+      "output": "\u2026hanged source line holds an operator to change)\n\n4. SIMULATING [\u25cf\u25cf\u25cf]  Merge simulation...\n\n\ud83d\udd2d Semantic signal\n   Blast radius: 2 node(s) affected (declared 1) \u2014 ELEVATED [indicative]\n     \u00b7 tests/test_auth.py\n     \u00b7 src/auth.py\n   Affected contracts: none\n   Evidence plan: PackageTests\n   Intent/diff overlap: 25% [advisory]\n   Relevant prior findings (5):\n     [solidify] baseline auth service \u2014 Synthesis (4 props):\n     [solidify] Grant editor to 39aa3ee8 over everywhere, valid 365 day(s) \u2014 Grant     editor to 39aa3ee8\n     [solidify] record config \u2014 Mutation  config  @ nool.toml\n     [solidify] chore: configure policy probe \u2014 Mutation  config  @ nool.toml\n     [solidify] Policy set: land the policy set \u2014 Synthesis (2 props):\n\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nPROPOSAL SUMMARY\n  ID      : 5c55a159\n  Intent  : test: high-entropy token\n  Thread  : main\n  Mode    : Full (Semantic)\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n\n[Auto] Solidifying proposal...\n  [Reify] Full validation already recorded at propose; not re-running the integrity driver.\n  [Attest] tests_constrain_change: error (nothing to mutate: no changed source line holds an operator to change)\n  \u26a0 src/auth.py: no symbol-level scope (the change reaches outside any symbol); sealing against the whole file\n  [Reify] \u23f1  check timeout 120s (default; override with NOOL_INTEGRITY_TIMEOUT_SECS)\n  [Reify] \u23f1  ghost-run timeout 600s (default; override with NOOL_GHOST_RUN_TIMEOUT_SECS)\n"
+    },
+    {
+      "name": "gate receipt for high-entropy change",
+      "cmd": "nool evidence knot d6c0620ddb13ad3ffe0feaacc89fc0207dc276fc6469d0f2d84f7c69421b2cc1",
+      "rc": 0,
+      "seconds": 0.018,
+      "output": "\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\n  TRANSITION EVIDENCE: KNOT d6c0620d\n\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\n  Intent      : test: high-entropy token\n  Author      : 39aa3ee8\n  Timestamp   : 1793677617200\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  Impact Radius (5 symbols):\n    \u2022 AuthService in src/auth.py\n    \u2022 __init__ in src/auth.py\n    \u2022 authenticate_user in src/auth.py\n    \u2022 get_user_role in src/auth.py\n    \u2022 path src/auth.py\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  Policy Results (5):\n    \u2022 pre-solidify: passed (2 policies recorded)\n    \u2022 policy SEC-1: allow [d8a80d4b7b26]\n    \u2022 policy SEC-2: warn (reason 406) [d6fdf301defb]\n    \u2022 authority: local backend, lease 70d1307d5283 seq 7 confirmed\n    \u2022 validation:region-fresh\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  Runtime Evidence (1 records):\n    \u2022 integrity-driver | run=solidify:d6c0620d | trace=334d47a9600846a7428a6f78705f31eb0c358509fa5d720558e99c3c71677ba8\n\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\n  Attestations (3):\n    \u2022 compile: pass by integrity-driver\n        integrity driver\n    \u2022 unit-tests: pass by integrity-driver\n        full: selection would cover 100% of the suite (> 40%)\n    \u2022 tests_constrain_change: error by mutation-probe\n        nothing to mutate: no changed source line holds an operator to change\n"
+    },
+    {
+      "name": "forbidden path",
+      "cmd": "nool propose --path .entire/metadata/probe.json --intent test: forbidden path --solidify",
+      "rc": 2,
+      "seconds": 0.158,
+      "output": "\n1. PREPARING  [\u25cf\u25cf\u25cb]  Collecting changes...\n  [IO] Reading from working directory: \".entire/metadata/probe.json\"\n  [AST] Calculated NodeID using adapter 'json': 6ce20da7f9dc72e1b9a56317eb4ccfa748132e83816b894faa1210f419aa329a\n  [Reify] Materialized shadow-root at \"/private<sandbox>/repo/.nool/tmp/reify-35506-0\"\n  [Reify] Running Integrity Driver for '.json'...\n  [Reify] \u26a0\ufe0f  Unchecked: no tests ran (.json). Hash: structural-ok\n\n4. SIMULATING [\u25cf\u25cf\u25cf]  Merge simulation...\n  [Graph] Caught up with HEAD: 4 edge(s) written, 0 retired.\n  \u2713 Released the lease this propose filed: no candidate was queued.\nError: POLICY_DENY: repository rule denied mutation of forbidden path '.entire/metadata/probe.json' (matched '.entire/metadata')\n"
+    },
+    {
+      "name": "clear candidates",
+      "cmd": "nool candidate clear",
+      "rc": 0,
+      "seconds": 0.014,
+      "output": "No pending candidate to abort.\n"
+    },
+    {
+      "name": "AI-tagged change without link",
+      "cmd": "nool propose --path src/auth.py --intent test: AI-tagged change without link --tag is_ai_agent --solidify",
+      "rc": 0,
+      "seconds": 1.303,
+      "output": "\u2026 an operator to change)\n\n4. SIMULATING [\u25cf\u25cf\u25cf]  Merge simulation...\n\n\ud83d\udd2d Semantic signal\n   Blast radius: 0 node(s) affected (declared 1) \u2014 LOW [indicative]\n   Affected contracts: none\n   Evidence plan: PackageTests\n   \u26a0 Intent/diff overlap: 0% \u2014 the stated intent shares little vocabulary with the diff; verify it actually describes this change [advisory]\n   Relevant prior findings (5):\n     [solidify] baseline auth service \u2014 Synthesis (4 props):\n     [solidify] test: high-entropy token \u2014 Mutation  @ src/auth.py\n     [solidify] Policy set: land the policy set \u2014 Synthesis (2 props):\n     [solidify] record config \u2014 Mutation  config  @ nool.toml\n     [solidify] chore: configure policy probe \u2014 Mutation  config  @ nool.toml\n\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nPROPOSAL SUMMARY\n  ID      : 8b9a659a\n  Intent  : test: AI-tagged change without link\n  Thread  : main\n  Mode    : Full (Semantic)\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n\n[Auto] Solidifying proposal...\n  [Reify] Full validation already recorded at propose; not re-running the integrity driver.\n  [Attest] tests_constrain_change: error (nothing to mutate: no changed source line holds an operator to change)\n  \u26a0 src/auth.py: no symbol-level scope (the change reaches outside any symbol); sealing against the whole file\n  [Reify] \u23f1  check timeout 120s (default; override with NOOL_INTEGRITY_TIMEOUT_SECS)\n  [Reify] \u23f1  ghost-run timeout 600s (default; override with NOOL_GHOST_RUN_TIMEOUT_SECS)\n"
+    },
+    {
+      "name": "verify invariants",
+      "cmd": "nool verify --all",
+      "rc": 0,
+      "seconds": 0.019,
+      "output": "\ud83d\udd0d Verifying structural invariants for entire active snapshot...\n  \u2713 All 2 controls satisfied.\nVerification summary: 2 controls evaluated, 0 violations.\n"
+    },
+    {
+      "name": "push without checkpoint attestation",
+      "cmd": "nool push /var/folders/4s/hgctgjw55jx6_s6mypy41s1m0000gn/T/nool-policy-types-4o35o_qp/remote.git",
+      "rc": 3,
+      "seconds": 0.117,
+      "output": "\ud83d\udce4 Pushing 8 Knot(s) to '<sandbox>/remote.git'...\n  [Aram] Running pre-push compliance checks...\n  [Aram DSL] ENTIRE-1 failed: evidence_has_attestation(assertion=entire-checkpoint, scope=*, verdict=pass, trusted=true)\nError: push refused: evidence pending for Knot d6c0620d (policy ENTIRE-1: evidence_has_attestation(assertion=entire-checkpoint, scope=*, verdict=pass, trusted=true)). Record what the policy requires (`nool attest record --target d6c0620ddb13ad3ffe0feaacc89fc0207dc276fc6469d0f2d84f7c69421b2cc1 \u2026`, or `nool validate`) and push again.\n"
+    },
+    {
+      "name": "checker: no checkpoint",
+      "cmd": "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3 /var/folders/4s/hgctgjw55jx6_s6mypy41s1m0000gn/T/nool-policy-types-4o35o_qp/attest.py --repo /var/folders/4s/hgctgjw55jx6_s6mypy41s1m0000gn/T/nool-policy-types-4o35o_qp/repo",
+      "rc": 1,
+      "seconds": 0.154,
+      "output": "\u2713 Attested entire-checkpoint Fail for 3e934ee8 (entire-checkpoint-check \u00b7 Full scope)\n  Attestation : 890c356c3c2230a610dc585d5e2c845579fe2cc4eec304990a296d4c64bd6ff6\n  Evidence    : fbba28a50d636eb058b7f1ae4f6924d7343387821dd15db9c434970d8e7931c2\n  Ledger      : recorded\n  Ref         : refs/knots/890c356c (not pushed)\n  Signer      : ed25519:39aa3ee8852f14d9edd9c286ce0a6ea6d507ae1b5c8f56bb9ff31b560544af4d\n{\n  \"commit\": \"dcd9619f8b411876c910e7e8b8e6de3bd9c63ba7\",\n  \"knot\": \"3e934ee82aeb502aab892837bc64318129ad7dc4684fce1a60e908b5dd3f004d\",\n  \"changed_files\": [\n    \"src/auth.py\"\n  ],\n  \"checkpoints\": [],\n  \"verdict\": \"fail\",\n  \"reason\": \"commit carries no Entire-Checkpoint trailer and no --checkpoint was given\"\n}\n"
+    },
+    {
+      "name": "push after failed attestation",
+      "cmd": "nool push /var/folders/4s/hgctgjw55jx6_s6mypy41s1m0000gn/T/nool-policy-types-4o35o_qp/remote.git",
+      "rc": 3,
+      "seconds": 0.032,
+      "output": "\ud83d\udce4 Pushing 8 Knot(s) to '<sandbox>/remote.git'...\n  [Aram] Running pre-push compliance checks...\n  [Aram DSL] ENTIRE-1 failed: evidence_has_attestation(assertion=entire-checkpoint, scope=*, verdict=pass, trusted=true)\nError: push refused: evidence pending for Knot d6c0620d (policy ENTIRE-1: evidence_has_attestation(assertion=entire-checkpoint, scope=*, verdict=pass, trusted=true)). Record what the policy requires (`nool attest record --target d6c0620ddb13ad3ffe0feaacc89fc0207dc276fc6469d0f2d84f7c69421b2cc1 \u2026`, or `nool validate`) and push again.\n"
+    },
+    {
+      "name": "checker: link dcd9619f",
+      "cmd": "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3 /var/folders/4s/hgctgjw55jx6_s6mypy41s1m0000gn/T/nool-policy-types-4o35o_qp/attest.py --repo /var/folders/4s/hgctgjw55jx6_s6mypy41s1m0000gn/T/nool-policy-types-4o35o_qp/repo --commit dcd9619f8b411876c910e7e8b8e6de3bd9c63ba7 --checkpoint 01M6CRZR6WVBD2GAEE84042PZA",
+      "rc": 0,
+      "seconds": 0.196,
+      "output": "\u2713 Attested entire-checkpoint Pass for 3e934ee8 (entire-checkpoint-check \u00b7 Full scope)\n  Attestation : 78522db9b5df16493db26b280d07d1e42329d7cee1bfbd36ee445c90a31fc39d\n  Evidence    : 345b048c1101bbe3a87f446125cb8a35f96f13c19ff4d61222bf1cc8e12e9f65\n  Ledger      : recorded\n  Ref         : refs/knots/78522db9 (not pushed)\n  Signer      : ed25519:39aa3ee8852f14d9edd9c286ce0a6ea6d507ae1b5c8f56bb9ff31b560544af4d\n{\n  \"commit\": \"dcd9619f8b411876c910e7e8b8e6de3bd9c63ba7\",\n  \"knot\": \"3e934ee82aeb502aab892837bc64318129ad7dc4684fce1a60e908b5dd3f004d\",\n  \"changed_files\": [\n    \"src/auth.py\"\n  ],\n  \"checkpoints\": [\n    {\n      \"id\": \"01M6CRZR6WVBD2GAEE84042PZA\",\n      \"source\": \"operator\",\n      \"format_ok\": true,\n      \"ref\": \"refs/entire/checkpoints/ZA/01M6CRZR6WVBD2GAEE84042PZA\",\n      \"files_touched\": [\n        \"src/auth.py\",\n        \"tests/test_auth.py\"\n      ],\n      \"overlap\": [\n        \"src/auth.py\"\n      ],\n      \"ok\": true\n    }\n  ],\n  \"verdict\": \"pass\",\n  \"reason\": \"linked to checkpoint 01M6CRZR6WVBD2GAEE84042PZA (operator)\"\n}\n"
+    },
+    {
+      "name": "checker: link b3ee328d",
+      "cmd": "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3 /var/folders/4s/hgctgjw55jx6_s6mypy41s1m0000gn/T/nool-policy-types-4o35o_qp/attest.py --repo /var/folders/4s/hgctgjw55jx6_s6mypy41s1m0000gn/T/nool-policy-types-4o35o_qp/repo --commit b3ee328d0b8a31bd236edf6bd89b3a9ebf4a5cb2 --checkpoint 01M6CRZR6WVBD2GAEE84042PZA",
+      "rc": 0,
+      "seconds": 0.191,
+      "output": "\u2713 Attested entire-checkpoint Pass for d6c0620d (entire-checkpoint-check \u00b7 Full scope)\n  Attestation : c28483fb0433186e7e4677cab018669219ec8010e631d0fcc32ffb5dba9eb77c\n  Evidence    : d22c523e230a6f7523a36d8414dadc2d76a2b1c2ca18ebabd518ae78971244b6\n  Ledger      : recorded\n  Ref         : refs/knots/c28483fb (not pushed)\n  Signer      : ed25519:39aa3ee8852f14d9edd9c286ce0a6ea6d507ae1b5c8f56bb9ff31b560544af4d\n{\n  \"commit\": \"b3ee328d0b8a31bd236edf6bd89b3a9ebf4a5cb2\",\n  \"knot\": \"d6c0620ddb13ad3ffe0feaacc89fc0207dc276fc6469d0f2d84f7c69421b2cc1\",\n  \"changed_files\": [\n    \"src/auth.py\"\n  ],\n  \"checkpoints\": [\n    {\n      \"id\": \"01M6CRZR6WVBD2GAEE84042PZA\",\n      \"source\": \"operator\",\n      \"format_ok\": true,\n      \"ref\": \"refs/entire/checkpoints/ZA/01M6CRZR6WVBD2GAEE84042PZA\",\n      \"files_touched\": [\n        \"src/auth.py\",\n        \"tests/test_auth.py\"\n      ],\n      \"overlap\": [\n        \"src/auth.py\"\n      ],\n      \"ok\": true\n    }\n  ],\n  \"verdict\": \"pass\",\n  \"reason\": \"linked to checkpoint 01M6CRZR6WVBD2GAEE84042PZA (operator)\"\n}\n"
+    },
+    {
+      "name": "checker: link d1c76f77",
+      "cmd": "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3 /var/folders/4s/hgctgjw55jx6_s6mypy41s1m0000gn/T/nool-policy-types-4o35o_qp/attest.py --repo /var/folders/4s/hgctgjw55jx6_s6mypy41s1m0000gn/T/nool-policy-types-4o35o_qp/repo --commit d1c76f77db9a4f18de01424fd49be081cf35ab32 --checkpoint 01M6CRZR6WVBD2GAEE84042PZA",
+      "rc": 0,
+      "seconds": 0.198,
+      "output": "\u2713 Attested entire-checkpoint Pass for 3e934ee8 (entire-checkpoint-check \u00b7 Full scope)\n  Attestation : 931aed549195d9627870ee58783fb1ade9fa72ea70d8b9ca34161a7c69fa110e\n  Evidence    : 8b411e7c0a18ec9f2761bda71c7db69b17603a16fd3cb73a1259bf09b24b799c\n  Ledger      : recorded\n  Ref         : refs/knots/931aed54 (not pushed)\n  Signer      : ed25519:39aa3ee8852f14d9edd9c286ce0a6ea6d507ae1b5c8f56bb9ff31b560544af4d\n{\n  \"commit\": \"d1c76f77db9a4f18de01424fd49be081cf35ab32\",\n  \"knot\": null,\n  \"changed_files\": [\n    \".gitignore\",\n    \"src/__init__.py\",\n    \"src/auth.py\",\n    \"tests/__init__.py\",\n    \"tests/test_auth.py\"\n  ],\n  \"checkpoints\": [\n    {\n      \"id\": \"01M6CRZR6WVBD2GAEE84042PZA\",\n      \"source\": \"operator\",\n      \"format_ok\": true,\n      \"ref\": \"refs/entire/checkpoints/ZA/01M6CRZR6WVBD2GAEE84042PZA\",\n      \"files_touched\": [\n        \"src/auth.py\",\n        \"tests/test_auth.py\"\n      ],\n      \"overlap\": [\n        \"src/auth.py\",\n        \"tests/test_auth.py\"\n      ],\n      \"ok\": true\n    }\n  ],\n  \"verdict\": \"pass\",\n  \"reason\": \"linked to checkpoint 01M6CRZR6WVBD2GAEE84042PZA (operator)\"\n}\n"
+    },
+    {
+      "name": "push after checkpoint attestation",
+      "cmd": "nool push /var/folders/4s/hgctgjw55jx6_s6mypy41s1m0000gn/T/nool-policy-types-4o35o_qp/remote.git",
+      "rc": 0,
+      "seconds": 0.366,
+      "output": "\ud83d\udce4 Pushing 8 Knot(s) to '<sandbox>/remote.git'...\n  [Aram] Running pre-push compliance checks...\n  [Aram] \u2705 Pre-push checks passed.\n  [Bridge] Pushing knot chains and refs, then refs/nool/mirror/main, to '<sandbox>/remote.git' (hooks skipped)...\n\u2705 Pushed 8 Knot(s) to '<sandbox>/remote.git'\nTo <sandbox>/remote.git\n * [new branch]      main -> main\nTo <sandbox>/remote.git\n * [new reference]   refs/nool/detached/159ef464443e4ca3 -> refs/nool/detached/159ef464443e4ca3\nTo <sandbox>/remote.git\n * [new reference]   refs/nool/git-mirror -> refs/nool/git-mirror\n * [new reference]   refs/nool/mirror/main -> refs/nool/mirror/main\n"
+    },
+    {
+      "name": "nool version",
+      "cmd": "nool --version",
+      "rc": 0,
+      "seconds": 0.011,
+      "output": "nool 7.24.0\n"
+    }
+  ]
+}

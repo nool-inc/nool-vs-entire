@@ -2,7 +2,7 @@ aram_policy_set: ab005f48958ef3c296507fd4343154a2c1e15c0e1c5b7b928ac435806af9288
 commit_policy_hash: 2d549b912abe9e908b9f49273abbb7b9d28ea9db47e8f16e22c5ee1e70143b57
 commit_policy_version: 1
 commit_template_hash: a9192855a17bbe09ae8aa3abd46cd7eab666809fb6c6dfa73aaeb580c4250428
-intent: feat: attest Entire checkpoints and probe each policy type
-knot_id: eedb9b1bbca7aaef0bb12ae8f81d348fef9a15a456cd5d0a7db577e9ede114ad
-solidified_at: 1793677938444
+intent: docs: document policy types, Entire setup and remotes
+knot_id: 54761bdb3fe751a078dbe983e55d9da4759cd6388c1bb0c3cdd3a0cab2c335c6
+solidified_at: 1793677962895
 thread: main

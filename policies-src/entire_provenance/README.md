@@ -1,17 +1,46 @@
-# Entire provenance policy: development status
+# Entire provenance policy (WASM, development host only)
 
-The policy builds as a WASM component and its seven Rust unit tests pass.
-It is **not enabled in the live repository**: the installed Nool 7.23.0 host
-cannot link the development SDK's `nool:aram/host@0.1.0` interface. The exact
-commands and outputs are recorded in [host-probe.json](host-probe.json).
-An interface-load failure is not evidence of provenance enforcement.
+This Aram WASM policy is **not installed**. It was pinned in `policies/` until
+3 November 2026. It was replaced after the released Nool 7.24.0 could not
+link it. The live repository now enforces provenance with the `ENTIRE-1`
+evidence rule in [`policies/provenance.yaml`](../../policies/provenance.yaml)
+(see [policy setup](../../docs/POLICY_SETUP.md)).
 
-The existing benchmark intentionally continues to measure the original
-`entire_policy_test` scaffold. Its findings remain applicable to that setup.
+## Why it was removed
+
+The policy imports `get-proposal-context` from the Nool development branch
+`aram-proposal-context`. Released Nool 7.24.0 does not provide that import.
+Every proposal failed with:
+
+```text
+component imports instance `nool:aram/host@0.1.0`, but a matching implementation was not found in the linker
+```
+
+Nool also enforces the landed policy set whatever the working tree holds.
+That included the change that would remove the policy, so the repository
+could not land anything on the released host. To recover, a one-off host was
+built from the proposal-context patch applied to Nool `main` (7.24.0). It was
+built in a scratch directory and was never installed. That host landed only
+the policy-set replacement. All later work used the released binary.
+
+The released policy ABI (`nool:aram@0.1.0`) gives a policy the knot, its
+diff, contracts, announcements, invariants, facts and evidence. It does not
+give the proposal's tags or issue references, so a released-host WASM policy
+cannot read a proposer-supplied `entire_checkpoint:<id>` link at all.
+
+## What it checked
+
+A proposal tagged `is_ai_agent` needed an issue reference of the form
+`entire_checkpoint:<26-character uppercase ULID>`. Missing and malformed
+links were denied, as was ULID overflow; one valid link was enough.
+Untagged proposals and evaluations without proposal context were allowed.
+It checked only the shape of the reference, not that the checkpoint existed
+or matched the change. The released-host replacement checks both.
 
 ## Reproduce
 
-From the repository root:
+On a host with the proposal-context API, and with the `Cargo.toml` path
+dependencies pointing at that host's SDK and ABI:
 
 ```sh
 cargo test --manifest-path policies-src/entire_provenance/Cargo.toml
@@ -19,44 +48,12 @@ nool admin plugin build policies-src/entire_provenance
 python3 benchmark/check_provenance_policy.py
 ```
 
-The probe uses a temporary repository, grants an editor contract, installs
-the development component there, and tests missing, malformed and valid
-checkpoint links plus an untagged control. It exits nonzero until all four
-behave as expected. It does not change the live policy configuration.
+The probe runs in a temporary repository and writes
+[host-probe.json](host-probe.json). The recorded run used released 7.24.0, so
+all four cases report `host_incompatible: true`.
 
-The Cargo dependencies currently reference the local Nool development
-worktree `aram-proposal-context`; this is a development integration, not a
-portable published package. A host built from that branch (including the
-proposal-context engine wiring) is required before installation can be
-validated. Repoint the two dependencies in Cargo.toml to the matching SDK
-and ABI when that change lands upstream, then rerun the commands above.
+## Preserved baseline
 
-A separate local build from that branch finished during this validation.
-Its probe stopped at `admin contract grant`: the binary was built without
-the Enterprise feature, although the installed license covers Enterprise.
-It therefore did not reach the four policy cases. A compatible Enterprise
-host build is still needed; the recorded four-case evidence is for the
-installed CLI.
-
-## Rule and limits
-
-A proposal tagged `is_ai_agent` needs an issue reference of the form
-`entire_checkpoint:<26-character uppercase ULID>`. Missing and malformed
-links are denied. ULID overflow is rejected; any one valid link suffices.
-Untagged proposals and evaluations without proposal context are allowed.
-
-This checks the shape of a proposer-supplied reference. It does not verify
-checkpoint existence, authorship, correspondence to the changed code, or
-that an agent truthfully supplied the AI tag. The sandbox has no repository
-access. Replication and historical audits lack proposal context and therefore
-do not re-enforce the rule.
-
-## Remaining integration work
-
-1. Make the proposal-context host available and pass the four-case probe.
-2. Replace the old policy through Nool's policy installation workflow, land
-   the policy set, and rerun the benchmark against that explicit configuration.
-3. Seal the pending task candidate and record completion. The existing stale
-   `entire_policy_test` module currently refuses its newer Task payload.
-
-Do not count the draft component or a linker error as a fixed benchmark gap.
+The original `entire_policy_test` scaffold is kept in
+`benchmark/fixtures/legacy-policy/` so the benchmark's Scenario 3 stays
+reproducible. Its results do not describe either replacement.

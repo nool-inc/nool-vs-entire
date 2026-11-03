@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-11-02T05:30:20Z",
-  "duration_seconds": 22.0,
+  "generated_at": "2026-11-03T03:46:27Z",
+  "duration_seconds": 25.3,
   "baseline_commit": "53866f8",
   "environment": {
-    "nool": "nool 7.23.0",
+    "nool": "nool 7.24.0",
     "entire": "Entire CLI 0.12.2",
     "git": "git version 2.50.1 (Apple Git-155)",
     "python": "3.11.2",
@@ -18,12 +18,12 @@
           "name": "git merge feat-saml",
           "cmd": "git -c user.name=bench -c user.email=bench@example.invalid merge feat-saml",
           "rc": 1,
-          "seconds": 0.026,
+          "seconds": 0.03,
           "output": "Auto-merging src/auth.py\nCONFLICT (content): Merge conflict in src/auth.py\nAutomatic merge failed; fix conflicts and then commit the result.\n"
         }
       ],
       "merge_rc": 1,
-      "merge_seconds": 0.026,
+      "merge_seconds": 0.03,
       "conflict_detected_at": "merge",
       "manual_resolution_required": true,
       "result": {
@@ -33,7 +33,7 @@
         "authenticate_user_body": "return token == f\"secret-{username}\""
       },
       "tests_pass_without_manual_edit": false,
-      "scenario_seconds": 0.23
+      "scenario_seconds": 0.29
     },
     "plain_git_same_symbol": {
       "tool": "plain-git",
@@ -43,12 +43,12 @@
           "name": "git merge feat-saml",
           "cmd": "git -c user.name=bench -c user.email=bench@example.invalid merge feat-saml",
           "rc": 1,
-          "seconds": 0.026,
+          "seconds": 0.029,
           "output": "Auto-merging src/auth.py\nCONFLICT (content): Merge conflict in src/auth.py\nAutomatic merge failed; fix conflicts and then commit the result.\n"
         }
       ],
       "merge_rc": 1,
-      "merge_seconds": 0.026,
+      "merge_seconds": 0.029,
       "conflict_detected_at": "merge",
       "manual_resolution_required": true,
       "result": {
@@ -58,7 +58,7 @@
         "authenticate_user_body": "return token == f\"secret-{username}\" or token.startswith(\"oauth-\")"
       },
       "tests_pass_without_manual_edit": false,
-      "scenario_seconds": 0.24
+      "scenario_seconds": 0.28
     },
     "entire_disjoint": {
       "tool": "entire",
@@ -68,14 +68,14 @@
           "name": "entire enable",
           "cmd": "entire enable --agent claude-code --local",
           "rc": 0,
-          "seconds": 0.222,
+          "seconds": 0.232,
           "output": "  Agent: Claude Code\n  Installed 10 hooks for Claude Code - Anthropic's CLI coding assistant\n  \u2713 Configured project\n    .entire/settings.local.json\n\nReady.\n\nMake sure to commit these files to your Git repo so Entire works across worktrees and clones:\n  .entire/.gitignore\n  .claude/settings.json\n\nNo Git remotes configured. Once you add one, checkpoints will be uploaded when you push to it.\n  They contain your agent transcripts. If that repo is public, anyone can read them.\n  Secret redaction is best effort, not bulletproof. Review with `entire checkpoint explain`.\n  To stop uploads: `entire configure --local --skip-push-sessions`\n  To use a separate private repo: `entire configure --local --checkpoint-remote github:<owner>/<repo>`\n"
         },
         {
           "name": "git merge feat-saml (Entire hooks installed)",
           "cmd": "git -c user.name=bench -c user.email=bench@example.invalid merge feat-saml",
           "rc": 1,
-          "seconds": 0.027,
+          "seconds": 0.029,
           "output": "Auto-merging src/auth.py\nCONFLICT (content): Merge conflict in src/auth.py\nAutomatic merge failed; fix conflicts and then commit the result.\n"
         }
       ],
@@ -89,7 +89,7 @@
       ],
       "has_merge_hook": false,
       "merge_rc": 1,
-      "merge_seconds": 0.027,
+      "merge_seconds": 0.029,
       "conflict_detected_at": "merge",
       "manual_resolution_required": true,
       "result": {
@@ -98,7 +98,7 @@
         "methods": [],
         "authenticate_user_body": "return token == f\"secret-{username}\""
       },
-      "scenario_seconds": 0.48
+      "scenario_seconds": 0.51
     },
     "nool_merge_disjoint": {
       "tool": "nool",
@@ -108,43 +108,43 @@
           "name": "nool init",
           "cmd": "nool init --skip-discovery",
           "rc": 0,
-          "seconds": 0.14,
+          "seconds": 0.148,
           "output": "Initialized empty Nool repository in /private<sandbox>/nool-disjoint\n  ledger only (no import, no discovery)\n  configuration not recorded yet: .gitignore, .gitattributes, .noolignore, nool.toml\n  agent hooks: claude, gemini, codex, pi, opencode\n\nNext steps:\n  1. Tailor nool.toml and .noolignore to your needs, then record them: nool propose --path nool.toml --kind config --intent \"nool init: record Nool's configuration files\" --justification \"<why>\" --solidify, then nool propose --path .gitignore --path .gitattributes --path .noolignore --kind config --intent \"nool init: record Nool's configuration files\" --solidify\n  2. Start work: nool propose --path <file> --intent \"...\" --solidify, or nool code \"<goal>\"\n  More: nool quick-start (a tour), nool guide (every command), nool init --verbose (each step)\n"
         },
         {
           "name": "record nool.toml",
           "cmd": "nool propose --path nool.toml --kind config --intent record config --justification benchmark sandbox --solidify",
           "rc": 0,
-          "seconds": 0.25,
-          "output": "\n1. PREPARING  [\u25cf\u25cf\u25cb]  Collecting changes...\n  [IO] Reading from working directory: \"nool.toml\"\n  [AST] Calculated NodeID using adapter 'toml': 9e4b1cd398542283d6718139ff7c05c052bd32dea9c8ad6e8227e97d2e10737e\n  [Reify] Materialized shadow-root at \"/private<sandbox>/nool-disjoint/.nool/tmp/reify-32014-0\"\n  [Reify] Running Integrity Driver for '.toml'...\n  [Reify] \u26a0\ufe0f  Unchecked: no tests ran (.toml). Hash: structural-ok\n\n4. SIMULATING [\u25cf\u25cf\u25cf]  Merge simulation...\n\n\ud83d\udd2d Semantic signal\n   Blast radius: 1 node(s) affected (declared 1) \u2014 LOW [indicative]\n   \u26a0 Envelope precision: unknown \u2014 symbol-level resolution did not fully succeed; treat this as a reason to look closer, not as low risk.\n     \u00b7 nool.toml\n   Affected contracts: none\n   Evidence plan: PackageTests\n   Intent/diff overlap: 100% [advisory]\n   Relevant prior findings: none\n\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nPROPOSAL SUMMARY\n  ID      : 971c3fdf\n  Intent  : record config\n  Thread  : main\n  Mode    : Full (Semantic)\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n\n[Auto] Solidifying proposal...\n  [Reify] Full validation already recorded at propose; not re-running the integrity driver.\n"
+          "seconds": 0.285,
+          "output": "\n1. PREPARING  [\u25cf\u25cf\u25cb]  Collecting changes...\n  [IO] Reading from working directory: \"nool.toml\"\n  [AST] Calculated NodeID using adapter 'toml': 6b9e5ce4097ba58f203d7e01de02fc1adbce89d96d9bd102de05ba1a5199b2a1\n  [Reify] Materialized shadow-root at \"/private<sandbox>/nool-disjoint/.nool/tmp/reify-27869-0\"\n  [Reify] Running Integrity Driver for '.toml'...\n  [Reify] \u26a0\ufe0f  Unchecked: no tests ran (.toml). Hash: structural-ok\n\n4. SIMULATING [\u25cf\u25cf\u25cf]  Merge simulation...\n\n\ud83d\udd2d Semantic signal\n   Blast radius: 1 node(s) affected (declared 1) \u2014 LOW [indicative]\n   \u26a0 Envelope precision: unknown \u2014 symbol-level resolution did not fully succeed; treat this as a reason to look closer, not as low risk.\n     \u00b7 nool.toml\n   Affected contracts: none\n   Evidence plan: PackageTests\n   Intent/diff overlap: 100% [advisory]\n   Relevant prior findings: none\n\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nPROPOSAL SUMMARY\n  ID      : bba8425e\n  Intent  : record config\n  Thread  : main\n  Mode    : Full (Semantic)\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n\n[Auto] Solidifying proposal...\n  [Reify] Full validation already recorded at propose; not re-running the integrity driver.\n"
         },
         {
           "name": "record ignore files",
           "cmd": "nool propose --path .gitignore --path .gitattributes --path .noolignore --kind config --intent record config --solidify",
           "rc": 0,
-          "seconds": 0.236,
-          "output": "\u2026 'generic': d7193c96ddf149b2bfb9c7bf42fa6a4b9411ac5b90d4266ab50bfa2eb6974dcc\n  [Reify] \ud83d\udce6 Detected compiled language '.gitignore'. Enabling project-level reification...\n  [Reify] Materialized shadow-root at \"/private<sandbox>/nool-disjoint/.nool/tmp/reify-32184-0\"\n  [Reify] \ud83d\udce6 Running bundled reification with 3 file(s)...\n  [Reify] \ud83c\udfaf Test selection: full: no test files known\n  [Reify] \u2705 Hydrated 3 bundle file(s) to scratchpad\n  [Reify] \u26a0\ufe0f  Unchecked: no tests ran (.gitignore). Hash: none\n  \ud83d\udce6 Synthesis created with 3 sub-proposals.\n\n4. SIMULATING [\u25cf\u25cf\u25cf]  Merge simulation...\n\n\ud83d\udd2d Semantic signal\n   Blast radius: 3 node(s) affected (declared 3) \u2014 LOW [indicative]\n   \u26a0 Envelope precision: unknown \u2014 symbol-level resolution did not fully succeed; treat this as a reason to look closer, not as low risk.\n     \u00b7 .gitattributes\n     \u00b7 .noolignore\n     \u00b7 .gitignore\n   Affected contracts: none\n   Evidence plan: PackageTests\n   Intent/diff overlap: 0% [advisory]\n   Relevant prior findings (1):\n     [solidify] record config \u2014 Mutation  config  @ nool.toml\n\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nPROPOSAL SUMMARY\n  ID      : e9ed6786\n  Intent  : record config\n  Thread  : main\n  Mode    : Full (Semantic)\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n\n[Auto] Solidifying proposal...\n  [Reify] Full validation already recorded at propose; not re-running the integrity driver.\n  \u26a0 .gitignore: no symbol-level scope (no language adapter); sealing against the whole file\n"
+          "seconds": 0.256,
+          "output": "\u2026 'generic': d7193c96ddf149b2bfb9c7bf42fa6a4b9411ac5b90d4266ab50bfa2eb6974dcc\n  [Reify] \ud83d\udce6 Detected compiled language '.gitignore'. Enabling project-level reification...\n  [Reify] Materialized shadow-root at \"/private<sandbox>/nool-disjoint/.nool/tmp/reify-28011-0\"\n  [Reify] \ud83d\udce6 Running bundled reification with 3 file(s)...\n  [Reify] \ud83c\udfaf Test selection: full: no test files known\n  [Reify] \u2705 Hydrated 3 bundle file(s) to scratchpad\n  [Reify] \u26a0\ufe0f  Unchecked: no tests ran (.gitignore). Hash: none\n  \ud83d\udce6 Synthesis created with 3 sub-proposals.\n\n4. SIMULATING [\u25cf\u25cf\u25cf]  Merge simulation...\n\n\ud83d\udd2d Semantic signal\n   Blast radius: 3 node(s) affected (declared 3) \u2014 LOW [indicative]\n   \u26a0 Envelope precision: unknown \u2014 symbol-level resolution did not fully succeed; treat this as a reason to look closer, not as low risk.\n     \u00b7 .gitignore\n     \u00b7 .noolignore\n     \u00b7 .gitattributes\n   Affected contracts: none\n   Evidence plan: PackageTests\n   Intent/diff overlap: 0% [advisory]\n   Relevant prior findings (1):\n     [solidify] record config \u2014 Mutation  config  @ nool.toml\n\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nPROPOSAL SUMMARY\n  ID      : 3dcc93cd\n  Intent  : record config\n  Thread  : main\n  Mode    : Full (Semantic)\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n\n[Auto] Solidifying proposal...\n  [Reify] Full validation already recorded at propose; not re-running the integrity driver.\n  \u26a0 .gitignore: no symbol-level scope (no language adapter); sealing against the whole file\n"
         },
         {
           "name": "record baseline",
           "cmd": "nool propose --path src/auth.py --path tests/test_auth.py --path src/__init__.py --path tests/__init__.py --intent baseline auth service --solidify",
           "rc": 0,
-          "seconds": 1.522,
-          "output": "\u2026\u2705 Verified Runnable (Primary: .py). Hash: 334d47a9600846a7428a6f78705f31eb0c358509fa5d720558e99c3c71677ba8\n  \ud83d\udce6 Synthesis created with 4 sub-proposals.\n\n4. SIMULATING [\u25cf\u25cf\u25cf]  Merge simulation...\n\n\ud83d\udd2d Semantic signal\n   Blast radius: 0 node(s) affected (declared 4) \u2014 LOW [indicative]\n   Affected contracts: none\n   Evidence plan: PackageTests\n   Intent/diff overlap: 33% [advisory]\n   Relevant prior findings (2):\n     [solidify] record config \u2014 Mutation  config  @ nool.toml\n     [solidify] record config \u2014 Synthesis (3 props):\n\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nPROPOSAL SUMMARY\n  ID      : cbefb61b\n  Intent  : baseline auth service\n  Thread  : main\n  Mode    : Full (Semantic)\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n\n[Auto] Solidifying proposal...\n  [Reify] Full validation already recorded at propose; not re-running the integrity driver.\n  \u26a0 src/auth.py: no symbol-level scope (the changed symbols could not be told apart); sealing against the whole file\n  \u26a0 tests/test_auth.py: no symbol-level scope (the changed symbols could not be told apart); sealing against the whole file\n  \u26a0 src/__init__.py: no symbol-level scope (no symbols resolved); sealing against the whole file\n  \u26a0 tests/__init__.py: no symbol-level scope (no symbols resolved); sealing against the whole file\n  [Reify] \u23f1  check timeout 120s (default; override with NOOL_INTEGRITY_TIMEOUT_SECS)\n  [Reify] \u23f1  ghost-run timeout 600s (default; override with NOOL_GHOST_RUN_TIMEOUT_SECS)\n"
+          "seconds": 1.68,
+          "output": "\u2026nthesis created with 4 sub-proposals.\n\n4. SIMULATING [\u25cf\u25cf\u25cf]  Merge simulation...\n\n\ud83d\udd2d Semantic signal\n   Blast radius: 0 node(s) affected (declared 4) \u2014 LOW [indicative]\n   Affected contracts: none\n   Evidence plan: PackageTests\n   Intent/diff overlap: 33% [advisory]\n   Relevant prior findings (2):\n     [solidify] record config \u2014 Mutation  config  @ nool.toml\n     [solidify] record config \u2014 Synthesis (3 props):\n\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nPROPOSAL SUMMARY\n  ID      : a1603894\n  Intent  : baseline auth service\n  Thread  : main\n  Mode    : Full (Semantic)\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n\n[Auto] Solidifying proposal...\n  [Reify] Full validation already recorded at propose; not re-running the integrity driver.\n  [Attest] tests_constrain_change: error (nothing to mutate: no changed source line holds an operator to change)\n  \u26a0 src/auth.py: no symbol-level scope (the changed symbols could not be told apart); sealing against the whole file\n  \u26a0 tests/test_auth.py: no symbol-level scope (the changed symbols could not be told apart); sealing against the whole file\n  \u26a0 src/__init__.py: no symbol-level scope (no symbols resolved); sealing against the whole file\n  \u26a0 tests/__init__.py: no symbol-level scope (no symbols resolved); sealing against the whole file\n  [Reify] \u23f1  check timeout 120s (default; override with NOOL_INTEGRITY_TIMEOUT_SECS)\n  [Reify] \u23f1  ghost-run timeout 600s (default; override with NOOL_GHOST_RUN_TIMEOUT_SECS)\n"
         },
         {
           "name": "nool merge feat-oauth",
           "cmd": "nool merge feat-oauth",
           "rc": 0,
-          "seconds": 0.102,
-          "output": "\ud83d\udd04 Ingesting PR and converging branch 'feat-oauth'...\n   1 divergent commits mapped to candidate Knots.\n   [SemanticMergeEngine] Checking for typed semantic conflicts...\n   [SemanticMergeEngine] Symbol-inventory analysis: 0 co-changed file(s), 0 analyzed at symbol level.\n  [GateEngine] Batch evaluated.\n\u2705 Semantic convergence checked (no same-symbol collisions); trust gate evaluated\n[main f0dc92c] Merge PR convergence from feat-oauth\n\u2705 Converged PR branch 'feat-oauth'\nAutomatic merge went well; stopped before committing as requested\n  [Graph] Caught up with HEAD: 5 edge(s) written, 0 retired.\n"
+          "seconds": 0.106,
+          "output": "\ud83d\udd04 Ingesting PR and converging branch 'feat-oauth'...\n   1 divergent commits mapped to candidate Knots.\n   [SemanticMergeEngine] Checking for typed semantic conflicts...\n   [SemanticMergeEngine] Symbol-inventory analysis: 0 co-changed file(s), 0 analyzed at symbol level.\n  [GateEngine] Batch evaluated.\n\u2705 Semantic convergence checked (no same-symbol collisions); trust gate evaluated\n[main 55237a8] Merge PR convergence from feat-oauth\n\u2705 Converged PR branch 'feat-oauth'\nAutomatic merge went well; stopped before committing as requested\n  [Graph] Caught up with HEAD: 5 edge(s) written, 0 retired.\n"
         },
         {
           "name": "nool merge feat-saml",
           "cmd": "nool merge feat-saml",
           "rc": 0,
-          "seconds": 0.083,
-          "output": "\ud83d\udd04 Ingesting PR and converging branch 'feat-saml'...\n   1 divergent commits mapped to candidate Knots.\n   [SemanticMergeEngine] Checking for typed semantic conflicts...\n   [SemanticMergeEngine] Symbol-inventory analysis: 1 co-changed file(s), 1 analyzed at symbol level.\n  [GateEngine] Batch evaluated.\n\u2705 Semantic convergence checked (no same-symbol collisions); trust gate evaluated\nAuto-merging src/auth.py\nCONFLICT (content): Merge conflict in src/auth.py\nAutomatic merge failed; fix conflicts and then commit the result.\n[main 022fb8f] Merge branch 'feat-saml'\n   [MergeReconcile] Unioned 1 structurally-disjoint conflict(s) that a textual merge could not: src/auth.py\n\u2705 Converged PR branch 'feat-saml'\n"
+          "seconds": 0.091,
+          "output": "\ud83d\udd04 Ingesting PR and converging branch 'feat-saml'...\n   1 divergent commits mapped to candidate Knots.\n   [SemanticMergeEngine] Checking for typed semantic conflicts...\n   [SemanticMergeEngine] Symbol-inventory analysis: 1 co-changed file(s), 1 analyzed at symbol level.\n  [GateEngine] Batch evaluated.\n\u2705 Semantic convergence checked (no same-symbol collisions); trust gate evaluated\nAuto-merging src/auth.py\nCONFLICT (content): Merge conflict in src/auth.py\nAutomatic merge failed; fix conflicts and then commit the result.\n[main 4464f71] Merge branch 'feat-saml'\n   [MergeReconcile] Unioned 1 structurally-disjoint conflict(s) that a textual merge could not: src/auth.py\n\u2705 Converged PR branch 'feat-saml'\n"
         },
         {
           "name": "nool candidate list",
@@ -157,7 +157,7 @@
           "name": "unit tests",
           "cmd": "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3 -m unittest tests.test_auth",
           "rc": 0,
-          "seconds": 0.04,
+          "seconds": 0.05,
           "output": ".\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n"
         }
       ],
@@ -165,7 +165,7 @@
         0,
         0
       ],
-      "merge_seconds": 0.185,
+      "merge_seconds": 0.197,
       "textual_conflict_seen": true,
       "union_reconciled": true,
       "semantic_engine_reported_no_collision": true,
@@ -183,7 +183,7 @@
         "authenticate_user_body": "return token == f\"secret-{username}\""
       },
       "tests_pass_without_manual_edit": true,
-      "scenario_seconds": 2.59
+      "scenario_seconds": 2.87
     },
     "nool_merge_same_symbol": {
       "tool": "nool",
@@ -193,42 +193,42 @@
           "name": "nool init",
           "cmd": "nool init --skip-discovery",
           "rc": 0,
-          "seconds": 0.134,
+          "seconds": 0.141,
           "output": "Initialized empty Nool repository in /private<sandbox>/nool-same-symbol\n  ledger only (no import, no discovery)\n  configuration not recorded yet: .gitignore, .gitattributes, .noolignore, nool.toml\n  agent hooks: claude, gemini, codex, pi, opencode\n\nNext steps:\n  1. Tailor nool.toml and .noolignore to your needs, then record them: nool propose --path nool.toml --kind config --intent \"nool init: record Nool's configuration files\" --justification \"<why>\" --solidify, then nool propose --path .gitignore --path .gitattributes --path .noolignore --kind config --intent \"nool init: record Nool's configuration files\" --solidify\n  2. Start work: nool propose --path <file> --intent \"...\" --solidify, or nool code \"<goal>\"\n  More: nool quick-start (a tour), nool guide (every command), nool init --verbose (each step)\n"
         },
         {
           "name": "record nool.toml",
           "cmd": "nool propose --path nool.toml --kind config --intent record config --justification benchmark sandbox --solidify",
           "rc": 0,
-          "seconds": 0.244,
-          "output": "\n1. PREPARING  [\u25cf\u25cf\u25cb]  Collecting changes...\n  [IO] Reading from working directory: \"nool.toml\"\n  [AST] Calculated NodeID using adapter 'toml': 9e4b1cd398542283d6718139ff7c05c052bd32dea9c8ad6e8227e97d2e10737e\n  [Reify] Materialized shadow-root at \"/private<sandbox>/nool-same-symbol/.nool/tmp/reify-32998-0\"\n  [Reify] Running Integrity Driver for '.toml'...\n  [Reify] \u26a0\ufe0f  Unchecked: no tests ran (.toml). Hash: structural-ok\n\n4. SIMULATING [\u25cf\u25cf\u25cf]  Merge simulation...\n\n\ud83d\udd2d Semantic signal\n   Blast radius: 1 node(s) affected (declared 1) \u2014 LOW [indicative]\n   \u26a0 Envelope precision: unknown \u2014 symbol-level resolution did not fully succeed; treat this as a reason to look closer, not as low risk.\n     \u00b7 nool.toml\n   Affected contracts: none\n   Evidence plan: PackageTests\n   Intent/diff overlap: 100% [advisory]\n   Relevant prior findings: none\n\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nPROPOSAL SUMMARY\n  ID      : 4edae4cd\n  Intent  : record config\n  Thread  : main\n  Mode    : Full (Semantic)\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n\n[Auto] Solidifying proposal...\n  [Reify] Full validation already recorded at propose; not re-running the integrity driver.\n"
+          "seconds": 0.247,
+          "output": "\n1. PREPARING  [\u25cf\u25cf\u25cb]  Collecting changes...\n  [IO] Reading from working directory: \"nool.toml\"\n  [AST] Calculated NodeID using adapter 'toml': 6b9e5ce4097ba58f203d7e01de02fc1adbce89d96d9bd102de05ba1a5199b2a1\n  [Reify] Materialized shadow-root at \"/private<sandbox>/nool-same-symbol/.nool/tmp/reify-28768-0\"\n  [Reify] Running Integrity Driver for '.toml'...\n  [Reify] \u26a0\ufe0f  Unchecked: no tests ran (.toml). Hash: structural-ok\n\n4. SIMULATING [\u25cf\u25cf\u25cf]  Merge simulation...\n\n\ud83d\udd2d Semantic signal\n   Blast radius: 1 node(s) affected (declared 1) \u2014 LOW [indicative]\n   \u26a0 Envelope precision: unknown \u2014 symbol-level resolution did not fully succeed; treat this as a reason to look closer, not as low risk.\n     \u00b7 nool.toml\n   Affected contracts: none\n   Evidence plan: PackageTests\n   Intent/diff overlap: 100% [advisory]\n   Relevant prior findings: none\n\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nPROPOSAL SUMMARY\n  ID      : 270ee0e9\n  Intent  : record config\n  Thread  : main\n  Mode    : Full (Semantic)\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n\n[Auto] Solidifying proposal...\n  [Reify] Full validation already recorded at propose; not re-running the integrity driver.\n"
         },
         {
           "name": "record ignore files",
           "cmd": "nool propose --path .gitignore --path .gitattributes --path .noolignore --kind config --intent record config --solidify",
           "rc": 0,
-          "seconds": 0.262,
-          "output": "\u2026eneric': d7193c96ddf149b2bfb9c7bf42fa6a4b9411ac5b90d4266ab50bfa2eb6974dcc\n  [Reify] \ud83d\udce6 Detected compiled language '.gitignore'. Enabling project-level reification...\n  [Reify] Materialized shadow-root at \"/private<sandbox>/nool-same-symbol/.nool/tmp/reify-33168-0\"\n  [Reify] \ud83d\udce6 Running bundled reification with 3 file(s)...\n  [Reify] \ud83c\udfaf Test selection: full: no test files known\n  [Reify] \u2705 Hydrated 3 bundle file(s) to scratchpad\n  [Reify] \u26a0\ufe0f  Unchecked: no tests ran (.gitignore). Hash: none\n  \ud83d\udce6 Synthesis created with 3 sub-proposals.\n\n4. SIMULATING [\u25cf\u25cf\u25cf]  Merge simulation...\n\n\ud83d\udd2d Semantic signal\n   Blast radius: 3 node(s) affected (declared 3) \u2014 LOW [indicative]\n   \u26a0 Envelope precision: unknown \u2014 symbol-level resolution did not fully succeed; treat this as a reason to look closer, not as low risk.\n     \u00b7 .gitattributes\n     \u00b7 .noolignore\n     \u00b7 .gitignore\n   Affected contracts: none\n   Evidence plan: PackageTests\n   Intent/diff overlap: 0% [advisory]\n   Relevant prior findings (1):\n     [solidify] record config \u2014 Mutation  config  @ nool.toml\n\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nPROPOSAL SUMMARY\n  ID      : 3dccf6ab\n  Intent  : record config\n  Thread  : main\n  Mode    : Full (Semantic)\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n\n[Auto] Solidifying proposal...\n  [Reify] Full validation already recorded at propose; not re-running the integrity driver.\n  \u26a0 .gitignore: no symbol-level scope (no language adapter); sealing against the whole file\n"
+          "seconds": 0.255,
+          "output": "\u2026eneric': d7193c96ddf149b2bfb9c7bf42fa6a4b9411ac5b90d4266ab50bfa2eb6974dcc\n  [Reify] \ud83d\udce6 Detected compiled language '.gitignore'. Enabling project-level reification...\n  [Reify] Materialized shadow-root at \"/private<sandbox>/nool-same-symbol/.nool/tmp/reify-28910-0\"\n  [Reify] \ud83d\udce6 Running bundled reification with 3 file(s)...\n  [Reify] \ud83c\udfaf Test selection: full: no test files known\n  [Reify] \u2705 Hydrated 3 bundle file(s) to scratchpad\n  [Reify] \u26a0\ufe0f  Unchecked: no tests ran (.gitignore). Hash: none\n  \ud83d\udce6 Synthesis created with 3 sub-proposals.\n\n4. SIMULATING [\u25cf\u25cf\u25cf]  Merge simulation...\n\n\ud83d\udd2d Semantic signal\n   Blast radius: 3 node(s) affected (declared 3) \u2014 LOW [indicative]\n   \u26a0 Envelope precision: unknown \u2014 symbol-level resolution did not fully succeed; treat this as a reason to look closer, not as low risk.\n     \u00b7 .gitignore\n     \u00b7 .gitattributes\n     \u00b7 .noolignore\n   Affected contracts: none\n   Evidence plan: PackageTests\n   Intent/diff overlap: 0% [advisory]\n   Relevant prior findings (1):\n     [solidify] record config \u2014 Mutation  config  @ nool.toml\n\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nPROPOSAL SUMMARY\n  ID      : bc941e30\n  Intent  : record config\n  Thread  : main\n  Mode    : Full (Semantic)\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n\n[Auto] Solidifying proposal...\n  [Reify] Full validation already recorded at propose; not re-running the integrity driver.\n  \u26a0 .gitignore: no symbol-level scope (no language adapter); sealing against the whole file\n"
         },
         {
           "name": "record baseline",
           "cmd": "nool propose --path src/auth.py --path tests/test_auth.py --path src/__init__.py --path tests/__init__.py --intent baseline auth service --solidify",
           "rc": 0,
-          "seconds": 1.247,
-          "output": "\u2026\u2705 Verified Runnable (Primary: .py). Hash: c490f6eb4fe15b5a5128eb181d5e5f17fadff7a3bdabdaf4a12d299c0dcebf04\n  \ud83d\udce6 Synthesis created with 4 sub-proposals.\n\n4. SIMULATING [\u25cf\u25cf\u25cf]  Merge simulation...\n\n\ud83d\udd2d Semantic signal\n   Blast radius: 0 node(s) affected (declared 4) \u2014 LOW [indicative]\n   Affected contracts: none\n   Evidence plan: PackageTests\n   Intent/diff overlap: 33% [advisory]\n   Relevant prior findings (2):\n     [solidify] record config \u2014 Mutation  config  @ nool.toml\n     [solidify] record config \u2014 Synthesis (3 props):\n\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nPROPOSAL SUMMARY\n  ID      : 5056a681\n  Intent  : baseline auth service\n  Thread  : main\n  Mode    : Full (Semantic)\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n\n[Auto] Solidifying proposal...\n  [Reify] Full validation already recorded at propose; not re-running the integrity driver.\n  \u26a0 src/auth.py: no symbol-level scope (the changed symbols could not be told apart); sealing against the whole file\n  \u26a0 tests/test_auth.py: no symbol-level scope (the changed symbols could not be told apart); sealing against the whole file\n  \u26a0 src/__init__.py: no symbol-level scope (no symbols resolved); sealing against the whole file\n  \u26a0 tests/__init__.py: no symbol-level scope (no symbols resolved); sealing against the whole file\n  [Reify] \u23f1  check timeout 120s (default; override with NOOL_INTEGRITY_TIMEOUT_SECS)\n  [Reify] \u23f1  ghost-run timeout 600s (default; override with NOOL_GHOST_RUN_TIMEOUT_SECS)\n"
+          "seconds": 1.353,
+          "output": "\u2026nthesis created with 4 sub-proposals.\n\n4. SIMULATING [\u25cf\u25cf\u25cf]  Merge simulation...\n\n\ud83d\udd2d Semantic signal\n   Blast radius: 0 node(s) affected (declared 4) \u2014 LOW [indicative]\n   Affected contracts: none\n   Evidence plan: PackageTests\n   Intent/diff overlap: 33% [advisory]\n   Relevant prior findings (2):\n     [solidify] record config \u2014 Mutation  config  @ nool.toml\n     [solidify] record config \u2014 Synthesis (3 props):\n\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nPROPOSAL SUMMARY\n  ID      : d95dc301\n  Intent  : baseline auth service\n  Thread  : main\n  Mode    : Full (Semantic)\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n\n[Auto] Solidifying proposal...\n  [Reify] Full validation already recorded at propose; not re-running the integrity driver.\n  [Attest] tests_constrain_change: error (nothing to mutate: no changed source line holds an operator to change)\n  \u26a0 src/auth.py: no symbol-level scope (the changed symbols could not be told apart); sealing against the whole file\n  \u26a0 tests/test_auth.py: no symbol-level scope (the changed symbols could not be told apart); sealing against the whole file\n  \u26a0 src/__init__.py: no symbol-level scope (no symbols resolved); sealing against the whole file\n  \u26a0 tests/__init__.py: no symbol-level scope (no symbols resolved); sealing against the whole file\n  [Reify] \u23f1  check timeout 120s (default; override with NOOL_INTEGRITY_TIMEOUT_SECS)\n  [Reify] \u23f1  ghost-run timeout 600s (default; override with NOOL_GHOST_RUN_TIMEOUT_SECS)\n"
         },
         {
           "name": "nool merge feat-oauth",
           "cmd": "nool merge feat-oauth",
           "rc": 0,
-          "seconds": 0.113,
-          "output": "\ud83d\udd04 Ingesting PR and converging branch 'feat-oauth'...\n   1 divergent commits mapped to candidate Knots.\n   [SemanticMergeEngine] Checking for typed semantic conflicts...\n   [SemanticMergeEngine] Symbol-inventory analysis: 0 co-changed file(s), 0 analyzed at symbol level.\n  [GateEngine] Batch evaluated.\n\u2705 Semantic convergence checked (no same-symbol collisions); trust gate evaluated\n[main 1d8fa5b] Merge PR convergence from feat-oauth\n\u2705 Converged PR branch 'feat-oauth'\nAutomatic merge went well; stopped before committing as requested\n  [Graph] Caught up with HEAD: 4 edge(s) written, 0 retired.\n"
+          "seconds": 0.099,
+          "output": "\ud83d\udd04 Ingesting PR and converging branch 'feat-oauth'...\n   1 divergent commits mapped to candidate Knots.\n   [SemanticMergeEngine] Checking for typed semantic conflicts...\n   [SemanticMergeEngine] Symbol-inventory analysis: 0 co-changed file(s), 0 analyzed at symbol level.\n  [GateEngine] Batch evaluated.\n\u2705 Semantic convergence checked (no same-symbol collisions); trust gate evaluated\n[main 55cc31d] Merge PR convergence from feat-oauth\n\u2705 Converged PR branch 'feat-oauth'\nAutomatic merge went well; stopped before committing as requested\n  [Graph] Caught up with HEAD: 4 edge(s) written, 0 retired.\n"
         },
         {
           "name": "nool merge feat-saml",
           "cmd": "nool merge feat-saml",
           "rc": 1,
-          "seconds": 0.064,
+          "seconds": 0.061,
           "output": "\ud83d\udd04 Ingesting PR and converging branch 'feat-saml'...\n   1 divergent commits mapped to candidate Knots.\n   [SemanticMergeEngine] Checking for typed semantic conflicts...\n   [SemanticMergeEngine] Symbol-inventory analysis: 1 co-changed file(s), 1 analyzed at symbol level.\n  [GateEngine] Batch evaluated.\n\u2705 Semantic convergence checked (no same-symbol collisions); trust gate evaluated\nAuto-merging src/auth.py\nCONFLICT (content): Merge conflict in src/auth.py\nAutomatic merge failed; fix conflicts and then commit the result.\nError: Merge failed with conflicts. Please resolve manually.\n"
         },
         {
@@ -243,7 +243,7 @@
         0,
         1
       ],
-      "merge_seconds": 0.177,
+      "merge_seconds": 0.16,
       "textual_conflict_seen": true,
       "union_reconciled": false,
       "semantic_engine_reported_no_collision": true,
@@ -255,7 +255,7 @@
         "authenticate_user_body": "return token == f\"secret-{username}\" or token.startswith(\"oauth-\")"
       },
       "tests_pass_without_manual_edit": false,
-      "scenario_seconds": 2.28
+      "scenario_seconds": 2.39
     },
     "nool_coordination": {
       "shared_identity_second_announce_granted": true,
@@ -267,114 +267,114 @@
           "name": "nool init",
           "cmd": "nool init --skip-discovery",
           "rc": 0,
-          "seconds": 0.147,
+          "seconds": 0.141,
           "output": "Initialized empty Nool repository in /private<sandbox>/nool-coord\n  ledger only (no import, no discovery)\n  configuration not recorded yet: .gitignore, .gitattributes, .noolignore, nool.toml\n  agent hooks: claude, gemini, codex, pi, opencode\n\nNext steps:\n  1. Tailor nool.toml and .noolignore to your needs, then record them: nool propose --path nool.toml --kind config --intent \"nool init: record Nool's configuration files\" --justification \"<why>\" --solidify, then nool propose --path .gitignore --path .gitattributes --path .noolignore --kind config --intent \"nool init: record Nool's configuration files\" --solidify\n  2. Start work: nool propose --path <file> --intent \"...\" --solidify, or nool code \"<goal>\"\n  More: nool quick-start (a tour), nool guide (every command), nool init --verbose (each step)\n"
         },
         {
           "name": "record nool.toml",
           "cmd": "nool propose --path nool.toml --kind config --intent record config --justification benchmark sandbox --solidify",
           "rc": 0,
-          "seconds": 0.247,
-          "output": "\n1. PREPARING  [\u25cf\u25cf\u25cb]  Collecting changes...\n  [IO] Reading from working directory: \"nool.toml\"\n  [AST] Calculated NodeID using adapter 'toml': 9e4b1cd398542283d6718139ff7c05c052bd32dea9c8ad6e8227e97d2e10737e\n  [Reify] Materialized shadow-root at \"/private<sandbox>/nool-coord/.nool/tmp/reify-33960-0\"\n  [Reify] Running Integrity Driver for '.toml'...\n  [Reify] \u26a0\ufe0f  Unchecked: no tests ran (.toml). Hash: structural-ok\n\n4. SIMULATING [\u25cf\u25cf\u25cf]  Merge simulation...\n\n\ud83d\udd2d Semantic signal\n   Blast radius: 1 node(s) affected (declared 1) \u2014 LOW [indicative]\n   \u26a0 Envelope precision: unknown \u2014 symbol-level resolution did not fully succeed; treat this as a reason to look closer, not as low risk.\n     \u00b7 nool.toml\n   Affected contracts: none\n   Evidence plan: PackageTests\n   Intent/diff overlap: 100% [advisory]\n   Relevant prior findings: none\n\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nPROPOSAL SUMMARY\n  ID      : f96cecc8\n  Intent  : record config\n  Thread  : main\n  Mode    : Full (Semantic)\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n\n[Auto] Solidifying proposal...\n  [Reify] Full validation already recorded at propose; not re-running the integrity driver.\n"
+          "seconds": 0.244,
+          "output": "\n1. PREPARING  [\u25cf\u25cf\u25cb]  Collecting changes...\n  [IO] Reading from working directory: \"nool.toml\"\n  [AST] Calculated NodeID using adapter 'toml': 6b9e5ce4097ba58f203d7e01de02fc1adbce89d96d9bd102de05ba1a5199b2a1\n  [Reify] Materialized shadow-root at \"/private<sandbox>/nool-coord/.nool/tmp/reify-29645-0\"\n  [Reify] Running Integrity Driver for '.toml'...\n  [Reify] \u26a0\ufe0f  Unchecked: no tests ran (.toml). Hash: structural-ok\n\n4. SIMULATING [\u25cf\u25cf\u25cf]  Merge simulation...\n\n\ud83d\udd2d Semantic signal\n   Blast radius: 1 node(s) affected (declared 1) \u2014 LOW [indicative]\n   \u26a0 Envelope precision: unknown \u2014 symbol-level resolution did not fully succeed; treat this as a reason to look closer, not as low risk.\n     \u00b7 nool.toml\n   Affected contracts: none\n   Evidence plan: PackageTests\n   Intent/diff overlap: 100% [advisory]\n   Relevant prior findings: none\n\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nPROPOSAL SUMMARY\n  ID      : 2106910d\n  Intent  : record config\n  Thread  : main\n  Mode    : Full (Semantic)\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n\n[Auto] Solidifying proposal...\n  [Reify] Full validation already recorded at propose; not re-running the integrity driver.\n"
         },
         {
           "name": "record ignore files",
           "cmd": "nool propose --path .gitignore --path .gitattributes --path .noolignore --kind config --intent record config --solidify",
           "rc": 0,
-          "seconds": 0.243,
-          "output": "\u2026ter 'generic': d7193c96ddf149b2bfb9c7bf42fa6a4b9411ac5b90d4266ab50bfa2eb6974dcc\n  [Reify] \ud83d\udce6 Detected compiled language '.gitignore'. Enabling project-level reification...\n  [Reify] Materialized shadow-root at \"/private<sandbox>/nool-coord/.nool/tmp/reify-34131-0\"\n  [Reify] \ud83d\udce6 Running bundled reification with 3 file(s)...\n  [Reify] \ud83c\udfaf Test selection: full: no test files known\n  [Reify] \u2705 Hydrated 3 bundle file(s) to scratchpad\n  [Reify] \u26a0\ufe0f  Unchecked: no tests ran (.gitignore). Hash: none\n  \ud83d\udce6 Synthesis created with 3 sub-proposals.\n\n4. SIMULATING [\u25cf\u25cf\u25cf]  Merge simulation...\n\n\ud83d\udd2d Semantic signal\n   Blast radius: 3 node(s) affected (declared 3) \u2014 LOW [indicative]\n   \u26a0 Envelope precision: unknown \u2014 symbol-level resolution did not fully succeed; treat this as a reason to look closer, not as low risk.\n     \u00b7 .gitignore\n     \u00b7 .gitattributes\n     \u00b7 .noolignore\n   Affected contracts: none\n   Evidence plan: PackageTests\n   Intent/diff overlap: 0% [advisory]\n   Relevant prior findings (1):\n     [solidify] record config \u2014 Mutation  config  @ nool.toml\n\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nPROPOSAL SUMMARY\n  ID      : 70892a84\n  Intent  : record config\n  Thread  : main\n  Mode    : Full (Semantic)\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n\n[Auto] Solidifying proposal...\n  [Reify] Full validation already recorded at propose; not re-running the integrity driver.\n  \u26a0 .gitignore: no symbol-level scope (no language adapter); sealing against the whole file\n"
+          "seconds": 0.245,
+          "output": "\u2026ter 'generic': d7193c96ddf149b2bfb9c7bf42fa6a4b9411ac5b90d4266ab50bfa2eb6974dcc\n  [Reify] \ud83d\udce6 Detected compiled language '.gitignore'. Enabling project-level reification...\n  [Reify] Materialized shadow-root at \"/private<sandbox>/nool-coord/.nool/tmp/reify-29787-0\"\n  [Reify] \ud83d\udce6 Running bundled reification with 3 file(s)...\n  [Reify] \ud83c\udfaf Test selection: full: no test files known\n  [Reify] \u2705 Hydrated 3 bundle file(s) to scratchpad\n  [Reify] \u26a0\ufe0f  Unchecked: no tests ran (.gitignore). Hash: none\n  \ud83d\udce6 Synthesis created with 3 sub-proposals.\n\n4. SIMULATING [\u25cf\u25cf\u25cf]  Merge simulation...\n\n\ud83d\udd2d Semantic signal\n   Blast radius: 3 node(s) affected (declared 3) \u2014 LOW [indicative]\n   \u26a0 Envelope precision: unknown \u2014 symbol-level resolution did not fully succeed; treat this as a reason to look closer, not as low risk.\n     \u00b7 .gitattributes\n     \u00b7 .gitignore\n     \u00b7 .noolignore\n   Affected contracts: none\n   Evidence plan: PackageTests\n   Intent/diff overlap: 0% [advisory]\n   Relevant prior findings (1):\n     [solidify] record config \u2014 Mutation  config  @ nool.toml\n\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nPROPOSAL SUMMARY\n  ID      : 914a9676\n  Intent  : record config\n  Thread  : main\n  Mode    : Full (Semantic)\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n\n[Auto] Solidifying proposal...\n  [Reify] Full validation already recorded at propose; not re-running the integrity driver.\n  \u26a0 .gitignore: no symbol-level scope (no language adapter); sealing against the whole file\n"
         },
         {
           "name": "record baseline",
           "cmd": "nool propose --path src/auth.py --path tests/test_auth.py --path src/__init__.py --path tests/__init__.py --intent baseline auth service --solidify",
           "rc": 0,
-          "seconds": 1.223,
-          "output": "\u2026\u2705 Verified Runnable (Primary: .py). Hash: c490f6eb4fe15b5a5128eb181d5e5f17fadff7a3bdabdaf4a12d299c0dcebf04\n  \ud83d\udce6 Synthesis created with 4 sub-proposals.\n\n4. SIMULATING [\u25cf\u25cf\u25cf]  Merge simulation...\n\n\ud83d\udd2d Semantic signal\n   Blast radius: 0 node(s) affected (declared 4) \u2014 LOW [indicative]\n   Affected contracts: none\n   Evidence plan: PackageTests\n   Intent/diff overlap: 33% [advisory]\n   Relevant prior findings (2):\n     [solidify] record config \u2014 Mutation  config  @ nool.toml\n     [solidify] record config \u2014 Synthesis (3 props):\n\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nPROPOSAL SUMMARY\n  ID      : 734bab80\n  Intent  : baseline auth service\n  Thread  : main\n  Mode    : Full (Semantic)\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n\n[Auto] Solidifying proposal...\n  [Reify] Full validation already recorded at propose; not re-running the integrity driver.\n  \u26a0 src/auth.py: no symbol-level scope (the changed symbols could not be told apart); sealing against the whole file\n  \u26a0 tests/test_auth.py: no symbol-level scope (the changed symbols could not be told apart); sealing against the whole file\n  \u26a0 src/__init__.py: no symbol-level scope (no symbols resolved); sealing against the whole file\n  \u26a0 tests/__init__.py: no symbol-level scope (no symbols resolved); sealing against the whole file\n  [Reify] \u23f1  check timeout 120s (default; override with NOOL_INTEGRITY_TIMEOUT_SECS)\n  [Reify] \u23f1  ghost-run timeout 600s (default; override with NOOL_GHOST_RUN_TIMEOUT_SECS)\n"
+          "seconds": 1.412,
+          "output": "\u2026nthesis created with 4 sub-proposals.\n\n4. SIMULATING [\u25cf\u25cf\u25cf]  Merge simulation...\n\n\ud83d\udd2d Semantic signal\n   Blast radius: 0 node(s) affected (declared 4) \u2014 LOW [indicative]\n   Affected contracts: none\n   Evidence plan: PackageTests\n   Intent/diff overlap: 33% [advisory]\n   Relevant prior findings (2):\n     [solidify] record config \u2014 Mutation  config  @ nool.toml\n     [solidify] record config \u2014 Synthesis (3 props):\n\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nPROPOSAL SUMMARY\n  ID      : 09280033\n  Intent  : baseline auth service\n  Thread  : main\n  Mode    : Full (Semantic)\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n\n[Auto] Solidifying proposal...\n  [Reify] Full validation already recorded at propose; not re-running the integrity driver.\n  [Attest] tests_constrain_change: error (nothing to mutate: no changed source line holds an operator to change)\n  \u26a0 src/auth.py: no symbol-level scope (the changed symbols could not be told apart); sealing against the whole file\n  \u26a0 tests/test_auth.py: no symbol-level scope (the changed symbols could not be told apart); sealing against the whole file\n  \u26a0 src/__init__.py: no symbol-level scope (no symbols resolved); sealing against the whole file\n  \u26a0 tests/__init__.py: no symbol-level scope (no symbols resolved); sealing against the whole file\n  [Reify] \u23f1  check timeout 120s (default; override with NOOL_INTEGRITY_TIMEOUT_SECS)\n  [Reify] \u23f1  ghost-run timeout 600s (default; override with NOOL_GHOST_RUN_TIMEOUT_SECS)\n"
         },
         {
           "name": "agent-oauth announces exclusive lease",
           "cmd": "nool announce intent --intent implement OAuth2 --target-nodes file:src/auth.py --agent-id agent-oauth --mode exclusive --estimated-duration-ms 600000",
           "rc": 0,
-          "seconds": 0.018,
-          "output": "\u2713 Announced intent: implement OAuth2\n  Announcement ID: 883d5d9c\n  Lease: seq 4, exclusive mode, expires in 600000 ms\n  Touching nodes: file:src/auth.py\nTip: run `nool discover conflicts` before proposing, to confirm no other agent is touching the same nodes.\n"
+          "seconds": 0.02,
+          "output": "\u2713 Announced intent: implement OAuth2\n  Announcement ID: 61cf42cc\n  Lease: seq 4, exclusive mode, expires in 600000 ms\n  Touching nodes: file:src/auth.py\nTip: run `nool discover conflicts` before proposing, to confirm no other agent is touching the same nodes.\n"
         },
         {
           "name": "agent-saml discovers conflicts",
           "cmd": "nool discover conflicts file:src/auth.py --as-agent agent-saml --json",
           "rc": 3,
-          "seconds": 0.014,
-          "output": "{\"has_conflicts\":true,\"target_nodes\":[\"file:src/auth.py\"],\"conflicts\":[{\"agent_id\":\"f830315df6b06cde2b9fb02454b46fb9dab79f7ecd776400ca67eddf58835bce\",\"agent_label\":\"agent-oauth\",\"intent\":\"implement OAuth2\",\"overlapping_nodes\":[\"file:src/auth.py\"],\"expires_hlc\":1793598028024}],\"related_intents\":[]}\nError: coordination conflicts detected\n"
+          "seconds": 0.017,
+          "output": "{\"has_conflicts\":true,\"target_nodes\":[\"file:src/auth.py\"],\"conflicts\":[{\"agent_id\":\"f830315df6b06cde2b9fb02454b46fb9dab79f7ecd776400ca67eddf58835bce\",\"agent_label\":\"agent-oauth\",\"intent\":\"implement OAuth2\",\"overlapping_nodes\":[\"file:src/auth.py\"],\"expires_hlc\":1793678196230}],\"related_intents\":[]}\nError: coordination conflicts detected\n"
         },
         {
           "name": "agent-saml announces exclusive lease on same file",
           "cmd": "nool announce intent --intent implement SAML --target-nodes file:src/auth.py --agent-id agent-saml --mode exclusive --estimated-duration-ms 600000",
           "rc": 3,
-          "seconds": 0.016,
+          "seconds": 0.017,
           "output": "Error: Coordination conflict: agent f830315d (implement OAuth2) on file:src/auth.py.\n  The announcement was not created. Wait for it with `nool announce wait file:src/auth.py`, or see holders with `nool announce status`.\n"
         },
         {
           "name": "agent-saml proposes into the leased file anyway",
           "cmd": "nool propose --path src/auth.py --intent implement SAML --as-agent agent-saml",
           "rc": 3,
-          "seconds": 0.046,
+          "seconds": 0.05,
           "output": "\n1. PREPARING  [\u25cf\u25cf\u25cb]  Collecting changes...\n  \u26a0 src/auth.py: no symbol-level scope (the change reaches outside any symbol); sealing against the whole file\nError: Coordination conflict: agent f830315d (implement OAuth2) on file:src/auth.py.\n  The proposal was not created. Wait for it with `nool lease wait <scope>`, or see holders with `nool lease status`.\n"
         },
         {
           "name": "agent-oauth releases lease",
           "cmd": "nool announce release --all --agent-id agent-oauth",
           "rc": 0,
-          "seconds": 0.017,
-          "output": "\u2713 Released 1 lease(s):\n  883d5d9c  file:src/auth.py\n"
+          "seconds": 0.018,
+          "output": "\u2713 Released 1 lease(s):\n  61cf42cc  file:src/auth.py\n"
         },
         {
           "name": "agent-saml re-discovers after release",
           "cmd": "nool discover conflicts file:src/auth.py --as-agent agent-saml --json",
           "rc": 0,
-          "seconds": 0.015,
+          "seconds": 0.017,
           "output": "{\"has_conflicts\":false,\"target_nodes\":[\"file:src/auth.py\"],\"conflicts\":[],\"related_intents\":[]}\n"
         },
         {
           "name": "anonymous agent 1 announces exclusive",
           "cmd": "nool announce intent --intent alpha --target-nodes file:src/auth.py --mode exclusive --estimated-duration-ms 60000",
           "rc": 0,
-          "seconds": 0.017,
-          "output": "\u2713 Announced intent: alpha\n  Announcement ID: 3d013e3c\n  Lease: seq 5, exclusive mode, expires in 60000 ms\n  Touching nodes: file:src/auth.py\nTip: run `nool discover conflicts` before proposing, to confirm no other agent is touching the same nodes.\n"
+          "seconds": 0.02,
+          "output": "\u2713 Announced intent: alpha\n  Announcement ID: 1ab35990\n  Lease: seq 5, exclusive mode, expires in 60000 ms\n  Touching nodes: file:src/auth.py\nTip: run `nool discover conflicts` before proposing, to confirm no other agent is touching the same nodes.\n"
         },
         {
           "name": "anonymous agent 2 announces exclusive on same file",
           "cmd": "nool announce intent --intent beta --target-nodes file:src/auth.py --mode exclusive --estimated-duration-ms 60000",
           "rc": 0,
-          "seconds": 0.017,
-          "output": "\u2713 Announced intent: beta\n  Announcement ID: 661b63d0\n  Lease: seq 6, exclusive mode, expires in 60000 ms\n  Touching nodes: file:src/auth.py\nTip: run `nool discover conflicts` before proposing, to confirm no other agent is touching the same nodes.\n"
+          "seconds": 0.019,
+          "output": "\u2713 Announced intent: beta\n  Announcement ID: 6a809ed2\n  Lease: seq 6, exclusive mode, expires in 60000 ms\n  Touching nodes: file:src/auth.py\nTip: run `nool discover conflicts` before proposing, to confirm no other agent is touching the same nodes.\n"
         },
         {
           "name": "nool announce status",
           "cmd": "nool announce status",
           "rc": 0,
-          "seconds": 0.014,
-          "output": "Active leases (1, coordination backend: local):\n  661b63d0  agent 39aa3ee8 (you)  seq 6    exclusive confirmed   local    expires in 59985 ms\n      file:src/auth.py  \u2014 beta\n      --as-agent 39aa3ee8852f14d9edd9c286ce0a6ea6d507ae1b5c8f56bb9ff31b560544af4d\n"
+          "seconds": 0.018,
+          "output": "Active leases (1, coordination backend: local):\n  6a809ed2  agent session:claude-code-a8ae13f7fff28e2f (159ef464) (you)  seq 6    exclusive confirmed   local    expires in 59981 ms\n      file:src/auth.py  \u2014 beta\n      --as-agent session:claude-code-a8ae13f7fff28e2f   (or 159ef464443e4ca3a30eadde43bd47540e74f9945f38e1a71aea5b41c662c691)\n"
         },
         {
           "name": "release",
           "cmd": "nool announce release --all",
           "rc": 0,
-          "seconds": 0.016,
-          "output": "\u2713 Released 1 lease(s):\n  661b63d0  file:src/auth.py\n"
+          "seconds": 0.019,
+          "output": "\u2713 Released 1 lease(s):\n  6a809ed2  file:src/auth.py\n"
         }
       ],
       "lease_granted": true,
-      "announce_seconds": 0.018,
+      "announce_seconds": 0.02,
       "conflict_discovered": true,
       "discover_rc": 3,
-      "discover_seconds": 0.014,
+      "discover_seconds": 0.017,
       "discovered_holder": [
         "agent-oauth"
       ],
       "second_exclusive_announce_refused": true,
       "lease_violating_propose_refused": true,
-      "propose_seconds": 0.046,
+      "propose_seconds": 0.05,
       "clear_after_release": true,
-      "scenario_seconds": 2.15
+      "scenario_seconds": 2.36
     },
     "nool_aram_provenance": {
       "tool": "nool",
@@ -384,84 +384,84 @@
           "name": "nool init",
           "cmd": "nool init --skip-discovery",
           "rc": 0,
-          "seconds": 0.159,
+          "seconds": 0.143,
           "output": "Initialized empty Nool repository in /private<sandbox>/nool-aram\n  ledger only (no import, no discovery)\n  configuration not recorded yet: .gitignore, .gitattributes, .noolignore, nool.toml\n  agent hooks: claude, gemini, codex, pi, opencode\n\nNext steps:\n  1. Tailor nool.toml and .noolignore to your needs, then record them: nool propose --path nool.toml --kind config --intent \"nool init: record Nool's configuration files\" --justification \"<why>\" --solidify, then nool propose --path .gitignore --path .gitattributes --path .noolignore --kind config --intent \"nool init: record Nool's configuration files\" --solidify\n  2. Start work: nool propose --path <file> --intent \"...\" --solidify, or nool code \"<goal>\"\n  More: nool quick-start (a tour), nool guide (every command), nool init --verbose (each step)\n"
         },
         {
           "name": "AI-tagged change before any editor contract",
           "cmd": "nool propose --path src/auth.py --intent AI-tagged change before any editor contract --tag is_ai_agent --solidify",
           "rc": 2,
-          "seconds": 1.365,
-          "output": "\u2026scored (documentation or comment/whitespace-only): src/auth.py\n  [IO] Reading from working directory: \"src/auth.py\"\n  [AST] Calculated NodeID using adapter 'python': 2ede2f8286c9c628687e0d744f653317c2596824a2174b8ae9281be2f5d70e5d\n  [Reify] Materialized shadow-root at \"/private<sandbox>/nool-aram/.nool/tmp/reify-34840-0\"\n  [Reify] Running Integrity Driver for '.py'...\n  [Reify] \ud83c\udfaf Test selection: full: semantic index stale (run `nool discover`)\n  [Reify] \ud83d\udc7b Ghost-Run: Executing project-level tests...\n  [Reify] \u2705 Verified Runnable (Primary: .py). Hash: 334d47a9600846a7428a6f78705f31eb0c358509fa5d720558e99c3c71677ba8\n\n4. SIMULATING [\u25cf\u25cf\u25cf]  Merge simulation...\n  [Aram] No unexpired Editor/Planner contract in this repository \u2014 agent editing is not enabled. Grant one with `nool admin contract grant --role editor`.\n  \u26a0 src/auth.py: no symbol-level scope (the change reaches outside any symbol); sealing against the whole file\n  [Reify] \u23f1  check timeout 120s (default; override with NOOL_INTEGRITY_TIMEOUT_SECS)\n  [Reify] \u23f1  ghost-run timeout 600s (default; override with NOOL_GHOST_RUN_TIMEOUT_SECS)\n  [Aram] the working policy set differs from the landed one (entire_policy_test.wasm). The landed set is enforced as well; land the change so other replicas have it: nool propose --path nool.toml policies/ --binary raw --intent \"policy set\" --solidify\n  \u2713 Released the lease this propose filed: no candidate was queued.\nError: Gate stack denied [POLICY_DENY] at stage pre-propose: reason code 403\n"
+          "seconds": 1.483,
+          "output": "\u2026\n  [AST] Calculated NodeID using adapter 'python': 2ede2f8286c9c628687e0d744f653317c2596824a2174b8ae9281be2f5d70e5d\n  [Reify] Materialized shadow-root at \"/private<sandbox>/nool-aram/.nool/tmp/reify-30456-0\"\n  [Reify] Running Integrity Driver for '.py'...\n  [Reify] \ud83c\udfaf Test selection: full: semantic index stale (run `nool discover`)\n  [Reify] \ud83d\udc7b Ghost-Run: Executing project-level tests...\n  [Reify] \u2705 Verified Runnable (Primary: .py). Hash: 334d47a9600846a7428a6f78705f31eb0c358509fa5d720558e99c3c71677ba8\n  [Mutation] tests_constrain_change: error (nothing to mutate: no changed source line holds an operator to change)\n\n4. SIMULATING [\u25cf\u25cf\u25cf]  Merge simulation...\n  [Aram] No unexpired Editor/Planner contract in this repository \u2014 agent editing is not enabled. Grant one with `nool admin contract grant --role editor`.\n  \u26a0 src/auth.py: no symbol-level scope (the change reaches outside any symbol); sealing against the whole file\n  [Reify] \u23f1  check timeout 120s (default; override with NOOL_INTEGRITY_TIMEOUT_SECS)\n  [Reify] \u23f1  ghost-run timeout 600s (default; override with NOOL_GHOST_RUN_TIMEOUT_SECS)\n  [Aram] the working policy set differs from the landed one (entire_policy_test.wasm). The landed set is enforced as well; land the change so other replicas have it: nool propose --path nool.toml policies/ --binary raw --intent \"policy set\" --solidify\n  \u2713 Released the lease this propose filed: no candidate was queued.\nError: Gate stack denied [POLICY_DENY] at stage pre-propose: reason code 403\n"
         },
         {
           "name": "grant editor contract",
           "cmd": "nool admin contract grant --role editor",
           "rc": 0,
-          "seconds": 0.336,
+          "seconds": 0.328,
           "output": "Grant editor to 39aa3ee8 over everywhere, valid 365 day(s)\n  [Aram] the working policy set differs from the landed one (entire_policy_test.wasm). The landed set is enforced as well; land the change so other replicas have it: nool propose --path nool.toml policies/ --binary raw --intent \"policy set\" --solidify\n  [Reify] Full validation not required for this Knot payload.\n"
         },
         {
           "name": "land nool.toml with invariant",
           "cmd": "nool propose --path nool.toml --kind config --intent provenance invariant --justification benchmark --solidify",
           "rc": 0,
-          "seconds": 0.983,
-          "output": "\u2026eify] Running Integrity Driver for '.toml'...\n  [Reify] \u26a0\ufe0f  Unchecked: no tests ran (.toml). Hash: structural-ok\n\n4. SIMULATING [\u25cf\u25cf\u25cf]  Merge simulation...\n\n\ud83d\udd2d Semantic signal\n   Blast radius: 1 node(s) affected (declared 1) \u2014 LOW [indicative]\n   \u26a0 Envelope precision: unknown \u2014 symbol-level resolution did not fully succeed; treat this as a reason to look closer, not as low risk.\n     \u00b7 nool.toml\n   Affected contracts: none\n   Evidence plan: PackageTests\n   Intent/diff overlap: 50% [advisory]\n   Relevant prior findings (1):\n     [solidify] Grant editor to 39aa3ee8 over everywhere, valid 365 day(s) \u2014 Grant     editor to 39aa3ee8\n\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nPROPOSAL SUMMARY\n  ID      : d4ba73a9\n  Intent  : provenance invariant\n  Thread  : main\n  Mode    : Full (Semantic)\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n\n[Auto] Solidifying proposal...\n  [Reify] Full validation already recorded at propose; not re-running the integrity driver.\n  [Aram] the working policy set differs from the landed one (entire_policy_test.wasm). The landed set is enforced as well; land the change so other replicas have it: nool propose --path nool.toml policies/ --binary raw --intent \"policy set\" --solidify\n  [Aram] the working policy set differs from the landed one (entire_policy_test.wasm). The landed set is enforced as well; land the change so other replicas have it: nool propose --path nool.toml policies/ --binary raw --intent \"policy set\" --solidify\n"
+          "seconds": 0.736,
+          "output": "\u2026eify] Running Integrity Driver for '.toml'...\n  [Reify] \u26a0\ufe0f  Unchecked: no tests ran (.toml). Hash: structural-ok\n\n4. SIMULATING [\u25cf\u25cf\u25cf]  Merge simulation...\n\n\ud83d\udd2d Semantic signal\n   Blast radius: 1 node(s) affected (declared 1) \u2014 LOW [indicative]\n   \u26a0 Envelope precision: unknown \u2014 symbol-level resolution did not fully succeed; treat this as a reason to look closer, not as low risk.\n     \u00b7 nool.toml\n   Affected contracts: none\n   Evidence plan: PackageTests\n   Intent/diff overlap: 50% [advisory]\n   Relevant prior findings (1):\n     [solidify] Grant editor to 39aa3ee8 over everywhere, valid 365 day(s) \u2014 Grant     editor to 39aa3ee8\n\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nPROPOSAL SUMMARY\n  ID      : 2205118b\n  Intent  : provenance invariant\n  Thread  : main\n  Mode    : Full (Semantic)\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n\n[Auto] Solidifying proposal...\n  [Reify] Full validation already recorded at propose; not re-running the integrity driver.\n  [Aram] the working policy set differs from the landed one (entire_policy_test.wasm). The landed set is enforced as well; land the change so other replicas have it: nool propose --path nool.toml policies/ --binary raw --intent \"policy set\" --solidify\n  [Aram] the working policy set differs from the landed one (entire_policy_test.wasm). The landed set is enforced as well; land the change so other replicas have it: nool propose --path nool.toml policies/ --binary raw --intent \"policy set\" --solidify\n"
         },
         {
           "name": "land ignore files",
           "cmd": "nool propose --path .gitignore --path .gitattributes --path .noolignore --kind config --intent config --solidify",
           "rc": 0,
-          "seconds": 0.737,
-          "output": "\u2026s: 3 node(s) affected (declared 3) \u2014 LOW [indicative]\n   \u26a0 Envelope precision: unknown \u2014 symbol-level resolution did not fully succeed; treat this as a reason to look closer, not as low risk.\n     \u00b7 .gitignore\n     \u00b7 .gitattributes\n     \u00b7 .noolignore\n   Affected contracts: none\n   Evidence plan: PackageTests\n   Intent/diff overlap: 0% [advisory]\n   Relevant prior findings (2):\n     [solidify] provenance invariant \u2014 Mutation  config  @ nool.toml\n     [solidify] Grant editor to 39aa3ee8 over everywhere, valid 365 day(s) \u2014 Grant     editor to 39aa3ee8\n\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nPROPOSAL SUMMARY\n  ID      : 9014d63e\n  Intent  : config\n  Thread  : main\n  Mode    : Full (Semantic)\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n\n[Auto] Solidifying proposal...\n  [Reify] Full validation already recorded at propose; not re-running the integrity driver.\n  \u26a0 .gitignore: no symbol-level scope (no language adapter); sealing against the whole file\n  [Aram] the working policy set differs from the landed one (entire_policy_test.wasm). The landed set is enforced as well; land the change so other replicas have it: nool propose --path nool.toml policies/ --binary raw --intent \"policy set\" --solidify\n  [Aram] the working policy set differs from the landed one (entire_policy_test.wasm). The landed set is enforced as well; land the change so other replicas have it: nool propose --path nool.toml policies/ --binary raw --intent \"policy set\" --solidify\n"
+          "seconds": 0.735,
+          "output": "\u2026s: 3 node(s) affected (declared 3) \u2014 LOW [indicative]\n   \u26a0 Envelope precision: unknown \u2014 symbol-level resolution did not fully succeed; treat this as a reason to look closer, not as low risk.\n     \u00b7 .gitattributes\n     \u00b7 .noolignore\n     \u00b7 .gitignore\n   Affected contracts: none\n   Evidence plan: PackageTests\n   Intent/diff overlap: 0% [advisory]\n   Relevant prior findings (2):\n     [solidify] provenance invariant \u2014 Mutation  config  @ nool.toml\n     [solidify] Grant editor to 39aa3ee8 over everywhere, valid 365 day(s) \u2014 Grant     editor to 39aa3ee8\n\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nPROPOSAL SUMMARY\n  ID      : fdaa095d\n  Intent  : config\n  Thread  : main\n  Mode    : Full (Semantic)\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n\n[Auto] Solidifying proposal...\n  [Reify] Full validation already recorded at propose; not re-running the integrity driver.\n  \u26a0 .gitignore: no symbol-level scope (no language adapter); sealing against the whole file\n  [Aram] the working policy set differs from the landed one (entire_policy_test.wasm). The landed set is enforced as well; land the change so other replicas have it: nool propose --path nool.toml policies/ --binary raw --intent \"policy set\" --solidify\n  [Aram] the working policy set differs from the landed one (entire_policy_test.wasm). The landed set is enforced as well; land the change so other replicas have it: nool propose --path nool.toml policies/ --binary raw --intent \"policy set\" --solidify\n"
         },
         {
           "name": "land policy set",
           "cmd": "nool propose --path policies/entire_policy_test.toml --path policies/entire_policy_test.wasm --binary raw --intent policy set --solidify",
           "rc": 0,
-          "seconds": 0.755,
-          "output": "\u2026\n     \u00b7 policies/entire_policy_test.toml\n     \u00b7 policies/entire_policy_test.wasm\n   Affected contracts: none\n   Evidence plan: PackageTests\n   Intent/diff overlap: 50% [advisory]\n   Relevant prior findings (3):\n     [solidify] Grant editor to 39aa3ee8 over everywhere, valid 365 day(s) \u2014 Grant     editor to 39aa3ee8\n     [solidify] provenance invariant \u2014 Mutation  config  @ nool.toml\n     [solidify] config \u2014 Synthesis (3 props):\n\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nPROPOSAL SUMMARY\n  ID      : 571feda3\n  Intent  : policy set\n  Thread  : main\n  Mode    : Full (Semantic)\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n\n[Auto] Solidifying proposal...\n  [Reify] Full validation already recorded at propose; not re-running the integrity driver.\n  [Binary] \ud83d\udce6 Embedding raw bytes for policies/entire_policy_test.wasm (130698 bytes)\n  \u26a0 policies/entire_policy_test.wasm: no symbol-level scope (the file is deleted or not text); sealing against the whole file\n  [Aram] the working policy set differs from the landed one (entire_policy_test.wasm). The landed set is enforced as well; land the change so other replicas have it: nool propose --path nool.toml policies/ --binary raw --intent \"policy set\" --solidify\n  [Aram] the working policy set differs from the landed one (entire_policy_test.wasm). The landed set is enforced as well; land the change so other replicas have it: nool propose --path nool.toml policies/ --binary raw --intent \"policy set\" --solidify\n"
+          "seconds": 0.768,
+          "output": "\u2026\n     \u00b7 policies/entire_policy_test.wasm\n     \u00b7 policies/entire_policy_test.toml\n   Affected contracts: none\n   Evidence plan: PackageTests\n   Intent/diff overlap: 50% [advisory]\n   Relevant prior findings (3):\n     [solidify] Grant editor to 39aa3ee8 over everywhere, valid 365 day(s) \u2014 Grant     editor to 39aa3ee8\n     [solidify] provenance invariant \u2014 Mutation  config  @ nool.toml\n     [solidify] config \u2014 Synthesis (3 props):\n\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nPROPOSAL SUMMARY\n  ID      : cbd99bfd\n  Intent  : policy set\n  Thread  : main\n  Mode    : Full (Semantic)\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n\n[Auto] Solidifying proposal...\n  [Reify] Full validation already recorded at propose; not re-running the integrity driver.\n  [Binary] \ud83d\udce6 Embedding raw bytes for policies/entire_policy_test.wasm (130698 bytes)\n  \u26a0 policies/entire_policy_test.wasm: no symbol-level scope (the file is deleted or not text); sealing against the whole file\n  [Aram] the working policy set differs from the landed one (entire_policy_test.wasm). The landed set is enforced as well; land the change so other replicas have it: nool propose --path nool.toml policies/ --binary raw --intent \"policy set\" --solidify\n  [Aram] the working policy set differs from the landed one (entire_policy_test.wasm). The landed set is enforced as well; land the change so other replicas have it: nool propose --path nool.toml policies/ --binary raw --intent \"policy set\" --solidify\n"
         },
         {
           "name": "nool admin plugin land",
           "cmd": "nool admin plugin land",
           "rc": 0,
-          "seconds": 0.019,
+          "seconds": 0.017,
           "output": "\u2713 The policy set is already landed.\n"
         },
         {
           "name": "record baseline",
           "cmd": "nool propose --path src/auth.py --path tests/test_auth.py --path src/__init__.py --path tests/__init__.py --intent baseline --solidify",
           "rc": 0,
-          "seconds": 1.853,
-          "output": "\u2026oposals.\n\n4. SIMULATING [\u25cf\u25cf\u25cf]  Merge simulation...\n\n\ud83d\udd2d Semantic signal\n   Blast radius: 0 node(s) affected (declared 4) \u2014 LOW [indicative]\n   Affected contracts: none\n   Evidence plan: PackageTests\n   Intent/diff overlap: 0% [advisory]\n   Relevant prior findings (4):\n     [solidify] Grant editor to 39aa3ee8 over everywhere, valid 365 day(s) \u2014 Grant     editor to 39aa3ee8\n     [solidify] policy set \u2014 Synthesis (2 props):\n     [solidify] provenance invariant \u2014 Mutation  config  @ nool.toml\n     [solidify] config \u2014 Synthesis (3 props):\n\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nPROPOSAL SUMMARY\n  ID      : 4ca01865\n  Intent  : baseline\n  Thread  : main\n  Mode    : Full (Semantic)\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n\n[Auto] Solidifying proposal...\n  [Reify] Full validation already recorded at propose; not re-running the integrity driver.\n  \u26a0 src/auth.py: no symbol-level scope (the changed symbols could not be told apart); sealing against the whole file\n  \u26a0 tests/test_auth.py: no symbol-level scope (the changed symbols could not be told apart); sealing against the whole file\n  \u26a0 src/__init__.py: no symbol-level scope (no symbols resolved); sealing against the whole file\n  \u26a0 tests/__init__.py: no symbol-level scope (no symbols resolved); sealing against the whole file\n  [Reify] \u23f1  check timeout 120s (default; override with NOOL_INTEGRITY_TIMEOUT_SECS)\n  [Reify] \u23f1  ghost-run timeout 600s (default; override with NOOL_GHOST_RUN_TIMEOUT_SECS)\n"
+          "seconds": 1.898,
+          "output": "\u2026ed 4) \u2014 LOW [indicative]\n   Affected contracts: none\n   Evidence plan: PackageTests\n   Intent/diff overlap: 0% [advisory]\n   Relevant prior findings (4):\n     [solidify] Grant editor to 39aa3ee8 over everywhere, valid 365 day(s) \u2014 Grant     editor to 39aa3ee8\n     [solidify] policy set \u2014 Synthesis (2 props):\n     [solidify] provenance invariant \u2014 Mutation  config  @ nool.toml\n     [solidify] config \u2014 Synthesis (3 props):\n\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nPROPOSAL SUMMARY\n  ID      : 017dd89f\n  Intent  : baseline\n  Thread  : main\n  Mode    : Full (Semantic)\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n\n[Auto] Solidifying proposal...\n  [Reify] Full validation already recorded at propose; not re-running the integrity driver.\n  [Attest] tests_constrain_change: error (nothing to mutate: no changed source line holds an operator to change)\n  \u26a0 src/auth.py: no symbol-level scope (the changed symbols could not be told apart); sealing against the whole file\n  \u26a0 tests/test_auth.py: no symbol-level scope (the changed symbols could not be told apart); sealing against the whole file\n  \u26a0 src/__init__.py: no symbol-level scope (no symbols resolved); sealing against the whole file\n  \u26a0 tests/__init__.py: no symbol-level scope (no symbols resolved); sealing against the whole file\n  [Reify] \u23f1  check timeout 120s (default; override with NOOL_INTEGRITY_TIMEOUT_SECS)\n  [Reify] \u23f1  ghost-run timeout 600s (default; override with NOOL_GHOST_RUN_TIMEOUT_SECS)\n"
         },
         {
           "name": "AI-tagged change, no Entire link",
           "cmd": "nool propose --path src/auth.py --intent AI-tagged change, no Entire link --tag is_ai_agent --solidify",
           "rc": 0,
-          "seconds": 1.765,
-          "output": "\u2026y'...\n  [Reify] \ud83c\udfaf Test selection: full: selection would cover 100% of the suite (> 40%)\n  [Reify] \ud83d\udc7b Ghost-Run: Executing project-level tests...\n  [Reify] \u2705 Verified Runnable (Primary: .py). Hash: 334d47a9600846a7428a6f78705f31eb0c358509fa5d720558e99c3c71677ba8\n\n4. SIMULATING [\u25cf\u25cf\u25cf]  Merge simulation...\n\n\ud83d\udd2d Semantic signal\n   Blast radius: 0 node(s) affected (declared 1) \u2014 LOW [indicative]\n   Affected contracts: none\n   Evidence plan: PackageTests\n   Intent/diff overlap: 100% [advisory]\n   Relevant prior findings (5):\n     [solidify] policy set \u2014 Synthesis (2 props):\n     [solidify] baseline \u2014 Synthesis (4 props):\n     [solidify] provenance invariant \u2014 Mutation  config  @ nool.toml\n     [solidify] config \u2014 Synthesis (3 props):\n     [solidify] Grant editor to 39aa3ee8 over everywhere, valid 365 day(s) \u2014 Grant     editor to 39aa3ee8\n\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nPROPOSAL SUMMARY\n  ID      : a0bef9e5\n  Intent  : AI-tagged change, no Entire link\n  Thread  : main\n  Mode    : Full (Semantic)\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n\n[Auto] Solidifying proposal...\n  [Reify] Full validation already recorded at propose; not re-running the integrity driver.\n  \u26a0 src/auth.py: no symbol-level scope (the change reaches outside any symbol); sealing against the whole file\n  [Reify] \u23f1  check timeout 120s (default; override with NOOL_INTEGRITY_TIMEOUT_SECS)\n  [Reify] \u23f1  ghost-run timeout 600s (default; override with NOOL_GHOST_RUN_TIMEOUT_SECS)\n"
+          "seconds": 1.807,
+          "output": "\u20260c358509fa5d720558e99c3c71677ba8\n  [Mutation] tests_constrain_change: error (nothing to mutate: no changed source line holds an operator to change)\n\n4. SIMULATING [\u25cf\u25cf\u25cf]  Merge simulation...\n\n\ud83d\udd2d Semantic signal\n   Blast radius: 0 node(s) affected (declared 1) \u2014 LOW [indicative]\n   Affected contracts: none\n   Evidence plan: PackageTests\n   Intent/diff overlap: 100% [advisory]\n   Relevant prior findings (5):\n     [solidify] policy set \u2014 Synthesis (2 props):\n     [solidify] baseline \u2014 Synthesis (4 props):\n     [solidify] provenance invariant \u2014 Mutation  config  @ nool.toml\n     [solidify] config \u2014 Synthesis (3 props):\n     [solidify] Grant editor to 39aa3ee8 over everywhere, valid 365 day(s) \u2014 Grant     editor to 39aa3ee8\n\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nPROPOSAL SUMMARY\n  ID      : c13c5a20\n  Intent  : AI-tagged change, no Entire link\n  Thread  : main\n  Mode    : Full (Semantic)\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n\n[Auto] Solidifying proposal...\n  [Reify] Full validation already recorded at propose; not re-running the integrity driver.\n  [Attest] tests_constrain_change: error (nothing to mutate: no changed source line holds an operator to change)\n  \u26a0 src/auth.py: no symbol-level scope (the change reaches outside any symbol); sealing against the whole file\n  [Reify] \u23f1  check timeout 120s (default; override with NOOL_INTEGRITY_TIMEOUT_SECS)\n  [Reify] \u23f1  ghost-run timeout 600s (default; override with NOOL_GHOST_RUN_TIMEOUT_SECS)\n"
         },
         {
           "name": "untagged change (control)",
           "cmd": "nool propose --path src/auth.py --intent untagged change (control) --solidify",
           "rc": 0,
-          "seconds": 1.728,
-          "output": "\u202640%)\n  [Reify] \ud83d\udc7b Ghost-Run: Executing project-level tests...\n  [Reify] \u2705 Verified Runnable (Primary: .py). Hash: 334d47a9600846a7428a6f78705f31eb0c358509fa5d720558e99c3c71677ba8\n\n4. SIMULATING [\u25cf\u25cf\u25cf]  Merge simulation...\n\n\ud83d\udd2d Semantic signal\n   Blast radius: 0 node(s) affected (declared 1) \u2014 LOW [indicative]\n   Affected contracts: none\n   Evidence plan: PackageTests\n   Intent/diff overlap: 100% [advisory]\n   Relevant prior findings (5):\n     [solidify] baseline \u2014 Synthesis (4 props):\n     [solidify] AI-tagged change, no Entire link \u2014 Mutation  @ src/auth.py\n     [solidify] policy set \u2014 Synthesis (2 props):\n     [solidify] provenance invariant \u2014 Mutation  config  @ nool.toml\n     [solidify] Grant editor to 39aa3ee8 over everywhere, valid 365 day(s) \u2014 Grant     editor to 39aa3ee8\n\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nPROPOSAL SUMMARY\n  ID      : b270ed0d\n  Intent  : untagged change (control)\n  Thread  : main\n  Mode    : Full (Semantic)\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n\n[Auto] Solidifying proposal...\n  [Reify] Full validation already recorded at propose; not re-running the integrity driver.\n  [Graph] Caught up with HEAD: 4 edge(s) written, 0 retired.\n  \u26a0 src/auth.py: no symbol-level scope (the change reaches outside any symbol); sealing against the whole file\n  [Reify] \u23f1  check timeout 120s (default; override with NOOL_INTEGRITY_TIMEOUT_SECS)\n  [Reify] \u23f1  ghost-run timeout 600s (default; override with NOOL_GHOST_RUN_TIMEOUT_SECS)\n"
+          "seconds": 1.895,
+          "output": "\u2026g to mutate: no changed source line holds an operator to change)\n\n4. SIMULATING [\u25cf\u25cf\u25cf]  Merge simulation...\n\n\ud83d\udd2d Semantic signal\n   Blast radius: 0 node(s) affected (declared 1) \u2014 LOW [indicative]\n   Affected contracts: none\n   Evidence plan: PackageTests\n   Intent/diff overlap: 100% [advisory]\n   Relevant prior findings (5):\n     [solidify] baseline \u2014 Synthesis (4 props):\n     [solidify] AI-tagged change, no Entire link \u2014 Mutation  @ src/auth.py\n     [solidify] policy set \u2014 Synthesis (2 props):\n     [solidify] provenance invariant \u2014 Mutation  config  @ nool.toml\n     [solidify] Grant editor to 39aa3ee8 over everywhere, valid 365 day(s) \u2014 Grant     editor to 39aa3ee8\n\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nPROPOSAL SUMMARY\n  ID      : b830b91a\n  Intent  : untagged change (control)\n  Thread  : main\n  Mode    : Full (Semantic)\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n\n[Auto] Solidifying proposal...\n  [Reify] Full validation already recorded at propose; not re-running the integrity driver.\n  [Attest] tests_constrain_change: error (nothing to mutate: no changed source line holds an operator to change)\n  [Graph] Caught up with HEAD: 4 edge(s) written, 0 retired.\n  \u26a0 src/auth.py: no symbol-level scope (the change reaches outside any symbol); sealing against the whole file\n  [Reify] \u23f1  check timeout 120s (default; override with NOOL_INTEGRITY_TIMEOUT_SECS)\n  [Reify] \u23f1  ghost-run timeout 600s (default; override with NOOL_GHOST_RUN_TIMEOUT_SECS)\n"
         },
         {
           "name": "nool verify --all",
           "cmd": "nool verify --all",
           "rc": 0,
-          "seconds": 0.018,
+          "seconds": 0.019,
           "output": "\ud83d\udd0d Verifying structural invariants for entire active snapshot...\n  \u2713 All 2 controls satisfied.\nVerification summary: 2 controls evaluated, 0 violations.\n"
         },
         {
           "name": "nool admin plugin list",
           "cmd": "nool admin plugin list",
           "rc": 0,
-          "seconds": 0.014,
+          "seconds": 0.015,
           "output": "\nInstalled Aram Policies:\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  \u2022 entire_policy_test v0.1.0 [Policy]  hash=e8d5da3849c2  requires=[]  provides=[]  (ok)  abi=v1 knot-model=unmarked \u26a0 was built before knot model revisions, so it may deny knots that use payload kinds added since; rebuild it against this nool's nool-aram-policy-sdk and reinstall it\n\nInstalled Language Plugins:\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  (none found)\n"
         }
       ],
@@ -482,7 +482,7 @@
       "verify_reports_violation": false,
       "policy_outdated_warning": true,
       "wasm_mentions_entire_or_checkpoint": false,
-      "scenario_seconds": 9.89
+      "scenario_seconds": 10.02
     },
     "nool_workflow": {
       "tool": "nool",
@@ -492,50 +492,50 @@
           "name": "nool init",
           "cmd": "nool init --skip-discovery",
           "rc": 0,
-          "seconds": 0.138,
+          "seconds": 0.148,
           "output": "Initialized empty Nool repository in /private<sandbox>/nool-workflow\n  ledger only (no import, no discovery)\n  configuration not recorded yet: .gitignore, .gitattributes, .noolignore, nool.toml\n  agent hooks: claude, gemini, codex, pi, opencode\n\nNext steps:\n  1. Tailor nool.toml and .noolignore to your needs, then record them: nool propose --path nool.toml --kind config --intent \"nool init: record Nool's configuration files\" --justification \"<why>\" --solidify, then nool propose --path .gitignore --path .gitattributes --path .noolignore --kind config --intent \"nool init: record Nool's configuration files\" --solidify\n  2. Start work: nool propose --path <file> --intent \"...\" --solidify, or nool code \"<goal>\"\n  More: nool quick-start (a tour), nool guide (every command), nool init --verbose (each step)\n"
         },
         {
           "name": "record nool.toml",
           "cmd": "nool propose --path nool.toml --kind config --intent record config --justification benchmark sandbox --solidify",
           "rc": 0,
-          "seconds": 0.247,
-          "output": "\n1. PREPARING  [\u25cf\u25cf\u25cb]  Collecting changes...\n  [IO] Reading from working directory: \"nool.toml\"\n  [AST] Calculated NodeID using adapter 'toml': 9e4b1cd398542283d6718139ff7c05c052bd32dea9c8ad6e8227e97d2e10737e\n  [Reify] Materialized shadow-root at \"/private<sandbox>/nool-workflow/.nool/tmp/reify-36835-0\"\n  [Reify] Running Integrity Driver for '.toml'...\n  [Reify] \u26a0\ufe0f  Unchecked: no tests ran (.toml). Hash: structural-ok\n\n4. SIMULATING [\u25cf\u25cf\u25cf]  Merge simulation...\n\n\ud83d\udd2d Semantic signal\n   Blast radius: 1 node(s) affected (declared 1) \u2014 LOW [indicative]\n   \u26a0 Envelope precision: unknown \u2014 symbol-level resolution did not fully succeed; treat this as a reason to look closer, not as low risk.\n     \u00b7 nool.toml\n   Affected contracts: none\n   Evidence plan: PackageTests\n   Intent/diff overlap: 100% [advisory]\n   Relevant prior findings: none\n\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nPROPOSAL SUMMARY\n  ID      : 6bc7f4a2\n  Intent  : record config\n  Thread  : main\n  Mode    : Full (Semantic)\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n\n[Auto] Solidifying proposal...\n  [Reify] Full validation already recorded at propose; not re-running the integrity driver.\n"
+          "seconds": 0.24,
+          "output": "\n1. PREPARING  [\u25cf\u25cf\u25cb]  Collecting changes...\n  [IO] Reading from working directory: \"nool.toml\"\n  [AST] Calculated NodeID using adapter 'toml': 6b9e5ce4097ba58f203d7e01de02fc1adbce89d96d9bd102de05ba1a5199b2a1\n  [Reify] Materialized shadow-root at \"/private<sandbox>/nool-workflow/.nool/tmp/reify-32379-0\"\n  [Reify] Running Integrity Driver for '.toml'...\n  [Reify] \u26a0\ufe0f  Unchecked: no tests ran (.toml). Hash: structural-ok\n\n4. SIMULATING [\u25cf\u25cf\u25cf]  Merge simulation...\n\n\ud83d\udd2d Semantic signal\n   Blast radius: 1 node(s) affected (declared 1) \u2014 LOW [indicative]\n   \u26a0 Envelope precision: unknown \u2014 symbol-level resolution did not fully succeed; treat this as a reason to look closer, not as low risk.\n     \u00b7 nool.toml\n   Affected contracts: none\n   Evidence plan: PackageTests\n   Intent/diff overlap: 100% [advisory]\n   Relevant prior findings: none\n\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nPROPOSAL SUMMARY\n  ID      : 71f0e8cc\n  Intent  : record config\n  Thread  : main\n  Mode    : Full (Semantic)\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n\n[Auto] Solidifying proposal...\n  [Reify] Full validation already recorded at propose; not re-running the integrity driver.\n"
         },
         {
           "name": "record ignore files",
           "cmd": "nool propose --path .gitignore --path .gitattributes --path .noolignore --kind config --intent record config --solidify",
           "rc": 0,
-          "seconds": 0.242,
-          "output": "\u2026 'generic': d7193c96ddf149b2bfb9c7bf42fa6a4b9411ac5b90d4266ab50bfa2eb6974dcc\n  [Reify] \ud83d\udce6 Detected compiled language '.gitignore'. Enabling project-level reification...\n  [Reify] Materialized shadow-root at \"/private<sandbox>/nool-workflow/.nool/tmp/reify-37006-0\"\n  [Reify] \ud83d\udce6 Running bundled reification with 3 file(s)...\n  [Reify] \ud83c\udfaf Test selection: full: no test files known\n  [Reify] \u2705 Hydrated 3 bundle file(s) to scratchpad\n  [Reify] \u26a0\ufe0f  Unchecked: no tests ran (.gitignore). Hash: none\n  \ud83d\udce6 Synthesis created with 3 sub-proposals.\n\n4. SIMULATING [\u25cf\u25cf\u25cf]  Merge simulation...\n\n\ud83d\udd2d Semantic signal\n   Blast radius: 3 node(s) affected (declared 3) \u2014 LOW [indicative]\n   \u26a0 Envelope precision: unknown \u2014 symbol-level resolution did not fully succeed; treat this as a reason to look closer, not as low risk.\n     \u00b7 .gitattributes\n     \u00b7 .noolignore\n     \u00b7 .gitignore\n   Affected contracts: none\n   Evidence plan: PackageTests\n   Intent/diff overlap: 0% [advisory]\n   Relevant prior findings (1):\n     [solidify] record config \u2014 Mutation  config  @ nool.toml\n\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nPROPOSAL SUMMARY\n  ID      : 84c3b4b9\n  Intent  : record config\n  Thread  : main\n  Mode    : Full (Semantic)\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n\n[Auto] Solidifying proposal...\n  [Reify] Full validation already recorded at propose; not re-running the integrity driver.\n  \u26a0 .gitignore: no symbol-level scope (no language adapter); sealing against the whole file\n"
+          "seconds": 0.253,
+          "output": "\u2026 'generic': d7193c96ddf149b2bfb9c7bf42fa6a4b9411ac5b90d4266ab50bfa2eb6974dcc\n  [Reify] \ud83d\udce6 Detected compiled language '.gitignore'. Enabling project-level reification...\n  [Reify] Materialized shadow-root at \"/private<sandbox>/nool-workflow/.nool/tmp/reify-32521-0\"\n  [Reify] \ud83d\udce6 Running bundled reification with 3 file(s)...\n  [Reify] \ud83c\udfaf Test selection: full: no test files known\n  [Reify] \u2705 Hydrated 3 bundle file(s) to scratchpad\n  [Reify] \u26a0\ufe0f  Unchecked: no tests ran (.gitignore). Hash: none\n  \ud83d\udce6 Synthesis created with 3 sub-proposals.\n\n4. SIMULATING [\u25cf\u25cf\u25cf]  Merge simulation...\n\n\ud83d\udd2d Semantic signal\n   Blast radius: 3 node(s) affected (declared 3) \u2014 LOW [indicative]\n   \u26a0 Envelope precision: unknown \u2014 symbol-level resolution did not fully succeed; treat this as a reason to look closer, not as low risk.\n     \u00b7 .gitignore\n     \u00b7 .noolignore\n     \u00b7 .gitattributes\n   Affected contracts: none\n   Evidence plan: PackageTests\n   Intent/diff overlap: 0% [advisory]\n   Relevant prior findings (1):\n     [solidify] record config \u2014 Mutation  config  @ nool.toml\n\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nPROPOSAL SUMMARY\n  ID      : d336f3c9\n  Intent  : record config\n  Thread  : main\n  Mode    : Full (Semantic)\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n\n[Auto] Solidifying proposal...\n  [Reify] Full validation already recorded at propose; not re-running the integrity driver.\n  \u26a0 .gitignore: no symbol-level scope (no language adapter); sealing against the whole file\n"
         },
         {
           "name": "record baseline",
           "cmd": "nool propose --path src/auth.py --path tests/test_auth.py --path src/__init__.py --path tests/__init__.py --intent baseline auth service --solidify",
           "rc": 0,
-          "seconds": 1.24,
-          "output": "\u2026\u2705 Verified Runnable (Primary: .py). Hash: 334d47a9600846a7428a6f78705f31eb0c358509fa5d720558e99c3c71677ba8\n  \ud83d\udce6 Synthesis created with 4 sub-proposals.\n\n4. SIMULATING [\u25cf\u25cf\u25cf]  Merge simulation...\n\n\ud83d\udd2d Semantic signal\n   Blast radius: 0 node(s) affected (declared 4) \u2014 LOW [indicative]\n   Affected contracts: none\n   Evidence plan: PackageTests\n   Intent/diff overlap: 33% [advisory]\n   Relevant prior findings (2):\n     [solidify] record config \u2014 Mutation  config  @ nool.toml\n     [solidify] record config \u2014 Synthesis (3 props):\n\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nPROPOSAL SUMMARY\n  ID      : 9c9d2b7a\n  Intent  : baseline auth service\n  Thread  : main\n  Mode    : Full (Semantic)\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n\n[Auto] Solidifying proposal...\n  [Reify] Full validation already recorded at propose; not re-running the integrity driver.\n  \u26a0 src/auth.py: no symbol-level scope (the changed symbols could not be told apart); sealing against the whole file\n  \u26a0 tests/test_auth.py: no symbol-level scope (the changed symbols could not be told apart); sealing against the whole file\n  \u26a0 src/__init__.py: no symbol-level scope (no symbols resolved); sealing against the whole file\n  \u26a0 tests/__init__.py: no symbol-level scope (no symbols resolved); sealing against the whole file\n  [Reify] \u23f1  check timeout 120s (default; override with NOOL_INTEGRITY_TIMEOUT_SECS)\n  [Reify] \u23f1  ghost-run timeout 600s (default; override with NOOL_GHOST_RUN_TIMEOUT_SECS)\n"
+          "seconds": 1.356,
+          "output": "\u2026nthesis created with 4 sub-proposals.\n\n4. SIMULATING [\u25cf\u25cf\u25cf]  Merge simulation...\n\n\ud83d\udd2d Semantic signal\n   Blast radius: 0 node(s) affected (declared 4) \u2014 LOW [indicative]\n   Affected contracts: none\n   Evidence plan: PackageTests\n   Intent/diff overlap: 33% [advisory]\n   Relevant prior findings (2):\n     [solidify] record config \u2014 Mutation  config  @ nool.toml\n     [solidify] record config \u2014 Synthesis (3 props):\n\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nPROPOSAL SUMMARY\n  ID      : 55405d17\n  Intent  : baseline auth service\n  Thread  : main\n  Mode    : Full (Semantic)\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n\n[Auto] Solidifying proposal...\n  [Reify] Full validation already recorded at propose; not re-running the integrity driver.\n  [Attest] tests_constrain_change: error (nothing to mutate: no changed source line holds an operator to change)\n  \u26a0 src/auth.py: no symbol-level scope (the changed symbols could not be told apart); sealing against the whole file\n  \u26a0 tests/test_auth.py: no symbol-level scope (the changed symbols could not be told apart); sealing against the whole file\n  \u26a0 src/__init__.py: no symbol-level scope (no symbols resolved); sealing against the whole file\n  \u26a0 tests/__init__.py: no symbol-level scope (no symbols resolved); sealing against the whole file\n  [Reify] \u23f1  check timeout 120s (default; override with NOOL_INTEGRITY_TIMEOUT_SECS)\n  [Reify] \u23f1  ghost-run timeout 600s (default; override with NOOL_GHOST_RUN_TIMEOUT_SECS)\n"
         },
         {
           "name": "nool discover features",
           "cmd": "nool discover features",
           "rc": 0,
-          "seconds": 0.023,
+          "seconds": 0.024,
           "output": "Discovered Feature Boundaries\n\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\n\nFeature: src\nFiles: 1 | Entities: 0\n\nFeature: src-2\nFiles: 2 | Entities: 6\n\nFeature: tests\nFiles: 1 | Entities: 0\n\nUse --full (or --expand) to show all files and entities.\n\nTip: Use 'nool discover lift' to turn these into tracked features.\n"
         },
         {
           "name": "nool discover lift",
           "cmd": "nool discover lift",
           "rc": 0,
-          "seconds": 0.026,
+          "seconds": 0.031,
           "output": "Lifting 3 discovered features...\n  Minted 10 durable identities.\nCandidate Lift generated. Run 'nool solidify' to save it.\n"
         },
         {
           "name": "solidify lift",
           "cmd": "nool solidify",
           "rc": 0,
-          "seconds": 0.1,
-          "output": "outcome=ok knot_id=20e3bfe4 title=\"Knot 20e3bfe4\"\n  \u2022 Concurrency: Commutative linear merge (0 conflicts)\n  \u2022 Invariants: 1 architectural rules satisfied \u00b7 0 breaking API changes [avoided ~90m incident risk]\n  \u2022 Git Mirror: Dual-state commit [de126dbc] live on 'main'\n  \u2022 details_hint: Run 'nool push' to publish, or 'nool explain 20e3bfe4' for lineage\nNext step: `nool push <remote>` to share this, or keep working and `nool solidify` again.\n"
+          "seconds": 0.099,
+          "output": "outcome=ok knot_id=37def06f title=\"Knot 37def06f\"\n  \u2022 Concurrency: Commutative linear merge (0 conflicts)\n  \u2022 Invariants: 1 architectural rules satisfied \u00b7 0 breaking API changes [avoided ~90m incident risk]\n  \u2022 Git Mirror: Dual-state commit [69d2db4b] live on 'main'\n  \u2022 details_hint: Run 'nool push' to publish, or 'nool explain 37def06f' for lineage\nNext step: `nool push <remote>` to share this, or keep working and `nool solidify` again.\n"
         },
         {
           "name": "nool context (natural language)",
@@ -548,72 +548,72 @@
           "name": "nool context (symbol names)",
           "cmd": "nool context AuthService authenticate_user --cite --budget 800",
           "rc": 0,
-          "seconds": 0.019,
-          "output": "Context for: AuthService authenticate_user\n\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\n\nEntities (4 of 4):\n  [ast_node] entity:AuthService:23a9d0810e5896f2 (current) in src/auth.py\n  [ast_node] entity:TestAuthService:31f4f6e0f7b6a703 (current) in tests/test_auth.py\n  [ast_node] entity:authenticate_user:cca85cf7b5198d50 (current) in src/auth.py\n  [ast_node] entity:test_authenticate_user:3a94ac96e17e1bd9 (current) in tests/test_auth.py\n\nBlast radius of entity:AuthService:23a9d0810e5896f2: 1 reachable (graph: 3 nodes / 3 edges)\n\nPrior findings (1 of 1):\n  \u2022 [solidify@global; 9e203f5a; signer 39aa3ee8 \u00b7 ungoverned \u00b7 current] nool: index 3 discovered features (10 entities) for the entity graph: Synthesis (23 props):\n  - Semantic  DefineFeature - src\n  - Semantic  CreateEntity - Register src/__init__.py in src\n  - Semantic  DefineFeature - src-2\n  - Semantic  CreateEntity - Register src/auth.py in src-2\n  - Semantic  CreateEntity -\n\nCitations (2):\n  src/auth.py:7-11  authenticate_user\n  tests/test_auth.py:5-9  test_authenticate_user\n\nHistory (2):\n  src/auth.py: \"baseline auth service\" \u2014 human, 2026-11-02, thread main [365c663d]\n  tests/test_auth.py: \"baseline auth service\" \u2014 human, 2026-11-02, thread main [365c663d]\n\n~343 of 800 token budget used.\n\n"
+          "seconds": 0.02,
+          "output": "Context for: AuthService authenticate_user\n\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\n\nEntities (4 of 4):\n  [ast_node] entity:AuthService:23a9d0810e5896f2 (current) in src/auth.py\n  [ast_node] entity:TestAuthService:31f4f6e0f7b6a703 (current) in tests/test_auth.py\n  [ast_node] entity:authenticate_user:cca85cf7b5198d50 (current) in src/auth.py\n  [ast_node] entity:test_authenticate_user:3a94ac96e17e1bd9 (current) in tests/test_auth.py\n\nBlast radius of entity:AuthService:23a9d0810e5896f2: 1 reachable (graph: 3 nodes / 3 edges)\n\nPrior findings (1 of 1):\n  \u2022 [solidify@global; a51d9218; signer 39aa3ee8 \u00b7 ungoverned \u00b7 current] nool: index 3 discovered features (10 entities) for the entity graph: Synthesis (23 props):\n  - Semantic  DefineFeature - src\n  - Semantic  CreateEntity - Register src/__init__.py in src\n  - Semantic  DefineFeature - src-2\n  - Semantic  CreateEntity - Register src/auth.py in src-2\n  - Semantic  CreateEntity -\n\nCitations (2):\n  src/auth.py:7-11  authenticate_user\n  tests/test_auth.py:5-9  test_authenticate_user\n\nHistory (2):\n  src/auth.py: \"baseline auth service\" \u2014 claude-code, 2026-11-03, thread main, session claude-code-a8ae13f7fff28e2f [2329ca00]\n  tests/test_auth.py: \"baseline auth service\" \u2014 claude-code, 2026-11-03, thread main, session claude-code-a8ae13f7fff28e2f [2329ca00]\n\n~365 of 800 token budget used.\n\n"
         },
         {
           "name": "nool checkpoint",
           "cmd": "nool checkpoint bench-cp-1 --solidify",
           "rc": 0,
-          "seconds": 0.121,
+          "seconds": 0.126,
           "output": "  [Auto] Saving Release...\n  [Checkpoint] \u2705 Created state snapshot for release.\nNext step: `nool changelog` to review what's included, or `nool push <remote>` to publish it.\n  [Reify] Full validation not required for this Knot payload.\n\u001b[34m[Telemetry]\u001b[0m Syncing local agent logs...\n"
         },
         {
           "name": "nool thread handoff",
           "cmd": "nool thread handoff --name main --summary OAuth2 work paused; baseline green --decision keep authenticate_user unchanged --next add authenticate_oauth --solidify",
           "rc": 0,
-          "seconds": 0.071,
-          "output": "\u2713 Handoff knot proposed for thread 'main'.\n\u2713 Handoff solidified: b41af550\n  knot: b41af550b45f0ae376a39bb24ad4a77a3f74564332c7de926c05a99996df2cbc\n  [Reify] Full validation not required for this Knot payload.\n"
+          "seconds": 0.076,
+          "output": "\u2713 Handoff knot proposed for thread 'main'.\n\u2713 Handoff solidified: d7d0ad4b\n  knot: d7d0ad4b6536729aaf435b3b81d29a6ae7c09765c61eb28f54ce5a9b71bcfa85\n  [Reify] Full validation not required for this Knot payload.\n"
         },
         {
           "name": "nool pr summary",
-          "cmd": "nool pr summary --base d56d89db",
+          "cmd": "nool pr summary --base 10a71199",
           "rc": 0,
-          "seconds": 0.019,
-          "output": "\u2026AuthService in src-2   - Semantic  CreateEntity - Register test_authenticate_user in src-2   - Semantic  DefineFeature - tests   - Semantic  CreateEntity - Register tests/__init__.py in tests   - Identity  Mint 84eaecbe @ entity:AuthService:23a9d0810e5896f2   - Identity  Mint 3667212e @ entity:TestAuthService:31f4f6e0f7b6a703   - Identity  Mint baa7aea4 @ entity:__init__:e2d710ee8eaeefc8   - Identity  Mint 399efd90 @ entity:authenticate_user:cca85cf7b5198d50   - Identity  Mint 380a6e2a @ entity:get_user_role:8f1f016ebd7b85a8   - Identity  Mint dbb1f23b @ entity:src/__init__.py:f89c0c8b7e062810   - Identity  Mint fa91b4ff @ entity:src/auth.py:a2a07fa726aa00e2   - Identity  Mint 97f309bd @ entity:test_authenticate_user:3a94ac96e17e1bd9   - Identity  Mint abe1a93e @ entity:tests/__init__.py:5a56e3ec15a48082   - Identity  Mint 316db85e @ entity:tests/test_auth.py:6c53ec6ed1a9d8ef\n- **Blast radius:** 2 descendant knot(s)\n- **Recorded justifications / notes on this knot:**\n  - [solidify] Synthesis (23 props):   - Semantic  DefineFeature - src   - Semantic  CreateEntity - Register src/__init__.py in src   - Semantic  DefineFeature - src-2   - Sem\u2026\n\n### `5bc9f2b1` \u2014 Release: bench-cp-1\n\n- **Author:** `39aa3ee8` \u00b7 **Time:** 2026-11-02 05:30:40 UTC\n- **Changed:** Release   bench-cp-1\n- **Blast radius:** 1 descendant knot(s)\n- **Recorded justifications / notes on this knot:**\n  - [solidify] Release   bench-cp-1  knot_id: 5bc9f2b12b4de5df21508d0118d7eb6320283f7656cd6f0fbac830cb66910b70\n\n"
+          "seconds": 0.02,
+          "output": "\u2026AuthService in src-2   - Semantic  CreateEntity - Register test_authenticate_user in src-2   - Semantic  DefineFeature - tests   - Semantic  CreateEntity - Register tests/__init__.py in tests   - Identity  Mint 35897bd8 @ entity:AuthService:23a9d0810e5896f2   - Identity  Mint 9b4bca48 @ entity:TestAuthService:31f4f6e0f7b6a703   - Identity  Mint 417d7f3c @ entity:__init__:e2d710ee8eaeefc8   - Identity  Mint 72399c8b @ entity:authenticate_user:cca85cf7b5198d50   - Identity  Mint f9b73e77 @ entity:get_user_role:8f1f016ebd7b85a8   - Identity  Mint d9a85924 @ entity:src/__init__.py:f89c0c8b7e062810   - Identity  Mint 1b942719 @ entity:src/auth.py:a2a07fa726aa00e2   - Identity  Mint c86fb9a7 @ entity:test_authenticate_user:3a94ac96e17e1bd9   - Identity  Mint 9625cca8 @ entity:tests/__init__.py:5a56e3ec15a48082   - Identity  Mint e83f119b @ entity:tests/test_auth.py:6c53ec6ed1a9d8ef\n- **Blast radius:** 2 descendant knot(s)\n- **Recorded justifications / notes on this knot:**\n  - [solidify] Synthesis (23 props):   - Semantic  DefineFeature - src   - Semantic  CreateEntity - Register src/__init__.py in src   - Semantic  DefineFeature - src-2   - Sem\u2026\n\n### `47c5dd31` \u2014 Release: bench-cp-1\n\n- **Author:** `39aa3ee8` \u00b7 **Time:** 2026-11-03 03:46:48 UTC\n- **Changed:** Release   bench-cp-1\n- **Blast radius:** 1 descendant knot(s)\n- **Recorded justifications / notes on this knot:**\n  - [solidify] Release   bench-cp-1  knot_id: 47c5dd318ceff62a061969700f23d9e56bfd4d0d7efbcd94ada78352d833d986\n\n"
         },
         {
           "name": "nool pr merge feature/oauth --into main",
           "cmd": "nool pr merge feature/oauth --into main",
           "rc": 0,
-          "seconds": 0.545,
-          "output": "landing on main\n\ud83d\udce5 Merging 'feature/oauth' from 'origin'...\nUpdating 955e235..344d9fa\nFast-forward\n src/auth.py | 6 ++++++\n 1 file changed, 6 insertions(+)\n\u2705 Pulled and replayed Knots from 'origin' (0 restored)\n\u2713 merged feature/oauth into main\n  Push it with `nool push origin`.\nFrom <sandbox>/nool-workflow-origin\n * branch            feature/oauth -> FETCH_HEAD\n  \u26a0 foreign commit 344d9faf015a \"feat: OAuth2\" carries no knot \u2014 once this pull is done: nool bridge adopt 344d9faf015a\n  [Graph] Caught up with HEAD: 5 edge(s) written, 0 retired.\n"
+          "seconds": 0.568,
+          "output": "landing on main\n\ud83d\udce5 Merging 'feature/oauth' from 'origin'...\nUpdating 9da6dc3..86d2228\nFast-forward\n src/auth.py | 6 ++++++\n 1 file changed, 6 insertions(+)\n\u2705 Pulled and replayed Knots from 'origin' (0 restored)\n\u2713 merged feature/oauth into main\n  Push it with `nool push origin`.\nFrom <sandbox>/nool-workflow-origin\n * branch            feature/oauth -> FETCH_HEAD\n  \u26a0 foreign commit 86d22285c915 \"feat: OAuth2\" carries no knot \u2014 once this pull is done: nool bridge adopt 86d22285c915\n  [Graph] Caught up with HEAD: 5 edge(s) written, 0 retired.\n"
         }
       ],
       "context_nl_matched_entities": false,
       "context_nl_seconds": 0.018,
       "context_symbol_matched_entities": true,
-      "context_symbol_seconds": 0.019,
+      "context_symbol_seconds": 0.02,
       "context_symbol_has_blast_radius": true,
       "checkpoint_ok": true,
-      "checkpoint_seconds": 0.121,
+      "checkpoint_seconds": 0.126,
       "handoff_ok": true,
-      "handoff_seconds": 0.071,
+      "handoff_seconds": 0.076,
       "pr_summary_ok": true,
-      "pr_summary_seconds": 0.019,
+      "pr_summary_seconds": 0.02,
       "pr_summary_has_blast_radius": true,
       "pr_merge_ok": true,
-      "pr_merge_seconds": 0.545,
+      "pr_merge_seconds": 0.568,
       "pr_merge_method_present": true,
-      "scenario_seconds": 3.21
+      "scenario_seconds": 3.36
     },
     "live_repo": {
       "entire_checkpoint_list_ok": true,
       "entire_session_list_ok": true,
-      "entire_sessions_listed": 5,
+      "entire_sessions_listed": 6,
       "entire_explain_shows_prompt_intent": true,
       "entire_commands_needing_login_or_remote": {
         "recap": {
-          "rc": 1,
-          "reason": "Not logged in. Run 'entire login' to authenticate."
+          "rc": 0,
+          "reason": "  \u2139 Labels require server analysis (may take a few minutes after committing)."
         },
         "dispatch": {
           "rc": 1,
-          "reason": "dispatch needs an origin remote on GitHub or Entire: remote not found (or pass --repos gh/<owner>/<repo> or et/<project>/<repo> to name the repo)"
+          "reason": "dispatch service returned status 502: \"The origin web server returned an invalid or incomplete response to Cloudflare. This typically indicates the origin is ov"
         },
         "search": {
-          "rc": 1,
-          "reason": "could not determine current repository for search (use --repo or --all-repos): get remote URL for \"origin\": remote \"origin\" not found"
+          "rc": 0,
+          "reason": "}"
         }
       },
       "nool_context_live_returns_findings": true,
@@ -622,90 +622,90 @@
           "name": "git show-ref",
           "cmd": "git show-ref",
           "rc": 0,
-          "seconds": 0.019,
-          "output": "\u2026704/93b362fe-dbc6-4aad-b5a1-71902266004c\nbb042f98ecb5b06d06df77ecb77553b3cb0dd429 refs/entire/checkpoints/87/01M6CS3FS2N4A78RSW30YMYK87\nfa9a8ad0f030d86c0bd7b4dd20180d8816c9dd80 refs/entire/checkpoints/DB/01M6CS5JHE8VHZXYCKBT54E8DB\n9208d6a6c6b3cc9dd0587ae5579415c67f0da5d1 refs/entire/checkpoints/G5/01M6CSAQ6G2ENC06M81Y9Z9YG5\ncaffb28217a5a4a371ab8589a02b116a2f5e4fd1 refs/entire/checkpoints/SR/01M6CS6B62VWM5HRBME5297FSR\nbf5c653319e15e3593aad771c21738d574596deb refs/entire/checkpoints/ZA/01M6CRZR6WVBD2GAEE84042PZA\n436f401446680610de91279e94b70ad535ac3c35 refs/heads/feature-oauth\n25b0f013e16a628cfe08b552fa1efb607aebd429 refs/heads/feature-saml\n1657fc33cab0de3c88db61a6d0be9fe406c8a807 refs/heads/feature/saml-sso\n834d81bcefac78ba687bc163167e365a4812632d refs/heads/main\n886a5e8eae56fd614e856aefca0ffa1040dfebeb refs/nool/detached/39aa3ee8852f14d9\n072d59b9c5cd13281b55765dc488fa3b86b65873 refs/nool/detached/d7a6457ed505cc4b\ndea4a7923fb4f8896bbe3e958c136e724487ab4b refs/nool/detached/dd64e3371916a33a\n834d81bcefac78ba687bc163167e365a4812632d refs/nool/git-mirror\n436f401446680610de91279e94b70ad535ac3c35 refs/nool/mirror/feature-oauth\n25b0f013e16a628cfe08b552fa1efb607aebd429 refs/nool/mirror/feature-saml\n1657fc33cab0de3c88db61a6d0be9fe406c8a807 refs/nool/mirror/feature/saml-sso\n2102d5e1bd728e11398fe3d4cfc6064f1ca0c359 refs/nool/mirror/git-baseline-oauth\n51cff3219ed5411f104e7481d222b0d6ba9825ff refs/nool/mirror/git-baseline-saml\n834d81bcefac78ba687bc163167e365a4812632d refs/nool/mirror/main\n"
+          "seconds": 0.018,
+          "output": "\u2026d429 refs/entire/checkpoints/87/01M6CS3FS2N4A78RSW30YMYK87\nfa9a8ad0f030d86c0bd7b4dd20180d8816c9dd80 refs/entire/checkpoints/DB/01M6CS5JHE8VHZXYCKBT54E8DB\n9208d6a6c6b3cc9dd0587ae5579415c67f0da5d1 refs/entire/checkpoints/G5/01M6CSAQ6G2ENC06M81Y9Z9YG5\ncaffb28217a5a4a371ab8589a02b116a2f5e4fd1 refs/entire/checkpoints/SR/01M6CS6B62VWM5HRBME5297FSR\nbf5c653319e15e3593aad771c21738d574596deb refs/entire/checkpoints/ZA/01M6CRZR6WVBD2GAEE84042PZA\n436f401446680610de91279e94b70ad535ac3c35 refs/heads/feature-oauth\n25b0f013e16a628cfe08b552fa1efb607aebd429 refs/heads/feature-saml\n1657fc33cab0de3c88db61a6d0be9fe406c8a807 refs/heads/feature/saml-sso\ncb936a46bfa6411dcae8037f49f86afb7374a605 refs/heads/main\n22536497bc9eab396aa52d967a51537d6cf1de14 refs/nool/detached/159ef464443e4ca3\n2f151beabfa44d1e1e0fb6d3900b2e4aecb3a677 refs/nool/detached/39aa3ee8852f14d9\n072d59b9c5cd13281b55765dc488fa3b86b65873 refs/nool/detached/d7a6457ed505cc4b\ndea4a7923fb4f8896bbe3e958c136e724487ab4b refs/nool/detached/dd64e3371916a33a\ncb936a46bfa6411dcae8037f49f86afb7374a605 refs/nool/git-mirror\n436f401446680610de91279e94b70ad535ac3c35 refs/nool/mirror/feature-oauth\n25b0f013e16a628cfe08b552fa1efb607aebd429 refs/nool/mirror/feature-saml\n1657fc33cab0de3c88db61a6d0be9fe406c8a807 refs/nool/mirror/feature/saml-sso\n2102d5e1bd728e11398fe3d4cfc6064f1ca0c359 refs/nool/mirror/git-baseline-oauth\n51cff3219ed5411f104e7481d222b0d6ba9825ff refs/nool/mirror/git-baseline-saml\ncb936a46bfa6411dcae8037f49f86afb7374a605 refs/nool/mirror/main\n"
         },
         {
           "name": "entire why src/auth.py",
           "cmd": "entire why src/auth.py",
           "rc": 0,
-          "seconds": 0.194,
+          "seconds": 0.118,
           "output": "\n  src/auth.py\n  15 lines \u00b7 0% linked to a checkpoint (0)\n\n  No Entire checkpoints are linked to this file's current lines.\n\n"
         },
         {
           "name": "nool why 77d3bf0c",
           "cmd": "nool why 77d3bf0c",
           "rc": 0,
-          "seconds": 0.02,
-          "output": "\u2026\n           \u2713 unit-tests pass (full) by integrity-driver\n        \u2514\u2500 beb8db3a [2026-11-02 00:02:23 UTC] Synthesis (4 props):\n  - Mutation  @ src/auth.py\n  - Mutation  @ tests/test_auth.py\n  - Mutation  @ src/__init__.py\n  - Mutation  @ tests/__init__.py\n             \u21b3 add baseline auth service and test\n               intent/diff overlap: 25% [advisory]\n             \u2713 compile pass (check) by integrity-driver\n             \u2713 unit-tests pass (full) by integrity-driver\n          \u2514\u2500 51f82564 [2026-11-02 00:00:14 UTC] Synthesis (3 props):\n  - Mutation  config  @ .gitattributes\n  - Mutation  @ .gitignore\n  - Mutation  @ .noolignore\n               \u21b3 nool init: record Nool's configuration files\n                 intent/diff overlap: 20% [advisory]\n               \u2713 syntax pass (check) by integrity-driver\n            \u2514\u2500 351f1cff [2026-11-02 00:00:13 UTC] Mutation  config  @ nool.toml\n                 \u21b3 nool init: record Nool's configuration files\n                   intent/diff overlap: 80% [advisory]\n        \u2514\u2500 228b7e0d [2026-11-02 00:04:56 UTC] Synthesis (6 props):\n  - Mutation  add  @ src/__pycache__/__init__.cpython-311.pyc\n  - Mutation  add  @ src/__pycache__/auth.cpython-311.pyc\n  - Mutation  modify  @ src/auth.py\n  - Mutation  add  @ tests/__pycache__/__init__.cpython-311.pyc\n  - Mutation  add  @ tests/__pycache__/test_auth.cpython-311.pyc\n  - Mutation  modify  @ tests/test_auth.py\n             \u21b3 feat: implement SAML SSO authentication\n\nEntire-Checkpoint: 01M6CS5JHE8VHZXYCKBT54E8DB\n\n"
+          "seconds": 0.021,
+          "output": "\u2026integrity-driver \u00b7 trusted\n        \u2514\u2500 beb8db3a [2026-11-02 00:02:23 UTC] Synthesis (4 props):\n  - Mutation  @ src/auth.py\n  - Mutation  @ tests/test_auth.py\n  - Mutation  @ src/__init__.py\n  - Mutation  @ tests/__init__.py\n             \u21b3 add baseline auth service and test\n               intent/diff overlap: 25% [advisory]\n             \u2713 compile pass (check) by integrity-driver \u00b7 trusted\n             \u2713 unit-tests pass (full) by integrity-driver \u00b7 trusted\n          \u2514\u2500 51f82564 [2026-11-02 00:00:14 UTC] Synthesis (3 props):\n  - Mutation  config  @ .gitattributes\n  - Mutation  @ .gitignore\n  - Mutation  @ .noolignore\n               \u21b3 nool init: record Nool's configuration files\n                 intent/diff overlap: 20% [advisory]\n               \u2713 syntax pass (check) by integrity-driver \u00b7 trusted\n            \u2514\u2500 351f1cff [2026-11-02 00:00:13 UTC] Mutation  config  @ nool.toml\n                 \u21b3 nool init: record Nool's configuration files\n                   intent/diff overlap: 80% [advisory]\n        \u2514\u2500 228b7e0d [2026-11-02 00:04:56 UTC] Synthesis (6 props):\n  - Mutation  add  @ src/__pycache__/__init__.cpython-311.pyc\n  - Mutation  add  @ src/__pycache__/auth.cpython-311.pyc\n  - Mutation  modify  @ src/auth.py\n  - Mutation  add  @ tests/__pycache__/__init__.cpython-311.pyc\n  - Mutation  add  @ tests/__pycache__/test_auth.cpython-311.pyc\n  - Mutation  modify  @ tests/test_auth.py\n             \u21b3 feat: implement SAML SSO authentication\n\nEntire-Checkpoint: 01M6CS5JHE8VHZXYCKBT54E8DB\n\n"
         },
         {
           "name": "nool candidate list",
           "cmd": "nool candidate list",
           "rc": 0,
-          "seconds": 0.015,
-          "output": "Pending candidates: 1\n\n  queue default\n    1. 65b7b3f87d9f  Create task: check pending tasks and finish the benchmark s\u2026\n       thread=none payload=Task:Create   check pending tasks and finish the benchmark study and update docs\n\n\u27a4 Drop one with `nool candidate drop <id>`, or all with `nool candidate clear`.\n"
+          "seconds": 0.016,
+          "output": "No pending candidates.\n"
         },
         {
           "name": "nool admin plugin list",
           "cmd": "nool admin plugin list",
           "rc": 0,
-          "seconds": 0.018,
-          "output": "\nInstalled Aram Policies:\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  \u2022 entire_policy_test v0.1.0 [Policy]  hash=e8d5da3849c2  requires=[]  provides=[]  (ok)  abi=v1 knot-model=unmarked \u26a0 was built before knot model revisions, so it may deny knots that use payload kinds added since; rebuild it against this nool's nool-aram-policy-sdk and reinstall it\n\nInstalled Language Plugins:\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  (none found)\n"
+          "seconds": 0.015,
+          "output": "\nInstalled Aram Policies:\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  (none found)\n\nInstalled Language Plugins:\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  (none found)\n"
         },
         {
           "name": "entire checkpoint list",
           "cmd": "entire checkpoint list",
           "rc": 0,
-          "seconds": 0.118,
+          "seconds": 0.375,
           "output": "  branch       main\n  checkpoints  1\n\n\u25cf 01M6CRZR6WVBD2GAEE84042PZA  \"Create a file named hello.txt containing 'Hello from Anti...\"\n  11-02 01:01 (02fe9b4) feat: add hello.txt from antigravity\n\n"
         },
         {
           "name": "entire session list",
           "cmd": "entire session list",
           "rc": 0,
-          "seconds": 0.062,
-          "output": "\u2500\u2500 Sessions \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n\nAntigravity \u00b7 gemini-3.8-flash-high \u00b7 nool-vs-entire \u00b7 session cc35e24a-3b6a-4797-bbd4-cb7ce9d3a593 \u00b7 checkpoint 01M6CSAQ6G2ENC06M81Y9Z9YG5\nended \u00b7 started 5h ago \u00b7 active 2h ago\n\nAntigravity \u00b7 gemini-3.8-flash-high \u00b7 nool-vs-entire \u00b7 session cf796888-abc5-4c35-92f2-19455df5b251 \u00b7 checkpoint 01M6CS5JHE8VHZXYCKBT54E8DB\nended \u00b7 started 5h ago \u00b7 active 2h ago\n\nAntigravity \u00b7 nool-vs-entire \u00b7 session f7dc4bdb-7c9e-4d31-9df1-463633e6f703\n> \"Also note that , nool is designed for agents and the comm...\"\nidle \u00b7 started 5h ago \u00b7 active 4h ago\n\nAntigravity \u00b7 gemini-3.8-flash-high \u00b7 nool-vs-entire \u00b7 session 48f1a497-00bf-4199-8cfc-1cc3091b98a4 \u00b7 checkpoint 01M6CS3FS2N4A78RSW30YMYK87\nended \u00b7 started 5h ago\n\nAntigravity \u00b7 gemini-3.8-flash-high \u00b7 nool-vs-entire \u00b7 session 1408d203-afe1-4906-b9d9-64096a869110 \u00b7 checkpoint 01M6CRZR6WVBD2GAEE84042PZA\nended \u00b7 started 5h ago \u00b7 active 5h ago\n\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n5 sessions\n\n"
+          "seconds": 0.057,
+          "output": "\u2500\u2500 Sessions \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n\nClaude Code \u00b7 nool-vs-entire \u00b7 session 7b0d4aa6-65f5-4242-a64b-f268c5b5a1af\n> \"<task-notification> <task-id>bypxp6e6b</task-id> <tool-us...\"\nactive \u00b7 started 5m ago \u00b7 active now \u00b7 tokens 16532.5k\n\nAntigravity \u00b7 gemini-3.8-flash-high \u00b7 nool-vs-entire \u00b7 session cc35e24a-3b6a-4797-bbd4-cb7ce9d3a593 \u00b7 checkpoint 01M6CSAQ6G2ENC06M81Y9Z9YG5\nended \u00b7 started 1d ago \u00b7 active 1d ago\n\nAntigravity \u00b7 gemini-3.8-flash-high \u00b7 nool-vs-entire \u00b7 session cf796888-abc5-4c35-92f2-19455df5b251 \u00b7 checkpoint 01M6CS5JHE8VHZXYCKBT54E8DB\nended \u00b7 started 1d ago \u00b7 active 1d ago\n\nAntigravity \u00b7 nool-vs-entire \u00b7 session f7dc4bdb-7c9e-4d31-9df1-463633e6f703\n> \"Also note that , nool is designed for agents and the comm...\"\nidle \u00b7 started 1d ago \u00b7 active 1d ago\n\nAntigravity \u00b7 gemini-3.8-flash-high \u00b7 nool-vs-entire \u00b7 session 48f1a497-00bf-4199-8cfc-1cc3091b98a4 \u00b7 checkpoint 01M6CS3FS2N4A78RSW30YMYK87\nended \u00b7 started 1d ago\n\nAntigravity \u00b7 gemini-3.8-flash-high \u00b7 nool-vs-entire \u00b7 session 1408d203-afe1-4906-b9d9-64096a869110 \u00b7 checkpoint 01M6CRZR6WVBD2GAEE84042PZA\nended \u00b7 started 1d ago \u00b7 active 1d ago\n\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n6 sessions\n\n"
         },
         {
           "name": "entire checkpoint explain",
           "cmd": "entire checkpoint explain 01M6CS3FS2N4A78RSW30YMYK87",
           "rc": 0,
-          "seconds": 0.137,
+          "seconds": 0.097,
           "output": "\u2026point scope) \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n[User] In src/auth.py, refactor AuthService to support OAuth2: replace authenticate_user with 'authenticate_oauth(self, provider: str, token: str) -> bool' that accepts provider in ['google', 'github'] and token starting with 'oauth-'. Also update tests/test_auth.py to test authenticate_oauth. Do not commit.\n\n[Tool] read_file\n\n[Tool] read_file\n\n[Tool] run_command\n\n[Tool] run_command\n\n[Tool] run_command\n\n[Tool] run_command\n\n[Tool] edit_file\n\n[Tool] read_file\n\n[Tool] edit_file\n\n[Tool] read_file\n\n[Tool] run_command\n\n[Tool] run_command\n\n[Assistant] Refactored [`AuthService`](file:///Users/arunbalakrishnan/Research/nool-vs-entire/src/auth.py#L3) to support OAuth2 authentication and updated the test suite:\n\n- In [src/auth.py](file:///Users/arunbalakrishnan/Research/nool-vs-entire/src/auth.py): Replaced `authenticate_user` with [`authenticate_oauth(self, provider: str, token: str) -> bool`](file:///Users/arunbalakrishnan/Research/nool-vs-entire/src/auth.py#L7-L11), which validates that `provider` is in `['google', 'github']` and `token` begins with `'oauth-'`.\n- In [tests/test_auth.py](file:///Users/arunbalakrishnan/Research/nool-vs-entire/tests/test_auth.py): Updated tests in [`TestAuthService.test_authenticate_oauth`](file:///Users/arunbalakrishnan/Research/nool-vs-entire/tests/test_auth.py#L5-L22) covering valid providers and tokens, unsupported providers, invalid prefixes, and empty inputs.\n\nAll tests pass and changes remain uncommitted.\n"
         },
         {
           "name": "entire recap",
           "cmd": "entire recap",
-          "rc": 1,
-          "seconds": 0.052,
-          "output": "Not logged in. Run 'entire login' to authenticate.\n"
+          "rc": 0,
+          "seconds": 0.41,
+          "output": "[day] \u00b7 week \u00b7 month \u00b7 90d        agent: [all]        view: you team [both]\n\n\u256d\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502  Today                                                                     \u2502\n\u2502  window Nov 3, 2026 00:00 CET - Nov 4, 2026 00:00 CET                      \u2502\n\u2502                                                                            \u2502\n\u2502  you   0 sessions    0 checkpoints    0 tok                                \u2502\n\u2502  team  -           -                -                                      \u2502\n\u2502                                                                            \u2502\n\u2502  0 agents \u00b7 0 active days                                                  \u2502\n\u2570\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\nActivity \u00b7 day\n\u2591\u2591\n\n\u256d\u2500 Agents \u00b7 today \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502  (no agent activity in range)                                              \u2502\n\u2570\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\n  \u2139 Labels require server analysis (may take a few minutes after committing).\n"
         },
         {
           "name": "entire dispatch",
           "cmd": "entire dispatch",
           "rc": 1,
-          "seconds": 0.055,
-          "output": "dispatch needs an origin remote on GitHub or Entire: remote not found (or pass --repos gh/<owner>/<repo> or et/<project>/<repo> to name the repo)\n"
+          "seconds": 0.407,
+          "output": "dispatch service returned status 502: \"The origin web server returned an invalid or incomplete response to Cloudflare. This typically indicates the origin is overloaded or misconfigured.\"\n"
         },
         {
           "name": "entire search OAuth2",
           "cmd": "entire search OAuth2",
-          "rc": 1,
-          "seconds": 0.064,
-          "output": "could not determine current repository for search (use --repo or --all-repos): get remote URL for \"origin\": remote \"origin\" not found\n"
+          "rc": 0,
+          "seconds": 1.568,
+          "output": "{\n  \"results\": [],\n  \"total\": 0,\n  \"page\": 1,\n  \"total_pages\": 1,\n  \"limit\": 10,\n  \"counts\": {\n    \"repos\": 0,\n    \"checkpoints\": 0,\n    \"commits\": 0,\n    \"prs\": 0,\n    \"sessions\": 0\n  },\n  \"reranked\": true\n}\n"
         }
       ],
       "entire_ref_count": 5,
-      "nool_ref_count": 10,
+      "nool_ref_count": 11,
       "ref_namespace_overlap": [],
       "entire_why_rc": 0,
       "entire_why_links_checkpoint": true,
       "nool_why_rc": 0,
       "nool_why_shows_chain": true,
-      "pending_candidates": "Pending candidates: 1",
-      "live_policy_outdated": true,
-      "scenario_seconds": 0.78
+      "pending_candidates": "No pending candidates.",
+      "live_policy_outdated": false,
+      "scenario_seconds": 3.12
     }
   }
 }

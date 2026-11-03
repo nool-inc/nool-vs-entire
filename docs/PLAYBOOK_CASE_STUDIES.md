@@ -3,6 +3,11 @@
 These workflows were exercised on 2 November 2026. The aim was to produce
 evidence and fix a reproducibility problem, rather than just define recipes.
 
+This is a historical account of those runs. The later authority, policy, and
+attestation repairs are described in [policy and provenance setup](POLICY_SETUP.md).
+The original untrusted-attestation and incompatible-host observations below
+remain part of the evidence; they do not describe the repaired configuration.
+
 ## Goal 1: make a fresh clone verifiable
 
 The `verified-change` workflow supplied the sequence: reproduce, make a
