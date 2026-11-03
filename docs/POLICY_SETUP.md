@@ -141,9 +141,13 @@ before it, but applies today's obligations, so these eight can never be
 discharged; a later `checker:unit-tests` grant does not reach verdicts
 recorded before it. To publish the Nool history to GitHub, `enforce` was set
 to `warn` for one push (`d5db648`) and then restored to `block` (`609fb9b`).
-A proposed Nool fix judges an obligation that a knot did not owe when it landed
-by the trust landed at `HEAD`. A regression test for it exists in the Nool
-repository, but the fix itself has not been made.
+Nool commit `e191b51d6` (after 7.24.0, not yet released) fixes this. An
+obligation that a knot did not owe when it landed is now judged by the trust
+landed at `HEAD`. A knot that changes `nool.toml` or `workspace.toml` is still
+judged by the settings it replaces, and keys that were never trusted still
+count for nothing. Its regression test is
+`the_push_gate_judges_an_obligation_added_later_by_the_keys_landed_now` in
+`crates/nool-cli/tests/audit_verify.rs`. With that build, no waiver is needed.
 
 ## Measured gaps
 
