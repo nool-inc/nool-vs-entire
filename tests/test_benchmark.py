@@ -8,6 +8,7 @@ gracefully when credentials are not configured.
 
 import json
 import os
+import re
 import subprocess
 import unittest
 
@@ -54,7 +55,7 @@ def _live_aram_configured():
     except OSError:
         return False
     return ("require_entire_provenance" in cfg
-            and os.path.exists(os.path.join(REPO, "policies", "entire_policy_test.wasm")))
+            and os.path.exists(os.path.join(REPO, "policies", "provenance.yaml")))
 
 
 requires_live_ledger = unittest.skipUnless(
@@ -74,7 +75,10 @@ class NoolCliTests(unittest.TestCase):
     def test_nool_version(self):
         rc, out, err = run([NOOL, "--version"])
         self.assertEqual(rc, 0, f"`nool --version` failed: {err}")
-        self.assertIn("7.23.0", out, f"unexpected nool version output: {out}")
+        match = re.search(r"nool (\d+)\.(\d+)\.(\d+)", out)
+        self.assertIsNotNone(match, f"unexpected nool version output: {out}")
+        # Evidence-reading DSL rules (ENTIRE-1) need 7.21 or later.
+        self.assertGreaterEqual(tuple(map(int, match.groups())), (7, 21, 0), out)
 
     def test_nool_status(self):
         rc, out, err = run([NOOL, "status"])
@@ -193,13 +197,18 @@ class NoolAramEnforcementTests(unittest.TestCase):
     """Nool ARAM/WASM enforcement of Entire checkpoint provenance."""
 
     def test_aram_policy_loaded(self):
-        """The Entire provenance WASM policy is detected at the configured policies_path."""
-        rc, out, err = run([NOOL, "doctor"], timeout=180)
-        # doctor returns non-zero when not releasable; what matters is policy detection in output
-        self.assertIn(rc, (0, 1, 2), f"`nool doctor` unexpected rc={rc}: {err}")
-        combined = out + err
-        self.assertIn("entire_policy_test.wasm", combined,
-                      "ARAM policy entire_policy_test.wasm not detected at policies_path")
+        """The pinned policy set is the released-host DSL rules, with no dev-only WASM."""
+        with open(os.path.join(REPO, "nool.toml")) as f:
+            config = f.read()
+        for name in ("provenance.yaml", "secrets.yaml"):
+            self.assertIn(f'name = "{name}"', config)
+            self.assertTrue(os.path.exists(os.path.join(REPO, "policies", name)), name)
+        self.assertNotIn("entire_provenance.wasm", config)
+        self.assertFalse(os.path.exists(os.path.join(REPO, "policies", "entire_provenance.wasm")))
+        with open(os.path.join(REPO, "policies", "provenance.yaml")) as f:
+            rule = f.read()
+        self.assertIn("assertion: entire-checkpoint", rule)
+        self.assertIn("pre-push", rule)
 
     def test_aram_invariant_rule_configured(self):
         """The require_entire_provenance invariant rule is defined in nool.toml."""

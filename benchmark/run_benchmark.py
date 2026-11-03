@@ -292,12 +292,13 @@ def scenario_nool_coordination(rec, root):
 
 def scenario_aram_provenance(rec, root):
     """Does `require_entire_provenance` stop an AI-tagged change with no Entire link?"""
-    if not os.path.isdir(os.path.join(REPO, "policies")):
-        return {"skipped": "policies/ not present in this checkout"}
+    legacy_policy = os.path.join(REPO, "benchmark", "fixtures", "legacy-policy")
+    if not os.path.isdir(legacy_policy):
+        return {"skipped": "legacy policy fixture not present in this checkout"}
     steps = []
     path = make_sandbox(root, "nool-aram")
     rec.run(steps, "nool init", ["nool", "init", "--skip-discovery"], path)
-    shutil.copytree(os.path.join(REPO, "policies"), os.path.join(path, "policies"))
+    shutil.copytree(legacy_policy, os.path.join(path, "policies"))
     cfg = os.path.join(path, "nool.toml")
     with open(cfg) as f:
         s = f.read()
@@ -340,7 +341,7 @@ severity = "error\"""", 1)
     control = attempt("untagged change (control)")
     _, verify_out, _ = rec.run(steps, "nool verify --all", ["nool", "verify", "--all"], path)
     _, plugins, _ = rec.run(steps, "nool admin plugin list", ["nool", "admin", "plugin", "list"], path)
-    with open(os.path.join(REPO, "policies", "entire_policy_test.wasm"), "rb") as f:
+    with open(os.path.join(legacy_policy, "entire_policy_test.wasm"), "rb") as f:
         wasm = f.read().lower()
     return {
         "tool": "nool", "variant": "aram-provenance", "steps": steps,

@@ -2,7 +2,7 @@ aram_policy_set: ab005f48958ef3c296507fd4343154a2c1e15c0e1c5b7b928ac435806af9288
 commit_policy_hash: 2d549b912abe9e908b9f49273abbb7b9d28ea9db47e8f16e22c5ee1e70143b57
 commit_policy_version: 1
 commit_template_hash: a9192855a17bbe09ae8aa3abd46cd7eab666809fb6c6dfa73aaeb580c4250428
-intent: chore: capture Claude Code sessions and redact secrets in Entire
-knot_id: 6a6d262f81c640867e7c8536c4c4e20778773364f10e8fc4eb3ae24c73aee8ce
-solidified_at: 1793677736729
+intent: feat: attest Entire checkpoints and probe each policy type
+knot_id: eedb9b1bbca7aaef0bb12ae8f81d348fef9a15a456cd5d0a7db577e9ede114ad
+solidified_at: 1793677938444
 thread: main

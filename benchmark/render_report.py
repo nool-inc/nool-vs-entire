@@ -12,6 +12,13 @@ import sys
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
+def pcase(pt, name):
+    """Whether the policy probe's named case met its expectation."""
+    if not pt:
+        return False
+    return any(o["case"] == name and o["expectation_met"] for o in pt["outcomes"])
+
+
 def yn(flag, yes="✅ yes", no="❌ no"):
     return yes if flag else no
 
@@ -20,7 +27,15 @@ def ms(seconds):
     return f"{seconds * 1000:.0f} ms"
 
 
-def render(r):
+def load_policy_probe():
+    path = os.path.join(REPO, "benchmark", "results", "policy-types.json")
+    if not os.path.exists(path):
+        return None
+    with open(path) as f:
+        return json.load(f)
+
+
+def render(r, pt=None):
     s = r["scenarios"]
     g, gs, en = s["plain_git_disjoint"], s["plain_git_same_symbol"], s["entire_disjoint"]
     nd, ns, co = s["nool_merge_disjoint"], s["nool_merge_same_symbol"], s["nool_coordination"]
@@ -67,7 +82,9 @@ def render(r):
       "no — agent-supplied intent strings, not transcripts |")
     w(f"| Policy gate before code lands | no | no | {yn(ar['gate_denies_without_editor_contract'], 'yes — Aram denied an agent edit with no editor contract')} |")
     w(f"| Enforce \"AI change must carry an Entire checkpoint\" | — | — | "
-      f"{yn(ar['provenance_rule_enforced'], 'enforced', '**not enforced** as configured (see below)')} |")
+      f"original invariant + scaffold: {yn(ar['provenance_rule_enforced'], 'enforced', '**not enforced**')}"
+      + (f"; evidence rule `ENTIRE-1`: push {'**held until a verified checkpoint is attested**' if pcase(pt, 'push without checkpoint attestation') and pcase(pt, 'push after checkpoint attestation') else 'not enforced'} (Scenario 5)" if pt else "")
+      + " |")
     w(f"| Ref namespaces coexist | — | `refs/entire/*` ({live['entire_ref_count']}) | `refs/nool/*` ({live['nool_ref_count']}) · "
       f"overlap: {len(live['ref_namespace_overlap'])} |")
     w("")
@@ -125,7 +142,8 @@ def render(r):
     w("## Scenario 3 — Aram policy gate and the \"Entire provenance\" rule")
     w("")
     w("Setup in a sandbox: the `require_entire_provenance` invariant from this repo's `nool.toml` "
-      "(`when has_metadata('is_ai_agent') then has_link('entire_checkpoint')`) and the `policies/entire_policy_test.wasm` "
+      "(`when has_metadata('is_ai_agent') then has_link('entire_checkpoint')`) and the preserved "
+      "`benchmark/fixtures/legacy-policy/entire_policy_test.wasm` "
       f"module, both landed (invariant landed: {yn(ar['invariant_config_landed'], 'yes', 'no')}, "
       f"policy set landed: {yn(ar['policy_set_landed'], 'yes', 'no')}), editor contract granted.")
     w("")
@@ -145,9 +163,11 @@ def render(r):
     w(f"- The WASM module contains no reference to Entire, checkpoints or `is_ai_agent` "
       f"(match: {yn(ar['wasm_mentions_entire_or_checkpoint'], 'yes', 'no')}) — it is a scaffold, not a provenance check. "
       f"`nool admin plugin list` flags it as built against an older knot model (warning: {yn(ar['policy_outdated_warning'], 'yes', 'no')}).")
-    w(f"- In the live repo that stale module **fails closed** on newer knot kinds: solidifying the pending "
-      "task-creation knot is denied with *\"policy `entire_policy_test` could not decode this knot\"*. "
-      f"Live repo state: {live['pending_candidates'].lower()}.")
+    w("- The legacy module previously refused the live repository's newer Task payload. It is now "
+      "preserved as an isolated benchmark fixture; current policy integration is reported separately in "
+      "`policies-src/entire_provenance/README.md`. "
+      f"Current live policy outdated warning: {yn(live['live_policy_outdated'], 'yes', 'no')}; "
+      f"{live['pending_candidates'].lower()}.")
     w("- Earlier versions of this report said provenance was \"enforced via ARAM WASM gate\". That claim is withdrawn.")
     w("")
 
@@ -172,6 +192,38 @@ def render(r):
         w(f"- `entire {name}` → exit {v['rc']}: {v['reason']}")
     w("")
 
+    if pt:
+        w("## Scenario 5 — Policy types on the released host")
+        w("")
+        w(f"`benchmark/check_policy_types.py` copies this repository's policy files and checker into a sandbox "
+          f"and drives representative changes through them with **{pt['nool_version']}**. "
+          "Raw output is in `benchmark/results/policy-types.json`.")
+        w("")
+        w("| Case | Policy type | Expected | Exit | Met? |")
+        w("|---|---|---|---|---|")
+        for o in pt["outcomes"]:
+            met = yn(o["expectation_met"], "✅ yes", "⚠️ known gap" if o.get("known_gap") else "❌ no")
+            w(f"| {o['case']} | {o['policy']} | {o['expected']} | {o['rc']} | {met} |")
+        w("")
+        w("Findings:")
+        w("")
+        w("- Path, content and evidence policies all enforce on the released host: `[rules] forbidden_paths` "
+          "refuses writes to Entire's runtime state, DSL rule `SEC-1` refuses known-format credentials at "
+          "propose, and `SEC-2` records a warning in the gate receipt (`nool policy stats` counts that "
+          "warning as a pass).")
+        w("- `ENTIRE-1` reads the evidence projection at `pre-push`. Without a trusted `entire-checkpoint` pass, "
+          "`nool push` exits 3 (`EVIDENCE_PENDING`); a failed attestation does not satisfy it. Once "
+          "`scripts/attest_entire_checkpoint.py` verifies a checkpoint ref whose recorded files overlap the "
+          "commit and records a signed pass, the push goes through.")
+        w("- The `require_entire_provenance` **invariant** is still not enforced on this host, even with "
+          "`[gating] relational_controls = \"block\"`: the AI-tagged change landed and `nool verify --all` "
+          "reported no violation. The repository keeps the invariant for comparison but relies on `ENTIRE-1`.")
+        w("- Nool exports its commits through libgit2, so Entire's git hooks never add an `Entire-Checkpoint` "
+          "trailer to them. The checker therefore also accepts an operator-supplied checkpoint ID, and it "
+          "verifies the ID, the ref and the file overlap either way. It cannot prove that the session wrote "
+          "those exact lines.")
+        w("")
+
     # ---------------------------------------------------------- synthesis
     w("## What each tool is, judged by this evidence")
     w("")
@@ -182,12 +234,14 @@ def render(r):
     w("- **Nool** — a coordination and governance layer that also uses git as transport (`refs/nool/*`, no clash "
       "with `refs/entire/*`). Its distinctive, verified value is *prevention and convergence*: leases that refuse "
       "overlapping agents before work starts, automatic union of structurally disjoint edits, a policy gate, and "
-      "structured handoff/PR artefacts. Weak spots found here: the provenance rule as configured is not enforced, "
-      "a stale policy module fails closed on newer knots, the semantic same-symbol check missed a real collision, "
+      "structured handoff/PR artefacts. Weak spots found here: the provenance invariant is not enforced, "
+      "the legacy fixture's policy module predates newer knots, the semantic same-symbol check missed a real collision, "
       "and `nool context` matches symbol names rather than natural-language intent on a small fresh repo.")
     w("- **Together** — complementary rather than competing: Entire answers *what was the agent asked and what did "
       "it say*; Nool answers *who may touch what now, and does this change meet policy*. The integration point this "
-      "repo attempted (Nool gating on Entire checkpoint links) is the right idea but is not working yet.")
+      "repo originally attempted failed with the legacy scaffold. On the released host it now works as an "
+      "evidence rule: a trusted checker links each landed commit to an Entire checkpoint before `nool push` "
+      "publishes it (Scenario 5).")
     w("")
 
     w("## Limitations")
@@ -328,7 +382,7 @@ def main():
         results = json.load(f)
     out = os.path.join(REPO, "BENCHMARK_COMPARISON.md")
     with open(out, "w") as f:
-        f.write(render(results))
+        f.write(render(results, load_policy_probe()))
     print(f"wrote {os.path.relpath(out, REPO)} from {os.path.relpath(path, REPO)}")
     page = os.path.join(REPO, "comparison.html")
     if os.path.exists(page):
