@@ -80,6 +80,33 @@ class CheckpointCheckerTests(unittest.TestCase):
         self.assertEqual(evidence["verdict"], "fail")
         self.assertEqual(evidence["checkpoints"][0]["overlap"], [])
 
+    def test_attached_checkpoint_uses_transcript_writes(self):
+        root = os.path.realpath(self.repo)
+        lines = [
+            {"type": "assistant", "message": {"content": [
+                {"type": "tool_use", "name": "Write",
+                 "input": {"file_path": os.path.join(root, "src/a.py")}},
+                {"type": "tool_use", "name": "Read",
+                 "input": {"file_path": os.path.join(root, "src/b.py")}}]}},
+        ]
+        meta = git(self.repo, "hash-object", "-w", "--stdin",
+                   input=json.dumps({"checkpoint_id": ULID_ID}))
+        log = git(self.repo, "hash-object", "-w", "--stdin",
+                  input="\n".join(json.dumps(x) for x in lines))
+        sub = git(self.repo, "mktree",
+                  input=f"100644 blob {log}\tfull.jsonl\n100644 blob {meta}\tmetadata.json\n")
+        tree = git(self.repo, "mktree",
+                   input=f"040000 tree {sub}\t0\n100644 blob {meta}\tmetadata.json\n")
+        commit = git(self.repo, "commit-tree", tree, "-m", "attached session")
+        git(self.repo, "update-ref", f"refs/entire/checkpoints/{ULID_ID[-2:]}/{ULID_ID}", commit)
+        written = self.commit("src/a.py", "feat: written by the session")
+        evidence = checker.evaluate(self.repo, written, [ULID_ID])
+        self.assertEqual(evidence["verdict"], "pass", evidence)
+        self.assertEqual(evidence["checkpoints"][0]["files_source"], "transcript")
+        self.assertEqual(evidence["checkpoints"][0]["files_touched"], ["src/a.py"])
+        only_read = self.commit("src/b.py", "feat: only read by the session")
+        self.assertEqual(checker.evaluate(self.repo, only_read, [ULID_ID])["verdict"], "fail")
+
     def test_operator_supplied_checkpoint_passes(self):
         self.checkpoint(ULID_ID, ["src/a.py"])
         sha = self.commit("src/a.py", "feat: landed by nool")

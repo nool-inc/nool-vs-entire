@@ -61,18 +61,28 @@ nool push origin
 
 For each named checkpoint, the checker confirms three things: the ID has
 Entire's format, `refs/entire/checkpoints/*/<id>` exists locally, and the
-checkpoint's recorded `files_touched` overlaps the commit's files. It records
+checkpoint's recorded `files_touched` overlaps the commit's files. A
+checkpoint made by `entire session attach` records no `files_touched`. For
+those, the checker uses the paths that the transcript's Write and Edit tool
+calls wrote; paths that were only read do not count. It records
 the result as `nool attest record --assertion entire-checkpoint` with the
 evidence as JSON. The attestation counts as trusted only when the signing key
 is in `[attestation] checker_keys`. With `--dry-run` it prints the evidence
 and records nothing.
 
-To create a checkpoint for work that did not go through a git commit, Entire
-documents `entire session attach <session-id> --commit <sha>`. If that commit
-has not been pushed, `attach` adds the trailer by rewriting it, which would
-move a Nool-exported commit. Name the checkpoint with `--checkpoint` instead,
-or attach after the commit is pushed, when Entire records the link in a new
-checkpoint.
+To create a checkpoint for work that went through Nool, attach the agent
+session to a commit that has already been pushed. Entire then records the link
+in a new checkpoint and pushes it to `origin` without rewriting anything:
+
+```sh
+entire session attach <session-id> --agent claude-code --commit <pushed sha> --force
+python3 scripts/attest_entire_checkpoint.py --commit <knot commit> --checkpoint <new id>
+```
+
+Attaching an unpushed commit adds the trailer by rewriting the commit, which
+would move a Nool-exported commit, so use a pushed one. This session's work
+(`536a991`, `fd13c75`, `bb1fbe0` and later) is linked this way to checkpoints
+created from its transcript.
 
 **History before the rule.** Knots landed before `ENTIRE-1` was adopted at
 `cb936a4` have no checkpoint. They pass only with an audited exemption. The

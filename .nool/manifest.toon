@@ -2,7 +2,7 @@ aram_policy_set: ab005f48958ef3c296507fd4343154a2c1e15c0e1c5b7b928ac435806af9288
 commit_policy_hash: 2d549b912abe9e908b9f49273abbb7b9d28ea9db47e8f16e22c5ee1e70143b57
 commit_policy_version: 1
 commit_template_hash: a9192855a17bbe09ae8aa3abd46cd7eab666809fb6c6dfa73aaeb580c4250428
-intent: chore: accept selected-scope unit-test verdicts
-knot_id: 36e5aa02f92a38fb31e0945465a5fe9fc543ffcb85b541f7ea0d711aafaabeb7
-solidified_at: 1793678253721
+intent: fix: read attached-session writes when a checkpoint lists no files
+knot_id: 9c95b35d9764fb1ee623910507f3da6888b3a392219678fc10a6409f461b8441
+solidified_at: 1793678333753
 thread: main

@@ -10,7 +10,9 @@ operator. Either way the link must be backed by evidence in this clone:
   * the ID has Entire's format (26-character ULID for the `git-refs` backend,
     12 hex characters for the legacy `git-branch` backend);
   * a checkpoint ref `refs/entire/checkpoints/<shard>/<id>` exists locally;
-  * the checkpoint's recorded `files_touched` overlaps the commit's changes.
+  * the checkpoint's recorded `files_touched` overlaps the commit's changes
+    (for a checkpoint made by `entire session attach`, which records none,
+    the paths its transcript's Write/Edit tool calls wrote are used instead).
 
 The verdict is recorded as a signed Nool attestation (assertion
 `entire-checkpoint`), which the `ENTIRE-1` rule in `policies/provenance.yaml`
@@ -90,6 +92,48 @@ def files_touched(repo, ref):
     return sorted(touched)
 
 
+WRITE_TOOLS = {"Write", "Edit", "MultiEdit", "NotebookEdit"}
+
+
+def _written_paths(node, out):
+    """Collect `file_path` inputs of write tool calls anywhere in a transcript record."""
+    if isinstance(node, dict):
+        if node.get("type") == "tool_use" and node.get("name") in WRITE_TOOLS:
+            path = (node.get("input") or {}).get("file_path")
+            if isinstance(path, str):
+                out.add(path)
+        for value in node.values():
+            _written_paths(value, out)
+    elif isinstance(node, list):
+        for value in node:
+            _written_paths(value, out)
+
+
+def transcript_writes(repo, ref):
+    """Repo-relative paths the session wrote, from the checkpoint's transcript.
+
+    `entire session attach` records no `files_touched`, but the transcript it
+    stores keeps every Write/Edit tool call with its absolute path.
+    """
+    root = os.path.realpath(git(repo, "rev-parse", "--show-toplevel").stdout.strip())
+    names = git(repo, "ls-tree", "-r", "--name-only", ref).stdout.split()
+    found = set()
+    for name in names:
+        if not name.endswith(("full.jsonl", "transcript.jsonl")):
+            continue
+        for line in git(repo, "show", f"{ref}:{name}", check=False).stdout.splitlines():
+            try:
+                _written_paths(json.loads(line), found)
+            except json.JSONDecodeError:
+                continue
+    rel = set()
+    for path in found:
+        real = os.path.realpath(path)
+        if real.startswith(root + os.sep):
+            rel.add(os.path.relpath(real, root))
+    return sorted(rel)
+
+
 def evaluate(repo, commit, explicit_ids=()):
     """Return the evidence dict; `verdict` is `pass` or `fail`."""
     sha = git(repo, "rev-parse", commit).stdout.strip()
@@ -102,6 +146,10 @@ def evaluate(repo, commit, explicit_ids=()):
         ref = checkpoint_ref(repo, checkpoint_id) if entry["format_ok"] else None
         entry["ref"] = ref
         touched = files_touched(repo, ref) if ref else []
+        entry["files_source"] = "metadata"
+        if ref and not touched:
+            touched = transcript_writes(repo, ref)
+            entry["files_source"] = "transcript"
         entry["files_touched"] = touched
         entry["overlap"] = sorted(set(touched) & set(changed))
         entry["ok"] = bool(entry["format_ok"] and ref and entry["overlap"])

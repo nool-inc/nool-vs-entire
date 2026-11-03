@@ -1,18 +1,9 @@
 {
   "enabled": true,
-  "commit_linking": "always",
-  "checkpoints": {
-    "primary": {
-      "type": "git-refs"
-    }
-  },
   "strategy_options": {
     "push_sessions": true
   },
   "redaction": {
-    "betterleaks": {
-      "enabled": true
-    },
     "pii": {
       "enabled": true,
       "email": true,
@@ -20,8 +11,17 @@
       "address": false
     },
     "custom_redactions": {
-      "NOOL_IDENTITY_KEY": "NOOL_IDENTITY_KEY=[0-9a-fA-F]{64}",
-      "NOOL_HUB_TOKEN": "NOOL_HUB_TOKEN=[A-Za-z0-9._-]{16,}"
+      "NOOL_HUB_TOKEN": "NOOL_HUB_TOKEN=[A-Za-z0-9._-]{16,}",
+      "NOOL_IDENTITY_KEY": "NOOL_IDENTITY_KEY=[0-9a-fA-F]{64}"
+    },
+    "betterleaks": {
+      "enabled": true
+    }
+  },
+  "commit_linking": "always",
+  "checkpoints": {
+    "primary": {
+      "type": "git-refs"
     }
   }
 }
